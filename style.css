@@ -12,16 +12,27 @@ a{
 }
 .bg-img{
     justify-content: center;
-    width: 20%;
+    width: 30%;
     height: auto;
 }
-.container{
-    height: 100px;
-    margin: 10%;
+
+.header{
+    padding: 10px 0;
 }
+
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; 
+    margin: 0px auto;
+    padding: 0 20px;
+}
+
 .container a{
     padding: 2%;
-    margin: 1%;
+    margin: 0;
     color: white;
     border: 2px;
     border-radius: 20px;
@@ -30,6 +41,12 @@ a{
 
 .container a:hover{
     background-color: #052E87;
+}
+
+.container h1{
+    text-align: center;
+    font-size: 80px;
+    flex-grow: 1;
 }
 
 input[type=submit]{
