@@ -46,6 +46,7 @@ a{
 .container h1{
     text-align: center;
     font-size: 80px;
+    letter-spacing: -3px;
     flex-grow: 1;
 }
 
