@@ -74,10 +74,57 @@ $html = <<<HTML
                 logoutButton.src = './img/logoutButton.svg'; // Assicurati che questo percorso sia corretto
             });
         </script>
-
     </header>
-
     <main>
+        <div class=mainRow1>
+            <div class="text">
+                <h2>
+                    Ricetta 1
+                </h2>
+                <p>
+                    descrizione ricetta
+                </p>
+            </div>
+            <img src="./img/padella.jpg" alt="" height=90px width=90px class="immagineRicetta">            
+        </div>
+        <!--
+        <div class=mainRow2>
+            <h2 class="titolo ricetta">
+                Ricetta 2
+            </h2 class="descrizione ricetta">
+            <p>
+                descrizione ricetta
+            </p>
+            <img src="./img/padella.jpg" alt="" height=90px width=90px class="immagineRicetta">          
+        </div>
+        <div class=mainRow3>
+            <h2 class="titolo ricetta">
+                Ricetta 3
+            </h2 class="descrizione ricetta" >
+            <p>
+                descrizione ricetta
+            </p>
+            <img src="./img/padella.jpg" alt="" height=90px width=90px class="immagineRicetta">          
+        </div>
+        <div class=mainRow4>
+            <h2 class="titolo ricetta">
+                Ricetta 4
+            </h2 class="descrizione ricetta">
+            <p>
+                descrizione ricetta
+            </p>
+            <img src="./img/padella.jpg" alt="" height=90px width=90px class="immagineRicetta">          
+        </div>
+        <div class=mainRow5>
+            <h2 class="titolo ricetta">
+                Ricetta 5
+            </h2 class="descrizione ricetta">
+            <p>
+                descrizione ricetta
+            </p>
+            <img src="./img/padella.jpg" alt="" height=90px width=90px class="immagineRicetta">      
+        </div>
+        --> 
     </main>
 
     <footer>
