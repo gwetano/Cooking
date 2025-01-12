@@ -3,7 +3,7 @@ $host = 'localhost';
 $db = 'GRUPPO12';
 $port = '5432';
 $username = 'www';
-$password = '';
+$password = '3020';
 $connection_string = "host=$host dbname=$db port=$port user=$username password=$password";
 
 //CONNESSIONE AL DB
