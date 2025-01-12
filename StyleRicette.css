@@ -27,12 +27,9 @@
         border-radius: 10px;
         width: 70%;
         height: 100%;
-    }
-
-    .search-input::placeholder{
+        padding-left: 10px;
         font-size: 20px;
         font-family: 'Times New Roman', Times, serif;
-        padding-left: 10px;
     }
 
     .button-startSearch {
