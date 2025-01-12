@@ -53,12 +53,12 @@
 
     /*1 colonna : Hamburger Menu*/
     .menu-btn {
-        font-size: 36px;
+        font-size: 40px;
         background-color: #333;
         color: white;
         border: none;
         cursor: pointer;
-        border-radius: 5px;
+        border-radius: 10px;
         margin-left: 10px;
     } 
 
@@ -106,4 +106,43 @@
     .logout{
         cursor: pointer;
         margin-right: 10px;
+    }
+
+    main {
+        display: grid;
+        grid-template-rows: 100px;
+        grid-template-columns: 1fr;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .mainRow1 {
+        grid-row: 1;
+        background-color: red;
+        display: flex;
+        align-items: center;
+    } 
+
+    .immagineRicetta {
+
+    }
+
+    .mainRow2{
+        grid-row: 2;
+        background-color: red;
+    }
+
+    .mainRow3 {
+        grid-row: 3;
+        background-color: red;
+    }
+
+    .mainRow4{
+        grid-row: 4;
+        background-color: red;
+    }
+
+    .mainRow5{
+        grid-row: 5;
+        background-color: red;
     }
