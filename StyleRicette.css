@@ -29,6 +29,12 @@
         height: 100%;
     }
 
+    .search-input::placeholder{
+        font-size: 20px;
+        font-family: 'Times New Roman', Times, serif;
+        padding-left: 10px;
+    }
+
     .button-startSearch {
         border-radius: 10px;
         height: 80%;
@@ -41,7 +47,7 @@
     }
 
     .button-startSearch:hover {
-        background-color: lightslategrey;
+        background-color: rgb(100, 102, 100);
     }
 
     .menu-btn:hover {
