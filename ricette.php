@@ -36,7 +36,7 @@ $html = <<<HTML
         <div id="sidebar" class="sidebar">
             <a href="#" class="close-btn" onclick="closeMenu()">×</a>
             <a href="#Home">Home</a>
-            <a href="#Account">About</a>
+            <a href="#Account">Account</a>
             <a href="#contact">Contact</a>
         </div>
         
@@ -52,7 +52,7 @@ $html = <<<HTML
 
         <div class="search-form">
             <form action="search.php" method="get">
-                <input type="text" name="query" placeholder="Cerca..." required class="search-input">
+                <input type="text" name="query" placeholder="Cerca una ricetta" required class="search-input">
                 <button type="submit" class="button-startSearch">🍳</button>
             </form>
         </div>
