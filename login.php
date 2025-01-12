@@ -39,7 +39,7 @@
                 //Se il login è corretto, inizializziamo la sessione
                 $_SESSION['username']=$user;
                 session_start();
-                header("location: ./ricette.html");
+                header("location: ./ricette.php ");
             }else{
                 echo "<p> La password è errata. <a href=\"login.php\">Riprova</a></p>";
             }
