@@ -1,16 +1,18 @@
-/* Stile generale */
+/* Stile Ricette.php */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-}
+    background-color:blue;
 
+}
+/* Stile Header */
 header {
     margin: 0;
     display: grid;
-    grid-template-columns: 0fr 5fr 0fr;
+    grid-template-columns: 0fr 2fr 0fr;
 }
 
+/*HamburgerMenu*/
 .menu-btn {
     font-size: 36px;
     padding: 10px 15px;
@@ -22,12 +24,12 @@ header {
     border-radius: 5px;
     display: flex;
 } 
-
+/*Barra di ricerca*/
 .search-form {
     display: flex; 
     justify-content: center;
     align-content:center;
-    height: 50px;
+    height: 100px;
     position: sticky;
     gap: 10px;
     padding: 30px;
