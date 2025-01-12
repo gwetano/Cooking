@@ -37,15 +37,18 @@
             if(password_verify($pass, $hash)){
                 echo "<p>Login Eseguito con successo</p>";
                 //Se il login è corretto, inizializziamo la sessione
-                $_SESSION['username']=$user;
                 session_start();
-                header("location: ./ricette.html");
+                $_SESSION['username']=$user;
+                header("location: ./ricette.php");
             }else{
                 echo "<p> La password è errata. <a href=\"login.php\">Riprova</a></p>";
             }
-            
         }
     }
+    if (isset($_GET['error']) && $_GET['error'] == 'not_logged_in') {
+        echo "<p style='color: red;'>Devi effettuare l'accesso per accedere a questa pagina.</p>";
+    }
+    
 
     function get_pwd($user,$db){
         $sql = "SELECT password FROM utente WHERE username='$user'";
