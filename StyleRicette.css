@@ -1,0 +1,106 @@
+    /* Stile ricette.php */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+    /* Stile Header */
+    header {
+        display: grid;
+        position: sticky;
+        grid-template-columns: 0fr 2fr 0fr;
+        grid-template-rows: 50px;
+        height: 4em;
+        width: 100%;
+        background-color: white;
+        padding-top: 10px;
+    }
+
+    /*colonna centrale*/
+    .search-form {
+        display: inline-block; 
+        text-align: center;
+        margin: 0px;
+    }
+
+    .search-input {
+        border-radius: 10px;
+        width: 70%;
+        height: 100%;
+    }
+
+    .button-startSearch {
+        border-radius: 10px;
+        height: 80%;
+        margin-left: 20px;
+        cursor: pointer;
+        font-size: 25px;
+        background-color: white;
+        color: white; 
+        border: none; 
+    }
+
+    .button-startSearch:hover {
+        background-color: lightslategrey;
+    }
+
+    .menu-btn:hover {
+        background-color: #575757;
+    }
+
+    /*1 colonna : Hamburger Menu*/
+    .menu-btn {
+        font-size: 36px;
+        background-color: #333;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-left: 10px;
+    } 
+
+    /* Sidebar (menu laterale) */
+    .sidebar {
+        height: 100%;
+        width: 0; /* Menu nascosto inizialmente */
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #333;
+        overflow-x: hidden;
+        transition: 0.5s; /* Animazione apertura/chiusura */
+        padding-top: 60px;
+        color: white;
+        z-index: 1000;
+    }
+
+    /* Link nel menu laterale */
+    .sidebar a {
+        padding: 10px 15px;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+        background-color: #575757;
+    }
+
+    /* Pulsante per chiudere il menu */
+    .close-btn {
+        font-size: 36px;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        color: white;
+        cursor: pointer;
+        text-decoration: none;
+    }  
+
+    /*3 colonna : logoutButton*/
+    .logout{
+        cursor: pointer;
+        margin-right: 10px;
+    }
