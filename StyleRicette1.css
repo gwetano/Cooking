@@ -2,11 +2,12 @@
     body {
         margin: 0;
         font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
+        background-color: white;
     }
     /* Stile Header */
     header {
         display: grid;
+        top: 0;
         position: sticky;
         grid-template-columns: 0fr 2fr 0fr;
         grid-template-rows: 50px;
@@ -110,39 +111,76 @@
 
     main {
         display: grid;
-        grid-template-rows: 100px;
+        height: 100%;
+        grid-template-rows: repeat(5, minmax(50px, 1fr));
         grid-template-columns: 1fr;
         align-items: center;
         gap: 10px;
+        padding-top: 10px;
+    }
+
+    .text {
+        padding: 10px;
     }
 
     .mainRow1 {
         grid-row: 1;
-        background-color: red;
-        display: flex;
-        align-items: center;
-    } 
-
-    .immagineRicetta {
-
+        background-color: lightblue;
+        border-color: blue;
+        border-style:ridge;
+        height: 100%;
+        display:flex;
     }
 
     .mainRow2{
         grid-row: 2;
-        background-color: red;
+        background-color: lightblue;
+        border-color: blue;
+        border-style:ridge;
+        height: 100%;
+        display:flex;
     }
 
     .mainRow3 {
         grid-row: 3;
-        background-color: red;
+        background-color: lightblue;
+        border-color: blue;
+        border-style:ridge;
+        height: 100%;
+        display:flex;
     }
 
     .mainRow4{
         grid-row: 4;
-        background-color: red;
+        background-color: lightblue;
+        border-color: blue;
+        border-style:ridge;
+        height: 100%;
+        display:flex;
     }
 
     .mainRow5{
         grid-row: 5;
-        background-color: red;
+        background-color: lightblue;
+        border-color: blue;
+        border-style:ridge;
+        height: 100%;
+        display:flex;
+    }
+
+    .immagineRicetta{
+        margin-top: 10px;   
+        margin-left: 1100px;
+        height: 140px;
+        width: 160px;
+    }
+
+    footer p{
+        text-align: center;
+        color:  lightgray;
+    }
+
+    footer p a {
+        text-decoration: none;
+        color:  lightgray;
     }
