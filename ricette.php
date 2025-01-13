@@ -26,7 +26,7 @@ $html = <<<HTML
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.png">
-    <link rel="stylesheet" href="StyleRicette.css">
+    <link rel="stylesheet" href="StyleRicette1.css">
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -35,9 +35,9 @@ $html = <<<HTML
         
         <div id="sidebar" class="sidebar">
             <a href="#" class="close-btn" onclick="closeMenu()">×</a>
-            <a href="#Home">Home</a>
-            <a href="#Account">Account</a>
-            <a href="#contact">Contact</a>
+            <a href="./index.html">Home</a>
+            <a href="#./account">Account</a>
+            <a href="./contact">Contact</a>
         </div>
         
         <script>
@@ -87,47 +87,76 @@ $html = <<<HTML
             </div>
             <img src="./img/padella.jpg" alt="" height=90px width=90px class="immagineRicetta">            
         </div>
-        <!--
+
         <div class=mainRow2>
-            <h2 class="titolo ricetta">
-                Ricetta 2
-            </h2 class="descrizione ricetta">
-            <p>
-                descrizione ricetta
-            </p>
-            <img src="./img/padella.jpg" alt="" height=90px width=90px class="immagineRicetta">          
+            <div class="text">
+                <h2>
+                    Ricetta 2
+                </h2>
+                <p>
+                    descrizione ricetta
+                </p>
+            </div>
+            <img src="./img/padella.jpg" alt="" class="immagineRicetta">            
         </div>
+
         <div class=mainRow3>
-            <h2 class="titolo ricetta">
-                Ricetta 3
-            </h2 class="descrizione ricetta" >
-            <p>
-                descrizione ricetta
-            </p>
-            <img src="./img/padella.jpg" alt="" height=90px width=90px class="immagineRicetta">          
+            <div class="text">
+                <h2>
+                    Ricetta 3
+                </h2>
+                <p>
+                    descrizione ricetta
+                </p>
+            </div>
+            <img src="./img/padella.jpg" alt="" class="immagineRicetta">            
         </div>
+
         <div class=mainRow4>
-            <h2 class="titolo ricetta">
-                Ricetta 4
-            </h2 class="descrizione ricetta">
-            <p>
-                descrizione ricetta
-            </p>
-            <img src="./img/padella.jpg" alt="" height=90px width=90px class="immagineRicetta">          
+            <div class="text">
+                <h2>
+                    Ricetta 4
+                </h2>
+                <p>
+                    descrizione ricetta
+                </p>
+            </div>
+            <img src="./img/padella.jpg" alt="" class="immagineRicetta">            
         </div>
+
         <div class=mainRow5>
-            <h2 class="titolo ricetta">
-                Ricetta 5
-            </h2 class="descrizione ricetta">
-            <p>
-                descrizione ricetta
-            </p>
-            <img src="./img/padella.jpg" alt="" height=90px width=90px class="immagineRicetta">      
+            <div class="text">
+                <h2>
+                    Ricetta 5
+                </h2>
+                <p>
+                    descrizione ricetta
+                </p>
+            </div>
+            <img src="./img/padella.jpg" alt="" class="immagineRicetta">            
         </div>
-        --> 
+       
     </main>
 
     <footer>
+        <p> 
+            <a href="">
+                Privacy Policy
+            </a>
+            ● 
+            <a href="">
+                Cookie Policy
+            </a>
+            ●
+            <a href="">
+                Termini e condizioni
+            </a>
+            ●
+            <a href="./index.html">
+                Welcome
+            </a>
+            ● © 2025 Cooking
+        </p>
     </footer>
 
 </body>
