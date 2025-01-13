@@ -2,14 +2,14 @@
 session_start(); // Avvia la sessione
 
 // Controlla se la sessione "username" è impostata
-if (!isset($_SESSION['username'])) {
+/*if (!isset($_SESSION['username'])) {
     // Se non è autenticato, mostriamo un alert e reindirizziamo alla pagina di login
     echo "<script>
             alert('Accesso non autorizzato. Sarai reindirizzato alla pagina di login.');
             window.location.href = 'login.php'; // Cambia con il percorso della tua pagina di login
           </script>";
     exit; // Termina l'esecuzione del codice
-}
+}*/
 
 // Se l'utente fa clic sul logout, distruggi la sessione
 if (isset($_GET['logout'])) {
@@ -72,10 +72,7 @@ $html = <<<HTML
         </script>
 
         <div class="search-form">
-            <form action="search.php" method="get">
-                <input id="searchInput" type="text" name="query" placeholder="Cerca una ricetta" class="search-input">
-                <button type="submit" class="button-startSearch">🍳</button>
-            </form>
+            <input id="searchInput" type="text" name="query" placeholder="Cerca una ricetta" class="search-input">
         </div>
 
         <div class="logout">

@@ -33,21 +33,6 @@
         font-family: 'Times New Roman', Times, serif;
     }
 
-    .button-startSearch {
-        border-radius: 10px;
-        height: 80%;
-        margin-left: 20px;
-        cursor: pointer;
-        font-size: 25px;
-        background-color: white;
-        color: white; 
-        border: none; 
-    }
-
-    .button-startSearch:hover {
-        background-color: rgb(100, 102, 100);
-    }
-
     .menu-btn:hover {
         background-color: #575757;
     }
