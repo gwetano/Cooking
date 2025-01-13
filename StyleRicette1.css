@@ -54,12 +54,13 @@
 
     /*1 colonna : Hamburger Menu*/
     .menu-btn {
-        font-size: 40px;
+        font-size: 25px;
         background-color: #333;
         color: white;
         border: none;
         cursor: pointer;
-        border-radius: 10px;
+        border-radius: 5px;
+        padding: 8px;
         margin-left: 10px;
     } 
 
@@ -195,7 +196,7 @@
     footer{
         text-align: center;
         color:  black;
-        margin-top: 50px;
+        margin-top: 40px;
     }
 
     footer p a {
