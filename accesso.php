@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $_POST['usernameRegistrazione'] ?? '';
         $password = $_POST['passwordRegistrazione'] ?? '';
         $repassword = $_POST['repassword'] ?? '';
-
+        
         if ($password !== $repassword) {
             echo json_encode(['success' => false, 'message' => 'Le password non corrispondono.']);
         } elseif (username_exist($username)) {
@@ -79,7 +79,7 @@ function insert_utente($username, $password, $nome, $cognome) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styleAccesso.css">
+    <link rel="stylesheet" href="styleAccesso1.css">
     <title>Login e Registrazione AJAX</title>
 </head>
 <body>
@@ -110,7 +110,7 @@ function insert_utente($username, $password, $nome, $cognome) {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    window.location.href = 'ricette.php';
+                    window.location.href = 'home.php';
                 } else {
                     alert(data.message);
                 }
@@ -121,6 +121,11 @@ function insert_utente($username, $password, $nome, $cognome) {
         document.getElementById('registratiCliccabile').addEventListener('click', function() {
             document.getElementById('main-content').innerHTML = `
                 <form id="registerForm">
+                    <p>
+                        <button onclick="chiudiFinestra()" class=closeButton>
+                            X
+                        </button>
+                    </p>
                     <input type="text" name="nome" placeholder="Nome" required class="nome"><br>
                     <input type="text" name="cognome" placeholder="Cognome" required class="cognome"><br>
                     <input type="text" name="usernameRegistrazione" placeholder="Username" required class="username"><br>
@@ -152,6 +157,10 @@ function insert_utente($username, $password, $nome, $cognome) {
                 .catch(error => console.error('Errore:', error));
             });
         });
+
+        function chiudiFinestra() {
+            window.location.reload();
+        }
     </script>
 </body>
 </html>
