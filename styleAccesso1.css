@@ -8,10 +8,6 @@ body {
     height: 100%;
 }
 
-footer {
-    display: none;
-}
-
 header{
     text-align: center;
     padding: 20px;
@@ -35,10 +31,12 @@ main {
     display: flex;
     justify-content:center;
     align-items: center;
+    flex-wrap: wrap;
     
 }
 
 form {
+    flex: 0 0 300px;
     background-color: rgba(128, 128, 128, 0.5);
     border-radius: 10px;
     padding: 100px 40px;
@@ -112,3 +110,14 @@ main button:hover {
     position: relative;
 }
 
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+}
