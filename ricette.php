@@ -1,7 +1,7 @@
 <?php
 session_start(); // Avvia la sessione
 
-// Controlla se la sessione "username" è impostata
+//DA INSERIRE NELLA VERSIONE FINALE - HO PROBLEMI CON DB
 /*if (!isset($_SESSION['username'])) {
     // Se non è autenticato, mostriamo un alert e reindirizziamo alla pagina di login
     echo "<script>
