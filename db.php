@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$db = 'GRUPPO12';
+$db = 'gruppo12';
 $port = '5432';
 $username = 'www';
 $password = 'tw2024';
