@@ -2,8 +2,8 @@
 $host = 'localhost';
 $db = 'GRUPPO12';
 $port = '5432';
-$username = 'simonegrimaldi';
-$password = 'Simone03';
+$username = 'www';
+$password = 'tw2024';
 $connection_string = "host=$host dbname=$db port=$port user=$username password=$password";
 
 //CONNESSIONE AL DB
