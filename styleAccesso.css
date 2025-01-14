@@ -1,0 +1,87 @@
+body {
+    background-color: white;
+    text-align: center;
+}
+
+header{
+    text-align: center;
+    padding: 20px;
+    background-color: grey;
+    color: white;
+    border-radius: 10px;
+}
+
+header .title{
+    font-size: 70px;
+    font-weight: bold;
+}
+
+header .subtitle {
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+main {
+    padding-top: 100px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+form {
+    background-color: grey;
+    border-radius: 10px;
+    padding: 100px 40px;
+    width: 50%;
+}
+
+.username {
+    padding: 5px 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.password {
+    padding: 5px 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+main button {
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+main button:hover {
+    background-color: yellow;
+    border-radius: 10px;
+}
+
+.registratiCliccabile {
+    font-weight: bold;
+}
+
+.registratiCliccabile:hover{
+    color: red;
+    text-transform: uppercases;
+}
+
+.nome {
+    padding: 5px 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.cognome {
+    padding: 5px 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+.ripetipassword{
+    padding: 5px 20px;
+    border-radius: 10px;
+}
+
+
+
+
