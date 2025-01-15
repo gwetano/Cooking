@@ -43,6 +43,12 @@ form {
     width: 50%;
 }
 
+#visualizzaPassword {
+    position: absolute;
+    height: 30px;
+    width:30px;
+}
+
 .username {
     padding: 5px 20px;
     margin-bottom: 15px;
