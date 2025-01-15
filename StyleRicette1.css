@@ -1,190 +1,130 @@
-    /* Stile ricette.php */
-    body {
-        margin: 0;
-        font-family: "Inter", sans-serif;
-        font-style: normal;
-        background-color: white;
-    }
-    /* Stile Header */
-    header {
-        display: grid;
-        top: 0;
-        position: sticky;
-        grid-template-columns: 0fr 2fr 0fr;
-        grid-template-rows: 50px;
-        height: 4em;
-        background-color: white;
-        padding-top: 10px;
-    }
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #fefefe;
+    color: black;
+}
 
-    /*colonna centrale*/
-    .search-form {
-        display: inline-block; 
-        text-align: center;
-        margin: 0px;
-    }
+h2{
+    margin: 0;
+    font-size: 1.5rem;
+}
 
-    .search-input {
-        border-radius: 10px;
-        width: 70%;
-        height: 100%;
-        padding-left: 10px;
-        font-size: 20px;
-        font-family: 'Times New Roman', Times, serif;
-    }
+p{
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
 
-    .menu-btn:hover {
-        background-color: #575757;
-    }
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0.1, 0.1);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
 
-    /*1 colonna : Hamburger Menu*/
-    .menu-btn {
-        font-size: 25px;
-        background-color: #333;
-        color: white;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-        padding: 8px;
-        margin-left: 10px;
-    } 
+header .title {
+    text-align: center;
+    font-size: large;
+    letter-spacing: -1.5px;
+    margin-left: 20px;
+    font-weight: bold;
+} 
 
-    /* Sidebar (menu laterale) */
-    .sidebar {
-        height: 100%;
-        width: 0; /* Menu nascosto inizialmente */
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: #333;
-        overflow-x: hidden;
-        transition: 0.5s; /* Animazione apertura/chiusura */
-        padding-top: 60px;
-        color: white;
-        z-index: 1000;
-    }
+header .menu-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
 
-    /* Link nel menu laterale */
-    .sidebar a {
-        padding: 10px 15px;
-        text-decoration: none;
-        font-size: 18px;
-        color: white;
-        display: block;
-        transition: 0.3s;
-    }
+header .search-form {
+    flex: 1;
+    margin: 0 20px;
+}
 
-    .sidebar a:hover {
-        background-color: #575757;
-    }
+header .search-input {
+    width: 100%;
+    max-width: 300px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
 
-    /* Pulsante per chiudere il menu */
-    .close-btn {
-        font-size: 36px;
-        position: absolute;
-        top: 10px;
-        right: 20px;
-        color: white;
-        cursor: pointer;
-        text-decoration: none;
-    }  
+header .user {
+    font-size: 1rem;
+    margin-right: 20px;
+    color: #323232;
+}
 
-    /*3 colonna : logoutButton*/
-    .logout{
-        cursor: pointer;
-        margin-right: 10px;
-    }
+header .logout img {
+    margin-right: 50px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
 
-    main {
-        display: grid;
-        height: 100%;
-        grid-template-rows: repeat(5, minmax(50px, 1fr));
-        grid-template-columns: 1fr;
-        align-items: center;
-        gap: 30px;
-        padding-top: 20px;
-    }
+header .logout img:hover {
+    transform: scale(1.1);
+}
 
-    .mainRow1 {
-        grid-row: 1;
-        margin: 10px;
-        padding: 10px;
-        background-color: white;
-        border-color: blue;
-        border-style:ridge;
-        border-radius: 10px;
-        height: 100%;
-        width: auto;
-    }
+main {
+    margin-top: 110px;
+    padding: 20px;
+}
 
-    .mainRow2{
-        grid-row: 2;
-        margin: 10px;
-        padding: 10px;
-        background-color: white;
-        border-color: blue;
-        border-style:ridge;
-        border-radius: 10px;
-        height: 100%;
-    }
+.mainRow1, .mainRow2, .mainRow3, .mainRow4, .mainRow5 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: box-shadow 0.3s;
+}
 
-    .mainRow3 {
-        grid-row: 3;
-        margin: 10px;
-        padding: 10px;
-        background-color: white;
-        border-color: blue;
-        border-style:ridge;
-        border-radius: 10px;
-        height: 100%;
-    }
+.mainRow1:hover, .mainRow2:hover, .mainRow3:hover, .mainRow4:hover, .mainRow5:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-    .mainRow4{
-        grid-row: 4;
-        margin: 10px;
-        padding: 10px;
-        background-color: white;
-        border-color: blue;
-        border-style:ridge;
-        border-radius: 10px;
-        height: 100%;
-    }
+.mainRow1 .text, .mainRow2 .text, .mainRow3 .text, .mainRow4 .text, .mainRow5 .text {
+    flex: 1;
+    margin-right: 20px;
+}
 
-    .mainRow5{
-        grid-row: 5;
-        margin: 10px;
-        padding: 10px;
-        background-color: white;
-        border-color: blue;
-        border-style:ridge;
-        border-radius: 10px;
-        height: 100%;
-    }
+.immagineRicetta {
+    height: 90px;
+    width: 90px;
+    border-radius: 8px;
+}
 
-    .text {
-        height: 100%;
-        justify-content: space-between;
-        display: flex;
-    }
-    .text.preview{
-        padding: 20px;
-        height: auto;
-        width: 50%;
-    }
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    color: black;
+    font-size: 0.9rem;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+}
 
-    .text.immagineRicetta{
-        width: 50%;
-        height: auto;
-        padding: 10px;
-    }
+footer a {
+    text-decoration: none;
+    color: #333333;
+    margin: 0 5px;
+    transition: color 0.3s;
+}
 
-    footer{
-        text-align: center;
-        color:  black;
-        margin-top: 40px;
-    }
-
-    footer p a {
-        text-decoration: none;
-        color:  black;
-    }
+footer a:hover {
+    color: #007bff;
+}
