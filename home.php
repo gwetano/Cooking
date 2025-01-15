@@ -12,7 +12,7 @@
 <?php
 session_start(); 
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['autenticato'])) {
     echo "<script>
             alert('Accesso non autorizzato. Sarai reindirizzato alla pagina di login.');
             window.location.href = 'accesso.php'; // Cambia con il percorso della tua pagina di login
