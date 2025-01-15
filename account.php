@@ -9,12 +9,44 @@ if (!isset($_SESSION['autenticato'])) {
               </script>";
     exit;
 } else
-    $user = $_SESSION['username'];
+    $username = $_SESSION['username'];
 
-function get_pwd($user) {
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $action = $_GET['action'] ?? '';
+    if ($action === 'cambiaPassword') {
+        header('Content-Type: application/json');
+        $password = $_POST['oldPassword'] ?? '';
+        $newPassword = $_POST['newPassword'] ?? '';
+        $confermaNewPassword = $_POST['confermaNewPassword'] ?? '';
+
+        $hash = get_pwd($username, $db);
+        if (password_verify($password, $hash)) {
+            if ($newPassword !== $confermaNewPassword) {
+                echo json_encode(['success' => false, 'message' => 'Le password non corrispondono.']);
+            }
+            elseif($newPassword == $password) {
+                echo json_encode(['success' => false, 'message' => 'Nessun cambiamento, vecchia password e nuova password corrispondono']);
+            }
+            else {
+                changePassword($username, $newPassword);
+                echo json_encode(['success' => true, 'message' => "Password modificate con successo"]);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Password errata']);
+        }
+        exit();
+    }
+    echo json_encode(['success' => false, 'message' => 'Azione non valida.']);
+    exit();
+}
+
+//FUNZIONI -------
+function get_pwd($username)
+{
     global $db;
     $sql = "SELECT password FROM utente WHERE username=$1";
-    $result = pg_query_params($db, $sql, array($user));
+    $result = pg_query_params($db, $sql, array($username));
     if ($result && pg_num_rows($result) > 0) {
         $row = pg_fetch_assoc($result);
         return $row['password'];
@@ -22,10 +54,11 @@ function get_pwd($user) {
     return null;
 }
 
-function get_Nome($user) {
+function get_Nome($username)
+{
     global $db;
     $sql = "SELECT nome FROM utente WHERE username=$1";
-    $result = pg_query_params($db, $sql, array($user));
+    $result = pg_query_params($db, $sql, array($username));
     if ($result && pg_num_rows($result) > 0) {
         $row = pg_fetch_assoc($result);
         return $row['nome'];
@@ -33,10 +66,11 @@ function get_Nome($user) {
     return null;
 }
 
-function get_Cognome($user) {
+function get_Cognome($username)
+{
     global $db;
     $sql = "SELECT cognome FROM utente WHERE username=$1";
-    $result = pg_query_params($db, $sql, array($user));
+    $result = pg_query_params($db, $sql, array($username));
     if ($result && pg_num_rows($result) > 0) {
         $row = pg_fetch_assoc($result);
         return $row['cognome'];
@@ -44,22 +78,15 @@ function get_Cognome($user) {
     return null;
 }
 
-function username_exist($user)
+function changePassword($username, $newpassword)
 {
     global $db;
-    $sql = "SELECT username FROM utente WHERE username=$1";
-    $result = pg_query_params($db, $sql, array($user));
-    return $result && pg_num_rows($result) > 0;
-}
-
-function insert_utente($username, $password, $nome, $cognome)
-{
-    global $db;
-    $hash = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO utente(username, password, nome, cognome) VALUES($1, $2, $3, $4)";
-    $result = pg_query_params($db, $sql, array($username, $hash, $nome, $cognome));
+    $Newhash = password_hash($newpassword, PASSWORD_DEFAULT);
+    $sql = "UPDATE utente SET password = $1 WHERE username = $2";
+    $result = pg_query_params($db, $sql, array($Newhash,$username));
     return $result !== false;
 }
+
 
 ?>
 
@@ -73,7 +100,7 @@ function insert_utente($username, $password, $nome, $cognome)
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.png">
-    <link rel="stylesheet" href="styleRicette1.css">
+    <link rel="stylesheet" href="account.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
@@ -91,20 +118,42 @@ function insert_utente($username, $password, $nome, $cognome)
 
     <main>
         <p>Dati anagrafici</p>
-        <form id="registerForm">
-            <p>
-                Nome : <input type="text" name="nome" placeholder="Nome" required class="nome" value ="<?php echo get_Nome($user)?>" >
-            <p>
+        <p>
+            Nome : <?php echo get_Nome($username) ?>
+        </p>
 
-            <p>
-                Cognome : <input type="text" name="cognome" placeholder="Cognome" required class="cognome" value ="<?php echo get_Cognome($user)?>">
-            </p>
+        <p>
+            Cognome :<?php echo get_Cognome($username) ?>
+        </p>
+        <p> Dati di Accesso </p>
+        <p>
+            Username : <?php echo $username ?>
+        </p>
 
-            <p>
-                Username : <input type="text" name="usernameRegistrazione" placeholder="Username" required value ="<?php echo $user?>"
-                    class="username" >
-            </p>
+        <p>Vuoi aggiornare la password ? <a id="mostraBanner" href="#">Clicca qui</a></p>
 
+        <form id="CambiaPasswordForm" method="post">
+            <div id="banner">
+                <div banner-content>
+                    <p>
+                        Vecchia Password : <input type="password" name="oldPassword" required>
+                    </p>
+                    <p>
+                        Nuova Password : <input type="password" name="newPassword" required>
+                    </p>
+
+                    <p>
+                        Conferma Password : <input type="password" name="confermaNewPassword" required>
+                    </p>
+                    <button class="bottoneConferma">
+                        Conferma
+                    </button>
+                    <button class="bottoneConferma" id="nascondiBanner">
+                        Annulla
+                    </button>
+                </div>
+            </div>
+        </form>
     </main>
 
     <footer>
@@ -132,3 +181,33 @@ function insert_utente($username, $password, $nome, $cognome)
 </html>
 
 </html>
+
+<script>
+    document.getElementById('mostraBanner').addEventListener('click', function (event) {
+        event.preventDefault();
+        const banner = document.getElementById('banner').style.display = 'flex';
+    });
+    document.getElementById('nascondiBanner').addEventListener('click', function (event) {
+        event.preventDefault();
+        const banner = document.getElementById('banner').style.display = 'none';
+    });
+
+    document.getElementById('CambiaPasswordForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        fetch('?action=cambiaPassword', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = 'account.php';
+                    alert(data.message);
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => console.error('Errore:', error));
+    });
+</script>
