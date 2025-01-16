@@ -11,6 +11,12 @@ if (!isset($_SESSION['autenticato'])) {
 } else
     $username = $_SESSION['username'];
 
+if (isset($_GET['logout'])) {
+    session_unset();
+    session_destroy();
+    header("Location: accesso.php");
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_GET['action'] ?? '';
@@ -24,11 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (password_verify($password, $hash)) {
             if ($newPassword !== $confermaNewPassword) {
                 echo json_encode(['success' => false, 'message' => 'Le password non corrispondono.']);
-            }
-            elseif($newPassword == $password) {
+            } elseif ($newPassword == $password) {
                 echo json_encode(['success' => false, 'message' => 'Nessun cambiamento, vecchia password e nuova password corrispondono']);
-            }
-            else {
+            } else {
                 changePassword($username, $newPassword);
                 echo json_encode(['success' => true, 'message' => "Password modificate con successo"]);
             }
@@ -36,8 +40,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode(['success' => false, 'message' => 'Password errata']);
         }
         exit();
+    } elseif (!empty($_FILES['file'])) {
+        // Directory di destinazione per i file caricati
+        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . "/Cooking/img";
+            
+        // Nome temporaneo del file caricato
+        $tmp_name = $_FILES['file']['tmp_name'];
+    
+        // Costruisci il percorso finale per il salvataggio
+        $path = $uploads_dir . "/user.png";
+        echo $path;
+        // Prova a spostare il file nella destinazione
+        move_uploaded_file($tmp_name, $path);
+        
+        $name = "./img/user.png";
+        // Verifica se il file è stato caricato correttamente
+        echo "File $name caricato con successo!";
+        changeImage($username, $name); // Passa solo il nome del file, non l'array
     }
-    echo json_encode(['success' => false, 'message' => 'Azione non valida.']);
     exit();
 }
 
@@ -83,10 +103,29 @@ function changePassword($username, $newpassword)
     global $db;
     $Newhash = password_hash($newpassword, PASSWORD_DEFAULT);
     $sql = "UPDATE utente SET password = $1 WHERE username = $2";
-    $result = pg_query_params($db, $sql, array($Newhash,$username));
+    $result = pg_query_params($db, $sql, array($Newhash, $username));
     return $result !== false;
 }
 
+function getImage($username)
+{
+    global $db;
+    $sql = "SELECT foto FROM utente WHERE username=$1";
+    $result = pg_query_params($db, $sql, array($username));
+    if ($result && pg_num_rows($result) > 0) {
+        $row = pg_fetch_assoc($result);
+        return $row['foto'];
+    }
+    return null;
+}
+
+function changeImage($username, $newPhoto)
+{
+    global $db;
+    $sql = "UPDATE utente SET foto = $1 WHERE username = $2";
+    $result = pg_query_params($db, $sql, array($newPhoto, $username));
+    return $result !== false;
+}
 
 ?>
 
@@ -109,51 +148,78 @@ function changePassword($username, $newpassword)
 
 <body>
     <header>
-        <div>
+        <div class="titleUtente">
             <h1>
                 Area utente
             </h1>
         </div>
+        <div>
+            <a href="./home.php"> Torna alla Home</a>
+        </div>
     </header>
 
     <main>
-        <p>Dati anagrafici</p>
-        <p>
-            Nome : <?php echo get_Nome($username) ?>
-        </p>
+        <div class="subTitle1Utente">
+            <p>
+                Dati anagrafici
+            </p>
+            <p>
+                Nome : <?php echo get_Nome($username) ?>
+            </p>
 
-        <p>
-            Cognome :<?php echo get_Cognome($username) ?>
-        </p>
-        <p> Dati di Accesso </p>
-        <p>
-            Username : <?php echo $username ?>
-        </p>
+            <p>
+                Cognome :<?php echo get_Cognome($username) ?>
+            </p>
 
-        <p>Vuoi aggiornare la password ? <a id="mostraBanner" href="#">Clicca qui</a></p>
+            <p>
+                <img src="<?php echo getImage($username) ?>" alt="" height="50px" width="50px">
+            </p>
 
-        <form id="CambiaPasswordForm" method="post">
-            <div id="banner">
-                <div banner-content>
-                    <p>
-                        Vecchia Password : <input type="password" name="oldPassword" required>
-                    </p>
-                    <p>
-                        Nuova Password : <input type="password" name="newPassword" required>
-                    </p>
-
-                    <p>
-                        Conferma Password : <input type="password" name="confermaNewPassword" required>
-                    </p>
-                    <button class="bottoneConferma">
-                        Conferma
-                    </button>
-                    <button class="bottoneConferma" id="nascondiBanner">
-                        Annulla
-                    </button>
-                </div>
+            <div id="drop-area">
+                <h2>Trascina i file qui</h2>
+                <p>Oppure clicca per selezionare un file</p>
+                <input type="file" id="fileElem" name="file" accept="image/png, image/jpeg">
+                <div id="file-list"></div>
             </div>
-        </form>
+
+        </div>
+
+
+
+        <div class="subTitle2Utente">
+            <p> Dati di Accesso </p>
+            <p>
+                Username : <?php echo $username ?>
+            </p>
+
+            <p>Vuoi aggiornare la password ? <a id="mostraBanner" href="#">Clicca qui</a></p>
+
+            <form id="CambiaPasswordForm" method="post">
+                <div id="banner">
+                    <div banner-content>
+                        <p>
+                            Vecchia Password : <input type="password" name="oldPassword" required>
+                        </p>
+                        <p>
+                            Nuova Password : <input type="password" name="newPassword" required>
+                        </p>
+
+                        <p>
+                            Conferma Password : <input type="password" name="confermaNewPassword" required>
+                        </p>
+                        <button class="bottoneConferma">
+                            Conferma
+                        </button>
+                        <button class="bottoneConferma" id="nascondiBanner">
+                            Annulla
+                        </button>
+                    </div>
+                </div>
+                <div class="logout" action="logout">
+                    <a href="?logout=true" class="logoutButton">Logout</a>
+                </div>
+            </form>
+        </div>
     </main>
 
     <footer>
@@ -177,8 +243,6 @@ function changePassword($username, $newpassword)
         </p>
     </footer>
 </body>
-
-</html>
 
 </html>
 
@@ -210,4 +274,74 @@ function changePassword($username, $newpassword)
             })
             .catch(error => console.error('Errore:', error));
     });
+    // Elementi della pagina
+    const dropArea = document.getElementById('drop-area');
+    const fileInput = document.getElementById('fileElem');
+    const fileList = document.getElementById('file-list');
+
+    // Impediamo l'azione di default per il drag and drop
+    dropArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropArea.style.backgroundColor = '#e9e9e9'; // cambia colore per feedback
+    });
+
+    dropArea.addEventListener('dragleave', () => {
+        dropArea.style.backgroundColor = '#fff'; // ripristina il colore
+    });
+
+    // Gestiamo il drop dei file
+    dropArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropArea.style.backgroundColor = '#fff';
+
+        const files = e.dataTransfer.files;
+        handleFiles(files);
+    });
+
+    // Quando un file viene selezionato tramite input file
+    fileInput.addEventListener('change', () => {
+        const files = fileInput.files;
+        handleFiles(files);
+    });
+
+    // Funzione per mostrare i file selezionati
+    function handleFiles(files) {
+        // Mostra i file nella lista
+        const fileArray = Array.from(files)[0];
+        fileList.innerHTML = '';
+        const p = document.createElement('p');
+        p.textContent = fileArray.name;
+        fileList.appendChild(p);
+
+        // Chiamata per caricare i file sul server
+        uploadFiles(fileArray);
+    }
+
+
+    // Funzione per caricare i file sul server usando AJAX
+    function uploadFiles(files) {
+        const formData = new FormData();
+
+        formData.append('file', files);
+        // Creazione della richiesta XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+        // Impostiamo il tipo di richiesta e l'URL del server
+        xhr.open('POST', 'account.php', true);
+
+        // Impostiamo la funzione di callback che verrà chiamata quando la richiesta è completata
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Se la richiesta ha avuto successo
+                alert('Caricamento completato:' + xhr.responseText);
+                window.location.reload();
+            } else {
+                // Se si è verificato un errore
+                alert('Errore nel caricamento: ' + xhr.statusText);
+            }
+        };
+
+        // Invio dei dati tramite AJAX
+        xhr.send(formData);
+    }
+
 </script>

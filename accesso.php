@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['username'] = $username;
             echo json_encode(['success' => true]);
         } else {
-            echo json_encode(['success' => false, 'message' => 'La password è errata.']);
+            echo json_encode(['success' => false, 'message' => 'Username o password errati.']);
         }
         exit();
     }
