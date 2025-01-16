@@ -6,11 +6,14 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="icon" href="./img/icon.png">
-        <link rel="stylesheet" href="StyleRicette1.css">
+        <link rel="stylesheet" href="StyleRicette3.css">
         <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     </head>
 <?php
 session_start(); 
+require './db.php';
+
+$username = $_SESSION['username'];
 
 if (!isset($_SESSION['autenticato'])) {
     echo "<script>
@@ -20,13 +23,7 @@ if (!isset($_SESSION['autenticato'])) {
     exit;
 }
 
-
-if (isset($_GET['logout'])) {
-    session_unset(); 
-    session_destroy(); 
-    header("Location: index.php"); 
-    exit; 
-}?>
+?>
     <body>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
@@ -63,29 +60,10 @@ if (isset($_GET['logout'])) {
                 <input id="searchInput" type="text" name="query" placeholder="Cerca una ricetta" class="search-input">
             </div>
 
-            <div class="user">
-                <?php
-                    echo"Ciao $_SESSION[username], fame???";
-                ?>
+            <div class="account">
+                <a href="./account.php"> Account</a>
             </div>
 
-            <div class="logout">
-                <a href="?logout=true" class="return"> 
-                    <img id="logoutImage" src="./img/logoutButton.svg" alt="Logout" height="30px" width="30px">
-                </a>
-            </div>
-
-            <script>
-                const logoutButton = document.getElementById('logoutImage');
-
-                logoutButton.addEventListener('mouseover', function() {
-                    logoutButton.src = './img/logoutButtonRed.png'; // Assicurati che questo percorso sia corretto
-                });
-
-                logoutButton.addEventListener('mouseout', function() {
-                    logoutButton.src = './img/logoutButton.svg'; // Assicurati che questo percorso sia corretto
-                });
-            </script>
         </header>
         <main>
         <div class=mainRow1 data-keywords="spaghetti,aglio,olio,vegetariano">
