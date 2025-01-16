@@ -139,7 +139,7 @@ function changeImage($username, $newPhoto)
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.png">
-    <link rel="stylesheet" href="account.css">
+    <link rel="stylesheet" href="account1.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
@@ -154,15 +154,15 @@ function changeImage($username, $newPhoto)
             </h1>
         </div>
         <div>
-            <a href="./home.php"> Torna alla Home</a>
+            <a href="./home.php" class="returnHome"> Home</a>
         </div>
     </header>
 
     <main>
         <div class="subTitle1Utente">
-            <p>
+            <h2>
                 Dati anagrafici
-            </p>
+            </h2>
             <p>
                 Nome : <?php echo get_Nome($username) ?>
             </p>
@@ -175,11 +175,20 @@ function changeImage($username, $newPhoto)
                 <img src="<?php echo getImage($username) ?>" alt="" height="50px" width="50px">
             </p>
 
-            <div id="drop-area">
-                <h2>Trascina i file qui</h2>
-                <p>Oppure clicca per selezionare un file</p>
-                <input type="file" id="fileElem" name="file" accept="image/png, image/jpeg">
-                <div id="file-list"></div>
+            <p>Vuoi aggiornare la immagine di profilo ? <a id="mostraBannerImg" href="#">Clicca qui</a></p>
+
+            <div class = banner>
+                <div class="banner-content">
+                <button class="bottoneAnnulla" id="nascondiBannerImg">
+                                Annulla
+                        </button>
+                        <p>Trascina i file qui</p>
+                        <div id="drop-area"></div>
+                        <p>Oppure clicca per selezionare un file</p>
+                        <input type="file" id="fileElem" name="file" accept="image/png, image/jpeg">
+                        <div id="file-list"></div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -187,16 +196,16 @@ function changeImage($username, $newPhoto)
 
 
         <div class="subTitle2Utente">
-            <p> Dati di Accesso </p>
+            <h2> Dati di Accesso </h2>
             <p>
                 Username : <?php echo $username ?>
             </p>
 
-            <p>Vuoi aggiornare la password ? <a id="mostraBanner" href="#">Clicca qui</a></p>
+            <p>Vuoi aggiornare la password ? <a id="mostraBannerPass" href="#">Clicca qui</a></p>
 
             <form id="CambiaPasswordForm" method="post">
-                <div id="banner">
-                    <div banner-content>
+                <div class = "banner">
+                    <div class="banner-content">
                         <p>
                             Vecchia Password : <input type="password" name="oldPassword" required>
                         </p>
@@ -210,7 +219,7 @@ function changeImage($username, $newPhoto)
                         <button class="bottoneConferma">
                             Conferma
                         </button>
-                        <button class="bottoneConferma" id="nascondiBanner">
+                        <button class="bottoneAnnulla" id="nascondiBannerPass">
                             Annulla
                         </button>
                     </div>
@@ -239,7 +248,10 @@ function changeImage($username, $newPhoto)
             <a href="./index.html">
                 Welcome
             </a>
+
+            <a href="#">
             ● © 2025 Cooking
+            </a>
         </p>
     </footer>
 </body>
@@ -247,13 +259,22 @@ function changeImage($username, $newPhoto)
 </html>
 
 <script>
-    document.getElementById('mostraBanner').addEventListener('click', function (event) {
+    document.getElementById('mostraBannerPass').addEventListener('click', function (event) {
         event.preventDefault();
-        const banner = document.getElementById('banner').style.display = 'flex';
+        const banner = document.getElementsByClassName('banner')[1].style.display = 'flex';
     });
-    document.getElementById('nascondiBanner').addEventListener('click', function (event) {
+    document.getElementById('nascondiBannerPass').addEventListener('click', function (event) {
         event.preventDefault();
-        const banner = document.getElementById('banner').style.display = 'none';
+        const banner = document.getElementsByClassName('banner')[1].style.display = 'none';
+    });
+
+    document.getElementById('mostraBannerImg').addEventListener('click', function (event) {
+        event.preventDefault();
+        const banner = document.getElementsByClassName('banner')[0].style.display = 'flex';
+    });
+    document.getElementById('nascondiBannerImg').addEventListener('click', function (event) {
+        event.preventDefault();
+        const banner = document.getElementsByClassName('banner')[0].style.display = 'none';
     });
 
     document.getElementById('CambiaPasswordForm').addEventListener('submit', function (event) {
