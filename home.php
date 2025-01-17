@@ -66,7 +66,7 @@ if (!isset($_SESSION['autenticato'])) {
 
         </header>
         <main>
-        <div class=mainRow1 data-keywords="spaghetti,aglio,olio,vegetariano">
+        <div class=mainRow1 data-keywords="spaghetti,aglio,olio,vegetariano" onclick="vaiAllaRicetta(1)">
             <div class="text">
                 <div class="preview">
                     <h2>
@@ -80,7 +80,7 @@ if (!isset($_SESSION['autenticato'])) {
             </div>        
         </div>
 
-        <div class=mainRow2 data-keywords="tacos,pollo">
+        <div class=mainRow2 data-keywords="tacos,pollo" onclick="vaiAllaRicetta(2)">
             <div class="text">
                 <div class="preview">
                     <h2>
@@ -94,7 +94,7 @@ if (!isset($_SESSION['autenticato'])) {
             </div>         
         </div>
 
-        <div class=mainRow3 data-keywords="zuppa,lenticchie,vegetariano">
+        <div class=mainRow3 data-keywords="zuppa,lenticchie,vegetariano" onclick="vaiAllaRicetta(3)">
             <div class="text">
                 <div class="preview">
                     <h2>
@@ -108,7 +108,7 @@ if (!isset($_SESSION['autenticato'])) {
             </div>          
         </div>
 
-        <div class=mainRow4 data-keywords="pancakes,cioccolato">
+        <div class=mainRow4 data-keywords="pancakes,cioccolato" onclick="vaiAllaRicetta(4)">
             <div class="text">
                 <div class="preview">
                     <h2>
@@ -122,7 +122,7 @@ if (!isset($_SESSION['autenticato'])) {
             </div>            
         </div>
 
-        <div class=mainRow5 data-keywords="polpette,melanzane,vegetariano">
+        <div class=mainRow5 data-keywords="polpette,melanzane,vegetariano"onclick="vaiAllaRicetta(5)">
             <div class="text">
                 <div class="preview">
                     <h2>
@@ -160,3 +160,10 @@ if (!isset($_SESSION['autenticato'])) {
         </footer>
     </body>
 </html>
+
+<script>
+function vaiAllaRicetta(id) {
+    // Cambia la pagina in base all'ID della ricetta
+    window.location.href = 'ricetta.php?id=' + id;
+}
+</script>
