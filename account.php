@@ -170,9 +170,8 @@ function changeImage($username, $newPhoto)
             <p>
                 Cognome :<?php echo get_Cognome($username) ?>
             </p>
-
             <p>
-                <img src="<?php echo getImage($username) ?>" alt="" height="50px" width="50px">
+                <img src="<?php echo getImage($username)?>" alt="" height="50px" width="50px">
             </p>
 
             <p>Vuoi aggiornare la immagine di profilo ? <a id="mostraBannerImg" href="#">Clicca qui</a></p>
