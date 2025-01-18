@@ -244,7 +244,7 @@ function changeImage($username, $newPhoto)
                 Termini e condizioni
             </a>
             ●
-            <a href="./index.html">
+            <a href="./index.php">
                 Welcome
             </a>
 

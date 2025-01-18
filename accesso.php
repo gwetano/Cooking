@@ -189,5 +189,26 @@ function insert_utente($username, $password, $nome, $cognome) {
         });
         
     </script>
+
+    <footer>
+        <p>
+            <a href="">
+                Privacy Policy
+            </a>
+            ●
+            <a href="">
+                Cookie Policy
+            </a>
+            ●
+            <a href="">
+                Termini e condizioni
+            </a>
+            ●
+            <a href="./index.php">
+                Welcome
+            </a>
+            ● © 2025 Cooking
+        </p>
+    </footer>
 </body>
 </html>

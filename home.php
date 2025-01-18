@@ -13,15 +13,15 @@
 session_start(); 
 require './db.php';
 
-$username = $_SESSION['username'];
-
-if (!isset($_SESSION['autenticato'])) {
+if (!isset($_SESSION['username'])) {
     echo "<script>
             alert('Accesso non autorizzato. Sarai reindirizzato alla pagina di login.');
             window.location.href = 'accesso.php'; // Cambia con il percorso della tua pagina di login
           </script>";
     exit;
 }
+else 
+    $username = $_SESSION['username'];
 
 ?>
     <body>
@@ -152,7 +152,7 @@ if (!isset($_SESSION['autenticato'])) {
                     Termini e condizioni
                 </a>
                 ●
-                <a href="./index.html">
+                <a href="./index.php">
                     Welcome
                 </a>
                 ● © 2025 Cooking
