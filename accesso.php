@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$hash) {
             echo json_encode(['success' => false, 'message' => "L'utente $username non esiste."]);
         } elseif (password_verify($password, $hash)) {
-            $_SESSION['autenticato'] = true;
             $_SESSION['username'] = $username;
             echo json_encode(['success' => true]);
         } else {
