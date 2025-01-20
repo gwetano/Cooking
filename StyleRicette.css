@@ -21,8 +21,8 @@ header {
     position: fixed;
     top: 0;
     left: 0;
-    width: 90%;
-    background-color: #ffffff;
+    width: 100%;
+    background-color:#ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0.1, 0.1);
     padding: 10px 20px;
     display: flex;
@@ -117,4 +117,8 @@ footer a {
 
 footer a:hover {
     color: #007bff;
+}
+
+.hidden {
+    display : none;
 }

@@ -59,6 +59,13 @@ function addRicettePreferite($username,$id) {
     return $result !== false;
 }
 
+function removeRicettePreferite($username, $id) {
+    global $db;
+    $sql = "DELETE FROM preferiti WHERE id = $1 AND username = $2";
+    $result = pg_query_params($db, $sql, array($id, $username));
+    return $result !== false;
+}
+
 ?>
 
 <!DOCTYPE html>
