@@ -353,7 +353,7 @@ function changeImage($username, $newPhoto)
             if (xhr.status === 200) {
                 // Se la richiesta ha avuto successo
                 alert('Caricamento completato:' + xhr.responseText);
-                window.location.reload();
+                window.location.href = 'account.php';
             } else {
                 // Se si è verificato un errore
                 alert('Errore nel caricamento: ' + xhr.statusText);
