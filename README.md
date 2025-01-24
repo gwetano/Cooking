@@ -34,7 +34,7 @@
 
 1. Clonare il repository:
    ```bash
-   git clone https://github.com/username/cooking.git
+   git clone https://github.com/gwetano/cooking.git
    cd cooking
    ```
 ## 📜 Autori
