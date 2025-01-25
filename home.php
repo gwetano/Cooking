@@ -118,9 +118,14 @@ function isPrefertito($username, $id)
                         Un classico italiano, semplice e veloce: aglio, olio d'oliva e un pizzico di peperoncino.
                     </p>
                 </div>
-
                 <img src="./img/padella.jpg" alt="" class="immagineRicetta">
             </div>
+        </div>
+
+        <div class="star">
+            <?php $isPreferito = isPrefertito($username, 1) ?>
+            <img src="<?php echo $isPrefertito ? './img/preferiti.png' : './img/nonPreferiti.png'; ?>"
+                alt="Immagine Preferiti"  onclick="favorites(event,1, <?php echo $isPreferito ? 'true' : 'false'; ?>)" id=addPreferiti1>
         </div>
 
         <div class=mainRow2 data-keywords="tacos,pollo" onclick="vaiAllaRicetta(2)">
@@ -211,7 +216,7 @@ function isPrefertito($username, $id)
         window.location.href = 'ricetta.php?id=' + id;
     }
 
-    function favorites(event, id, toggle) {
+    function favorites(event,id, toggle) {
         event.stopPropagation();
         const star = document.getElementById('addPreferiti' + id);
         fetch('home.php', {
@@ -228,10 +233,9 @@ function isPrefertito($username, $id)
             .then(data => {
                 if (data.success) {
                     if (toggle) {
-                        star.src = ''
+                        star.src = './img/nonPreferiti.png'
                     } else {
-                        starRemove.style.display = 'none';
-                        starAdd.style.display = 'block';
+                        star.src = './img/Preferiti.png'
                     }
                 } else {
                     alert('C’è stato un errore durante l’operazione!');
