@@ -111,7 +111,6 @@ function removeRicettePreferite($username, $id) {
             <div class="mainColumn1">
                 <h2>
                     <p>Le tue ricette preferite</p>
-
                     <div>
                         <?php
                         $ricettePreferite = getRicettePreferite($username);
