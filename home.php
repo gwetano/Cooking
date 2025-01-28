@@ -90,7 +90,7 @@ function isPrefertito($username, $id)
     </script>
     <header>
         <div class="logo">
-            <img src="./img/icon.png" height="50px" width="50px">
+        <a href="./index.php"><img src="./img/icon.png" height="50px" width="50px"></a>
         </div>
 
         <div class="title">
@@ -103,9 +103,8 @@ function isPrefertito($username, $id)
         </div>
 
         <div class="account">
-            <a href="./account.php"> Account</a>
+            <a href="./account.php"> <img src="./img/username.png" height="40px" width="40px"></a>
         </div>
-
     </header>
     <main>
         <div class=mainRow1 data-keywords="spaghetti,aglio,olio,vegetariano" onclick="vaiAllaRicetta(1)">
