@@ -11,12 +11,6 @@ h2{
     font-size: 1.5rem;
 }
 
-p{
-    margin: 0.5rem 0;
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
 header {
     position: fixed;
     top: 0;
@@ -37,13 +31,6 @@ header .title {
     letter-spacing: -1.5px;
     margin-left: 20px;
     font-weight: bold;
-} 
-
-header .menu-btn {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
 }
 
 header .search-form {
@@ -108,15 +95,25 @@ footer {
     border-top: 1px solid #ddd;
 }
 
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    color: black;
+    border-top: 1px solid #ddd;
+}
+footer p{
+    font-size: 0.9rem;
+}
+
 footer a {
     text-decoration: none;
     color: #333333;
     margin: 0 5px;
     transition: color 0.3s;
 }
-
 footer a:hover {
-    color: #007bff;
+    color: #0037ff;
 }
 
 .hidden {

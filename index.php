@@ -74,15 +74,14 @@ function removeRicettePreferite($username, $id) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>HOME</title>
+    <link rel="stylesheet" href="index.css">
+    <title>INDEX</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.png">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
-    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
+
 </head>
 
 <body>
@@ -95,22 +94,20 @@ function removeRicettePreferite($username, $id) {
             <h1>Cooking</h1>
         </div>
         <?php if (isset($_SESSION['username'])) { ?>
-            <div class="account">
-                <a href="./account.php"> Account</a>
+            <div class="account1">
+                <a href="./account.php"> <img src="./img/username.png" height="50px" width="50px"></a>
             </div>
         <?php } else { ?>
-            <div class="account">
+            <div class="account2">
                 <a href="./accesso.php"> Accesso</a>
             </div>
         <?php } ?>
     </header>
-
     <main>
         <?php if (isset($_SESSION['username'])) {
             $username = $_SESSION['username']; ?>
             <div class="mainColumn1">
-                <h2>
-                    <p>Le tue ricette preferite</p>
+                    <h1>Le tue ricette preferite</h1>
                     <div>
                         <?php
                         $ricettePreferite = getRicettePreferite($username);
@@ -141,12 +138,10 @@ function removeRicettePreferite($username, $id) {
                         }
                         ?>
                     </div>
-                </h2>
             </div>
             <div class="mainColumn2">
-                <div>
-                    <p>Le più cliccate</p>
-
+                <h1>Le più cliccate</h1>
+                <div class="ricette">
                     <div class="ricetta1">
                         <div class="nomeRicetta">
                             <?php
@@ -156,10 +151,9 @@ function removeRicettePreferite($username, $id) {
                             <?php
                             echo getDescrizioneRicetta(1) ?>
                         </div>
-
                         <div class="classFotoRicetta">
                             <img src=<?php
-                            echo getFotoRicetta(1) ?> alt="" height="50px" width="50px">
+                            echo getFotoRicetta(1) ?> alt="ricetta1" height="100%">
                         </div>
                     </div>
 
@@ -172,10 +166,9 @@ function removeRicettePreferite($username, $id) {
                             <?php
                             echo getDescrizioneRicetta(2) ?>
                         </div>
-
                         <div class="classFotoRicetta">
                             <img src=<?php
-                            echo getFotoRicetta(2) ?> alt="" height="50px" width="50px">
+                            echo getFotoRicetta(2) ?> alt="ricetta2" height="100%">
                         </div>
                     </div>
 
@@ -184,14 +177,13 @@ function removeRicettePreferite($username, $id) {
                             <?php
                             echo getNomeRicetta(3); ?>
                         </div>
-                        <div class="classFotoRicetta">
+                        <div class="descrizioneRicetta">
                             <?php
                             echo getDescrizioneRicetta(3) ?>
                         </div>
-
-                        <div classFotoRicetta>
+                        <div class="classFotoRicetta">
                             <img src=<?php
-                            echo getFotoRicetta(3) ?> alt="" height="50px" width="50px">
+                            echo getFotoRicetta(3) ?> alt="ricetta3" height="100%">
                         </div>
                     </div>
 
@@ -204,43 +196,92 @@ function removeRicettePreferite($username, $id) {
                             <?php
                             echo getDescrizioneRicetta(4) ?>
                         </div>
-
                         <div class="classFotoRicetta">
                             <img src=<?php
-                            echo getFotoRicetta(4) ?> alt="" height="50px" width="50px">
+                            echo getFotoRicetta(4) ?> alt="ricetta4" height="100%">
                         </div>
                     </div>
-                    <div>
-                        <a href="./home.php">tutte le ricette</a>
-                    </div>
                 </div>
+                <div class="all">
+                    <a href="./home.php">Vai a tutte le ricette ▶</a>
+                </div>
+            </div>
                 <?php
-
         } else { ?>
                 <div class="mainColumn1">
                     <h2>
-                        <p>Ricetta del giorno</p>
+                        <h1>Ricetta del giorno</h1>
                         <p>Descrizione della ricetta</p>
                         <p>
-                            <img src="./img/pentola.png" alt="" height="80px" width="80px">
+                            <img src="./img/pentola.png" alt="ricettadelgiorno" height="80px" width="80px">
                         </p>
                     </h2>
                 </div>
                 <div class="mainColumn2">
-                    <p>
-                        <img src="" alt="">
-                    </p>
-                    <p>
-                        <img src="" alt="">
-                    </p>
-                    <p>
-                        <img src="" alt="">
-                    </p>
-                    <p>
-                        <img src="" alt="">
-                    </p>
-                    <div>
-                        <a href="./home.php">tutte le ricette</a>
+                    <h1>Le più cliccate</h1>
+                    <div class="ricette">
+                        <div class="ricetta1">
+                            <div class="nomeRicetta">
+                                <?php
+                                echo getNomeRicetta(1); ?>
+                            </div>
+                            <div class="descrizioneRicetta">
+                                <?php
+                                echo getDescrizioneRicetta(1) ?>
+                            </div>
+                            <div class="classFotoRicetta">
+                                <img src=<?php
+                                echo getFotoRicetta(1) ?> alt="ricetta1" height="100%">
+                            </div>
+                        </div>
+
+                        <div class="ricetta2">
+                            <div class="nomeRicetta">
+                                <?php
+                                echo getNomeRicetta(2); ?>
+                            </div>
+                            <div class="descrizioneRicetta">
+                                <?php
+                                echo getDescrizioneRicetta(2) ?>
+                            </div>
+                            <div class="classFotoRicetta">
+                                <img src=<?php
+                                echo getFotoRicetta(2) ?> alt="ricetta2" height="100%">
+                            </div>
+                        </div>
+
+                        <div class="ricetta3">
+                            <div class="nomeRicetta">
+                                <?php
+                                echo getNomeRicetta(3); ?>
+                            </div>
+                            <div class="descrizioneRicetta">
+                                <?php
+                                echo getDescrizioneRicetta(3) ?>
+                            </div>
+                            <div class="classFotoRicetta">
+                                <img src=<?php
+                                echo getFotoRicetta(3) ?> alt="ricetta3" height="100%">
+                            </div>
+                        </div>
+
+                        <div class="ricetta4">
+                            <div class="nomeRicetta">
+                                <?php
+                                echo getNomeRicetta(4); ?>
+                            </div>
+                            <div class="descrizioneRicetta">
+                                <?php
+                                echo getDescrizioneRicetta(4) ?>
+                            </div>
+                            <div class="classFotoRicetta">
+                                <img src=<?php
+                                echo getFotoRicetta(4) ?> alt="ricetta4" height="100%">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="all">
+                        <a href="./home.php">Vai a tutte le ricette ▶</a>
                     </div>
                 </div>
                 <?php
