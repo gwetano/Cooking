@@ -118,18 +118,15 @@ function removeRicettePreferite($username, $id) {
                                 $foto = getFotoRicetta($id);
                                 ?>
                                 <div class="ricetta">
-                                    <div class="nomeRicetta">
+                                    <h2>
                                         <?php
                                         echo getNomeRicetta($id); ?>
-                                    </div>
-                                    <div class="descrizioneRicetta">
+                                    </h2>
+                                    <p>
                                         <?php
                                         echo getDescrizioneRicetta($id) ?>
-                                    </div>
-
-                                    <div class="FotoRicetta">
+                                    </p>
                                         <img src="<?php echo getFotoRicetta($id); ?>" alt="" height="50px" width="50px">
-                                    </div>
                                 </div>
                                 <?php
                             }
@@ -142,7 +139,7 @@ function removeRicettePreferite($username, $id) {
             <div class="mainColumn2">
                 <h1>Le più cliccate</h1>
                 <div class="ricette">
-                    <div class="ricetta1">
+                    <div class="ricetta1" onclick="vaiAllaRicetta(1)">
                         <div class="nomeRicetta">
                             <?php
                             echo getNomeRicetta(1); ?>
@@ -157,7 +154,7 @@ function removeRicettePreferite($username, $id) {
                         </div>
                     </div>
 
-                    <div class="ricetta2">
+                    <div class="ricetta2" onclick="vaiAllaRicetta(2)">
                         <div class="nomeRicetta">
                             <?php
                             echo getNomeRicetta(2); ?>
@@ -172,7 +169,7 @@ function removeRicettePreferite($username, $id) {
                         </div>
                     </div>
 
-                    <div class="ricetta3">
+                    <div class="ricetta3" onclick="vaiAllaRicetta(3)">
                         <div class="nomeRicetta">
                             <?php
                             echo getNomeRicetta(3); ?>
@@ -187,7 +184,7 @@ function removeRicettePreferite($username, $id) {
                         </div>
                     </div>
 
-                    <div class="ricetta4">
+                    <div class="ricetta4" onclick="vaiAllaRicetta(4)">
                         <div class="nomeRicetta">
                             <?php
                             echo getNomeRicetta(4); ?>
@@ -211,16 +208,21 @@ function removeRicettePreferite($username, $id) {
                 <div class="mainColumn1">
                     <h2>
                         <h1>Ricetta del giorno</h1>
-                        <p>Descrizione della ricetta</p>
+                        <h2>
+                                <?php
+                                echo getNomeRicetta(4); ?>
+                            </h2>
                         <p>
-                            <img src="./img/pentola.png" alt="ricettadelgiorno" height="80px" width="80px">
+                                <?php
+                                echo getDescrizioneRicetta(4) ?>
                         </p>
+                            <img src=<?php echo getFotoRicetta(4) ?> alt="ricetta4" width="30%">
                     </h2>
                 </div>
                 <div class="mainColumn2">
                     <h1>Le più cliccate</h1>
                     <div class="ricette">
-                        <div class="ricetta1">
+                        <div class="ricetta1" onclick="vaiAllaRicetta(1)">
                             <div class="nomeRicetta">
                                 <?php
                                 echo getNomeRicetta(1); ?>
@@ -235,7 +237,7 @@ function removeRicettePreferite($username, $id) {
                             </div>
                         </div>
 
-                        <div class="ricetta2">
+                        <div class="ricetta2" onclick="vaiAllaRicetta(2)">
                             <div class="nomeRicetta">
                                 <?php
                                 echo getNomeRicetta(2); ?>
@@ -250,7 +252,7 @@ function removeRicettePreferite($username, $id) {
                             </div>
                         </div>
 
-                        <div class="ricetta3">
+                        <div class="ricetta3" onclick="vaiAllaRicetta(3)">
                             <div class="nomeRicetta">
                                 <?php
                                 echo getNomeRicetta(3); ?>
@@ -265,7 +267,7 @@ function removeRicettePreferite($username, $id) {
                             </div>
                         </div>
 
-                        <div class="ricetta4">
+                        <div class="ricetta4" onclick="vaiAllaRicetta(4)">
                             <div class="nomeRicetta">
                                 <?php
                                 echo getNomeRicetta(4); ?>
@@ -312,3 +314,42 @@ function removeRicettePreferite($username, $id) {
 </body>
 
 </html>
+
+<script>
+
+function vaiAllaRicetta(id) {
+        // Cambia la pagina in base all'ID della ricetta
+        window.location.href = 'ricetta.php?id=' + id;
+    }
+
+    function favorites(event,id, toggle) {
+        event.stopPropagation();
+        const star = document.getElementById('addPreferiti' + id);
+        fetch('home.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: id,
+                action: toggle ? 'remove' : 'add'
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    if (toggle) {
+                        star.src = './img/nonPreferiti.png'
+                    } else {
+                        star.src = './img/Preferiti.png'
+                    }
+                } else {
+                    alert('C’è stato un errore durante l’operazione!');
+                }
+            })
+            .catch(error => {
+                console.error('Errore:', error);
+                alert('C’è stato un errore durante l’operazione!' + error);
+            });
+    }
+</script>

@@ -1,3 +1,19 @@
+<html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="./img/icon.png">
+    <link rel="stylesheet" href="StyleRicette.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
 <?php
 session_start();
 require './db.php';
@@ -48,24 +64,19 @@ function isPrefertito($username, $id)
     return $result && pg_num_rows($result) > 0;
 }
 
+function getFotoRicetta($id)
+{
+    global $db;
+    $sql = "SELECT foto FROM ricette WHERE id=$1";
+    $result = pg_query_params($db, $sql, array($id));
+    if ($result && pg_num_rows($result) > 0) {
+        $row = pg_fetch_assoc($result);
+        return $row['foto'];
+    }
+    return null;
+}
+
 ?>
-
-<html>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" href="./img/icon.png">
-    <link rel="stylesheet" href="StyleRicette.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
-</head>
-
 <body>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -115,16 +126,22 @@ function isPrefertito($username, $id)
                     </h2>
                     <p>
                         Un classico italiano, semplice e veloce: aglio, olio d'oliva e un pizzico di peperoncino.
+                        <div class="star">
+                        <?php
+                            $isPrefertito = isPrefertito($username, 1);
+                            $imgPath = $isPrefertito ? "./img/preferiti.png" : "./img/nonPreferiti.png";
+                            $toggle = $isPrefertito ? 'true' : 'false';
+                            ?>
+                            <img src="<?php echo $imgPath; ?>"
+                                alt="Immagine Preferiti"
+                                onclick="favorites(event, 1, <?php echo $toggle; ?>)"
+                                id="addPreferiti1">
+
+                        </div>
                     </p>
                 </div>
-                <img src="./img/padella.jpg" alt="" class="immagineRicetta">
+                <img src=<?php echo getFotoRicetta(1) ?>  alt="" class="immagineRicetta">
             </div>
-        </div>
-
-        <div class="star">
-            <?php $isPreferito = isPrefertito($username, 1) ?>
-            <img src="<?php echo $isPrefertito ? './img/preferiti.png' : './img/nonPreferiti.png'; ?>"
-                alt="Immagine Preferiti"  onclick="favorites(event,1, <?php echo $isPreferito ? 'true' : 'false'; ?>)" id=addPreferiti1>
         </div>
 
         <div class=mainRow2 data-keywords="tacos,pollo" onclick="vaiAllaRicetta(2)">
@@ -137,7 +154,8 @@ function isPrefertito($username, $id)
                         Tortillas croccanti ripiene di pollo speziato, guacamole e salsa fresca.
                     </p>
                 </div>
-                <img src="./img/padella.jpg" alt="" class="immagineRicetta">
+                <img src=<?php
+                            echo getFotoRicetta(2) ?>  alt="" class="immagineRicetta">
             </div>
         </div>
 
@@ -151,7 +169,8 @@ function isPrefertito($username, $id)
                         Una calda e confortante zuppa con lenticchie, verdure e un tocco di rosmarino.
                     </p>
                 </div>
-                <img src="./img/padella.jpg" alt="" class="immagineRicetta">
+                <img src=<?php
+                            echo getFotoRicetta(3) ?>  alt="" class="immagineRicetta">
             </div>
         </div>
 
@@ -165,7 +184,8 @@ function isPrefertito($username, $id)
                         Soffici e golosi, con cacao nell’impasto e una cascata di sciroppo di cioccolato.
                     </p>
                 </div>
-                <img src="./img/padella.jpg" alt="" class="immagineRicetta">
+                <img src=<?php
+                            echo getFotoRicetta(4) ?>  alt="" class="immagineRicetta">
             </div>
         </div>
 
@@ -179,7 +199,8 @@ function isPrefertito($username, $id)
                         Deliziose polpettine vegetariane, croccanti fuori e morbide dentro.
                     </p>
                 </div>
-                <img src="./img/padella.jpg" alt="" class="immagineRicetta">
+                <img src=<?php
+                            echo getFotoRicetta(5) ?>  alt="" class="immagineRicetta">
             </div>
         </div>
 
@@ -215,35 +236,46 @@ function isPrefertito($username, $id)
         window.location.href = 'ricetta.php?id=' + id;
     }
 
-    function favorites(event,id, toggle) {
-        event.stopPropagation();
-        const star = document.getElementById('addPreferiti' + id);
-        fetch('home.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                id: id,
-                action: toggle ? 'remove' : 'add'
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    if (toggle) {
-                        star.src = './img/nonPreferiti.png'
-                    } else {
-                        star.src = './img/Preferiti.png'
-                    }
+    function favorites(event, id, isFavorited) {
+    event.stopPropagation(); // Blocca la propagazione dell'evento
+
+    const star = document.getElementById('addPreferiti' + id);
+
+    // Determina l'azione da eseguire
+    const action = isFavorited ? 'remove' : 'add';
+
+    // Aggiorna lo stato sul server
+    fetch('home.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id: id,
+            action: action,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.success) {
+                // Aggiorna lo stato del toggle (inverte il valore isFavorited)
+                if (isFavorited) {
+                    star.src = './img/nonPreferiti.png'; // Cambia immagine a "non preferito"
                 } else {
-                    alert('C’è stato un errore durante l’operazione!');
+                    star.src = './img/preferiti.png'; // Cambia immagine a "preferito"
                 }
-            })
-            .catch(error => {
-                console.error('Errore:', error);
-                alert('C’è stato un errore durante l’operazione!' + error);
-            });
-    }
+
+                // Aggiorna il valore del toggle nell'attributo `onclick`
+                star.setAttribute('onclick', `favorites(event, ${id}, ${!isFavorited})`);
+            } else {
+                alert('Errore durante l’operazione: ' + data.error);
+            }
+        })
+        .catch((error) => {
+            console.error('Errore:', error);
+            alert('C’è stato un errore durante l’operazione.');
+        });
+}
+
 
 </script>

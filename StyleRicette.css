@@ -119,3 +119,12 @@ footer a:hover {
 .hidden {
     display : none;
 }
+
+#addPreferiti1{
+    display: inline-block;
+            vertical-align: middle;
+            margin-top: -0.1em;
+            max-width: 50px;
+            max-height: 50px;
+            overflow: clip;
+}
