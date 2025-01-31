@@ -164,17 +164,17 @@ function changeImage($username, $newPhoto)
                 Dati anagrafici
             </h2>
             <p>
-                Nome : <?php echo get_Nome($username) ?>
+                <img src="<?php echo getImage($username)?>" alt="" height="80px" width="80px">
+            </p>
+            <p><a id="mostraBannerImg" href="#">Aggiorna immagine di profilo</a></p>
+
+            <p>
+                Nome : <span><?php echo get_Nome($username) ?></span> 
             </p>
 
             <p>
-                Cognome :<?php echo get_Cognome($username) ?>
+                Cognome : <span><?php echo get_Cognome($username) ?></span> 
             </p>
-            <p>
-                <img src="<?php echo getImage($username)?>" alt="" height="50px" width="50px">
-            </p>
-
-            <p>Vuoi aggiornare la immagine di profilo ? <a id="mostraBannerImg" href="#">Clicca qui</a></p>
 
             <div class = banner>
                 <div class="banner-content">
@@ -192,15 +192,13 @@ function changeImage($username, $newPhoto)
 
         </div>
 
-
-
         <div class="subTitle2Utente">
             <h2> Dati di Accesso </h2>
             <p>
-                Username : <?php echo $username ?>
+                Username : <span><?php echo $username ?></span> 
             </p>
 
-            <p>Vuoi aggiornare la password ? <a id="mostraBannerPass" href="#">Clicca qui</a></p>
+            <p><a id="mostraBannerPass" href="#">Aggiorna Password</a></p>
 
             <form id="CambiaPasswordForm" method="post">
                 <div class = "banner">

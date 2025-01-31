@@ -5,7 +5,7 @@ require './db.php';
 if (!isset($_SESSION['username'])) {
     echo "<script>
                 alert('Accesso non autorizzato. Sarai reindirizzato alla pagina di login.');
-                window.location.href = 'accesso.php'; // Cambia con il percorso della tua pagina di login
+                window.location.href = 'accesso.php'; 
               </script>";
     exit;
 } else
@@ -94,35 +94,33 @@ function getPreparazioneRicetta($id)
     <header>
         <div class="titleRicetta">
             <h1>
-                <?php
-                echo getNomeRicetta($id) ?>
+                <?php echo getNomeRicetta($id) ?>
             </h1>
         </div>
         <div>
             <a href="./home.php" class="returnHome"> Home</a>
         </div>
+    </header>
 
-        <div>
+    <main>
+        
+        <div class="descrizione">
             <h2>
                 <?php
                 echo getDescrizioneRicetta($id) ?>
             </h2>
         </div>
-    </header>
 
-    <main>
-        <div>
-            <p><?php
-            echo getIngredientiRicetta($id) ?></p>
+        <div class="Ingredienti">
+            <p><?php echo getIngredientiRicetta($id) ?></p>
         </div>
-        <div>
+        <div class="fotoRicetta">
             <img src=<?php
-            echo getFotoRicetta($id) ?> alt="" height="50px" width="50px">
+            echo getFotoRicetta($id) ?> alt="" class="foto">
         </div>
-        <div>
+        <div class="Preparazione">
             <?php
             echo getPreparazioneRicetta($id) ?></p>
-
         </div>
     </main>
 

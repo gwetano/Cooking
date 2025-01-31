@@ -20,25 +20,38 @@ header {
     z-index: 1000;
 }
 
-.returnHome {
-    position: absolute;
-    right: 20px;
-    top: 34px;
-    border: 2px solid white;
-    padding: 10px;
+header .titleUtente h1{
+    text-align: center;
+    font-size: 55px;
+    letter-spacing: -3.5px;
+    font-weight: bold;
+} 
+
+header .titleRicetta h1{
+    text-align: center;
+    font-size: 55px;
+    letter-spacing: -3.5px;
+    font-weight: bold;
+} 
+header .returnHome{
+    margin-right: 50px;
+    text-decoration: none; 
+    cursor: pointer;
     border-radius: 10px;
     text-decoration: none; 
     background-color: red;
+    padding: 10px;
     font-weight: bold;
     color: white;
+    transition: transform 0.2s;
 }
 
-.returnHome:hover {
+header .returnHome:hover {
     background-color: white;
     color: red;
 }
 
-.returnHome:active {
+header .returnHome:active {
     color: black;
 }
 
@@ -68,21 +81,120 @@ header {
 
 main {
     height: 100%;
-    width: 100%;
-    margin-top: 10px;
     position: relative;
     padding: 20px;
-    background-color: wheat;
+    margin-top: 150px;
+    background-color: white;
     color: black;
+    display: flex;
+    justify-content: space-between;
+}
+
+.descrizione {
+    flex: 1; 
+    padding: 20px;
+    background-color: #f9f9f9;
     border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
-.subTitle1Utente {
-    justify-items: center;
+.descrizione h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
-.subTitle2Utente {
-    justify-items: center;
+.Ingredienti {
+    flex: 1; 
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.Ingredienti p {
+    font-size: 16px;
+    color: #555;
+    white-space: pre-line; 
+}
+
+.fotoRicetta {
+    flex: 1; 
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.fotoRicetta img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.Preparazione {
+    flex: 1; 
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.Preparazione p {
+    font-size: 16px;
+    color: #555;
+    white-space: pre-line; 
+}
+
+.subTitle1Utente{
+    flex: 1;
+}
+
+.subTitle2Utente{
+    flex: 1;
+}
+
+.subTitle1Utente p {
+    font-size: 20px;
+    font-size: large;
+    font-weight: bold;
+}
+.subTitle1Utente p span{
+    font-size: large;
+    font-weight: normal;
+}
+
+.subTitle1Utente h2{
+    text-decoration: underline;
+    font-size: 30px;
+}
+
+.subTitle2Utente h2{
+    font-size: 30px;
+    text-decoration: underline;
+}
+
+.subTitle2Utente p {
+
+    font-size: 20px;
+    font-weight: bold;
+}
+.subTitle2Utente p span {
+    font-size: large;
+    font-weight: normal;
+}
+
+main a{
+    text-decoration: none;
 }
 
 #drop-area {
@@ -97,7 +209,6 @@ main {
     background-color: rgba(128, 128, 128, 0.5);
 }
 
-/* Posizione del bottone di annullamento in alto a destra */
 #nascondiBannerImg {
     position: absolute; /* Posizionamento assoluto dentro il contenuto del banner */
     top: 10px; /* Distanza dal bordo superiore */
@@ -110,30 +221,27 @@ main {
     cursor: pointer; /* Cursore del mouse per indicare che è cliccabile */
 }
 
-/* Hover sul bottone di annullamento */
 #nascondiBannerImg:hover {
     background-color: darkred; /* Colore del bottone al passaggio del mouse */
 }
 
-main {
-    height: 80%;
-    width: 100%;
-    margin-top: 10px;
-    position: relative;
-    padding: 20px;
-    background-color: wheat;
-    color: black;
-    border-radius: 10px;
-    box-sizing: border-box; 
-    overflow: hidden; 
-}
 
 footer {
-    justify-items: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    color: black;
+    font-size: 0.9rem;
+    border-top: 1px solid #ddd;
 }
 
-footer p a{
+footer a {
     text-decoration: none;
-    color: grey;
+    color: #333333;
+    margin: 0 5px;
+    transition: color 0.3s;
 }
 
+footer a:hover {
+    color: #0037ff;
+}
