@@ -1,19 +1,3 @@
-<html>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" href="./img/icon.png">
-    <link rel="stylesheet" href="StyleRicette.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
-</head>
-
 <?php
 session_start();
 require './db.php';
@@ -29,11 +13,16 @@ if (!isset($_SESSION['username'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    header('Content-Type:application/json'); // Imposta l'intestazione per JSON
     $data = json_decode(file_get_contents('php://input'), true);
     $action = $data['action'] ?? '';
     $id = $data['id'] ?? '';
 
-    header('Content-Type: application/json'); // Imposta l'intestazione per JSON
+    if (!$id) {
+        $response['error'] = 'ID non valido';
+        echo json_encode($response);
+        exit;
+    }
 
     if ($action === 'add') {
         $sql = "INSERT INTO preferiti (username, id) VALUES ($1, $2)";
@@ -42,19 +31,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "DELETE FROM preferiti WHERE username = $1 AND id = $2";
         $result = pg_query_params($db, $sql, array($username, $id));
     } else {
-        echo json_encode(['success' => false, 'error' => 'Azione non valida']);
+        $response['error'] = 'Azione non valida';
+        echo json_encode($response);
         exit;
     }
 
     if ($result) {
-        echo json_encode(['success' => true]);
+        $response['success'] = true;
     } else {
-        echo json_encode(['success' => false, 'error' => 'Errore nel database']);
+        $response['error'] = pg_last_error($db);
     }
 
-    exit();
+    echo json_encode($response);
+    exit;
 }
-
 
 function isPrefertito($username, $id)
 {
@@ -77,6 +67,21 @@ function getFotoRicetta($id)
 }
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="./img/icon.png">
+    <link rel="stylesheet" href="StyleRicette.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
 <body>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -134,7 +139,7 @@ function getFotoRicetta($id)
                             ?>
                             <img src="<?php echo $imgPath; ?>"
                                 alt="Immagine Preferiti"
-                                onclick="favorites(event, 1, <?php echo $toggle; ?>)"
+                                onclick="toggleFavorite(event, 1, <?php echo $toggle; ?>)"
                                 id="addPreferiti1">
 
                         </div>
@@ -236,46 +241,39 @@ function getFotoRicetta($id)
         window.location.href = 'ricetta.php?id=' + id;
     }
 
-    function favorites(event, id, isFavorited) {
-    event.stopPropagation(); // Blocca la propagazione dell'evento
-
+    function toggleFavorite(event, id, isFavorite) {
+    event.stopPropagation();  // Previene il click sulla ricetta
     const star = document.getElementById('addPreferiti' + id);
-
-    // Determina l'azione da eseguire
-    const action = isFavorited ? 'remove' : 'add';
-
-    // Aggiorna lo stato sul server
-    fetch('home.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            id: id,
-            action: action,
-        }),
+    
+    fetch('home.php', { 
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        id: id,
+        action: isFavorite ? 'remove' : 'add'
     })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.success) {
-                // Aggiorna lo stato del toggle (inverte il valore isFavorited)
-                if (isFavorited) {
-                    star.src = './img/nonPreferiti.png'; // Cambia immagine a "non preferito"
-                } else {
-                    star.src = './img/preferiti.png'; // Cambia immagine a "preferito"
-                }
-
-                // Aggiorna il valore del toggle nell'attributo `onclick`
-                star.setAttribute('onclick', `favorites(event, ${id}, ${!isFavorited})`);
-            } else {
-                alert('Errore durante l’operazione: ' + data.error);
-            }
-        })
-        .catch((error) => {
-            console.error('Errore:', error);
-            alert('C’è stato un errore durante l’operazione.');
-        });
+})
+.then(response => {
+    // Controlla se la risposta è ok
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json(); // Parso sempre come JSON
+})
+.then(data => {
+    if (data.success) {
+        star.src = isFavorite ? './img/nonPreferiti.png' : './img/preferiti.png';
+        star.setAttribute('onclick', `toggleFavorite(event, ${id}, ${!isFavorite})`);
+    } else {
+        alert('Errore durante l’operazione: ' + data.error);
+    }
+})
+.catch(error => {
+    console.error('Errore:', error);
+    alert('Errore durante l’operazione!');
+});
 }
-
 
 </script>
