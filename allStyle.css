@@ -1,21 +1,14 @@
-body{
+/*INDEX CSS*/
+body.index{
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
     background-color: #fefefe;
     color: black;
 }
-main {
-    margin-top: 150px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
 
-h1{
-    letter-spacing: -1.8px;
-}
-
-header {
+/*INDEX header css*/
+header.index {
     position: fixed;
     top: 0;
     left: 0;
@@ -35,17 +28,18 @@ header .title h1{
     letter-spacing: -3.5px;
     font-weight: bold;
 } 
-header .account1 {
+header .loggato {
     margin-right: 50px;
     cursor: pointer;
     transition: transform 0.2s;
 }
-header .account2 {
+header .nonLoggato {
     margin-right: 50px;
     cursor: pointer;
     transition: transform 0.2s;
 }
-header .account2 a{
+
+header .nonLoggato a{
     text-decoration: none;
     color: white;
     background-color: #0037ff;
@@ -53,27 +47,33 @@ header .account2 a{
     padding: 15px;
     border: 2px solid #0037ff;
 }
-header .account2 a:hover{
+header .nonLoggato a:hover{
     color: #0037ff;
     background-color: white;
 }
 
 .mainColumn1 {
-    grid-column: 1;
     padding: 20px;
+    border: 2px solid #333; 
+    border-radius: 15px; 
+    margin: 20px 10px; 
 }
-.mainColumn2{
+
+.mainColumn2 {
     padding: 20px;
+    border: 2px solid #333; 
+    border-radius: 15px; 
+    margin: 20px 10px; 
+}
+
+.contenutoMainColumn {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    text-align: center;
+    gap: 15px;
 }
-.mainColumn2 .all{
-    grid-column: span 4;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-.mainColumn2 a{
+
+.contenutoMainColumn a{
     text-decoration: none;
     color:white;
     background-color: #0037ff;
@@ -82,7 +82,8 @@ header .account2 a:hover{
     border-radius: 25px;
     font-size: large;
 }
-.mainColumn2 a:hover{
+
+.contenutoMainColumn a:hover{
     text-decoration: none;
     color:#0037ff;
     background-color: white;
@@ -92,6 +93,9 @@ header .account2 a:hover{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+}
+#ricettaDelGiorno {
+    display: flex !important;
 }
 
 .ricette > div[class^="ricetta"] {
@@ -107,6 +111,14 @@ header .account2 a:hover{
     flex-direction: column;
     justify-content: flex-end;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.cursor-not-allowed {
+    cursor: not-allowed;
 }
 
 .ricette .nomeRicetta {
@@ -134,22 +146,43 @@ header .account2 a:hover{
     z-index: 1;
 }
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #ffffff;
-    color: black;
-    font-size: 0.9rem;
-    border-top: 1px solid #ddd;
+.goHome{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;  /* Spinge il contenuto in basso */
+    align-items: flex-end;  /* Allinea il bottone a destra */
+    height: 100%;  /* Assicura che occupi tutta l'altezza */
 }
 
+
+/*INDEX main css*/
+main.index {
+    margin-top: 150px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+/*FOOTER*/
+footer {
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    padding: 20px;
+    background-color: #fefefe;
+    height: 50px; 
+}
+
+footer p {
+    margin: 0; 
+}
 footer a {
     text-decoration: none;
     color: #333333;
     margin: 0 5px;
-    transition: color 0.3s;
 }
 
 footer a:hover {
     color: #0037ff;
 }
+
+
