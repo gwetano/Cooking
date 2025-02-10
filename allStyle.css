@@ -1,21 +1,20 @@
 /*INDEX CSS*/
-body.index{
-    margin: 0;
-    padding: 0;
+body{
+    margin: 0px;
+    padding: 0px;
     font-family: 'Inter', sans-serif;
     background-color: #fefefe;
     color: black;
 }
 
 /*INDEX header css*/
-header.index {
-    position: fixed;
+header{
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
     background-color:#ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0.1, 0.1);
-    padding: 10px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -27,7 +26,12 @@ header .title h1{
     font-size: 55px;
     letter-spacing: -3.5px;
     font-weight: bold;
-} 
+}
+
+.logo {
+    margin-left: 50px;
+}
+
 header .loggato {
     margin-right: 50px;
     cursor: pointer;
@@ -50,6 +54,12 @@ header .nonLoggato a{
 header .nonLoggato a:hover{
     color: #0037ff;
     background-color: white;
+}
+
+/*INDEX main css*/
+main.index {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .mainColumn1 {
@@ -154,15 +164,79 @@ header .nonLoggato a:hover{
     height: 100%;  /* Assicura che occupi tutta l'altezza */
 }
 
+/*ACCOUNT CSS*/
 
-/*INDEX main css*/
-main.index {
-    margin-top: 150px;
+/*main CSS*/
+main.account {
+    width: 100%;
+    padding: 20px; /* Aggiungi un po' di spazio all'interno */
+    background-color: #ffffff; /* Colore di sfondo del contenuto */
+    margin-top: 0; /* Rimuovi eventuali margini extra */
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-/*FOOTER*/
+.ImmagineUtente {
+    width: 400px;
+    height: 500px;
+    border-radius: 50px;
+}
+
+.banner {
+    display: none; /* Resta nascosto di default */
+    position: fixed; /* Rende il banner fisso sopra tutto */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Copre tutta la pagina */
+    background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
+    z-index: 10000; /* Un valore molto alto per sovrascrivere gli altri elementi */
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-content {
+    position: fixed; /* Rende il banner fisso sopra tutto */
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    height: 600px;
+    width: 600px;
+    z-index: 10001; /* Anche il contenuto del banner ha un z-index alto */
+}
+
+#drop-area {
+    background-color: 
+    white;
+    padding: 50px;
+    height: 200px;
+    border: 2px red dashed;
+}
+
+#drop-area:hover{
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+#nascondiBannerImg {
+    position: absolute; /* Posizionamento assoluto dentro il contenuto del banner */
+    top: 10px; /* Distanza dal bordo superiore */
+    right: 10px; /* Distanza dal bordo destro */
+    background-color: red; /* Colore di sfondo */
+    color: white; /* Colore del testo */
+    border: none; /* Rimuove il bordo */
+    padding: 10px; /* Padding per il bottone */
+    border-radius: 5px; /* Bordo arrotondato */
+    cursor: pointer; /* Cursore del mouse per indicare che è cliccabile */
+}
+
+#nascondiBannerImg:hover {
+    background-color: darkred; /* Colore del bottone al passaggio del mouse */
+}
+
+
+
+/*FOOTER GENERALE*/
 footer {
     display: flex;
     justify-content: center; 
@@ -184,5 +258,3 @@ footer a {
 footer a:hover {
     color: #0037ff;
 }
-
-

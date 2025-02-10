@@ -87,9 +87,9 @@ function removeRicettePreferite($username, $id)
 
 </head>
 
-<body class="index">
+<body>
 
-    <header class="index">
+    <header>
         <div class="logo">
             <img src="./img/icon.png" height="50px" width="50px">
         </div>
