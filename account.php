@@ -42,18 +42,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     } elseif (!empty($_FILES['file'])) {
         // Directory di destinazione per i file caricati
-        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . "/Cooking/img";
-            
+        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . "/Cooking/immaginiUser";
+
         // Nome temporaneo del file caricato
         $tmp_name = $_FILES['file']['tmp_name'];
-    
+
         // Costruisci il percorso finale per il salvataggio
-        $path = $uploads_dir . "/user.png";
+        $path = $uploads_dir . "/$username.png";
         echo $path;
         // Prova a spostare il file nella destinazione
         move_uploaded_file($tmp_name, $path);
-        
-        $name = "./img/user.png";
+
+        $name = "./immaginiUser/$username.png";
         // Verifica se il file è stato caricato correttamente
         echo "File $name caricato con successo!";
         changeImage($username, $name); // Passa solo il nome del file, non l'array
@@ -139,7 +139,7 @@ function changeImage($username, $newPhoto)
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.png">
-    <link rel="stylesheet" href="account1.css">
+    <link rel="stylesheet" href="allStyle.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
@@ -148,60 +148,62 @@ function changeImage($username, $newPhoto)
 
 <body>
     <header>
-        <div class="titleUtente">
-            <h1>
-                Area utente
-            </h1>
+        <div class="logo">
+            <img src="./img/icon.png" height="50px" width="50px">
         </div>
-        <div>
-            <a href="./home.php" class="returnHome"> Home</a>
+
+        <div class="title">
+            <h1>Area Utente</h1>
+        </div>
+        <div class="loggato">
+            <a href="./home.php"> <img src="./img/home.png" height="50px" width="50px"></a>
         </div>
     </header>
 
-    <main>
-        <div class="subTitle1Utente">
+    <main class="account">
+        <div class="DatiAnagrafici">
             <h2>
                 Dati anagrafici
             </h2>
             <p>
-                <img src="<?php echo getImage($username)?>" alt="" height="80px" width="80px">
+                <img src="<?php echo getImage($username) ?>" alt="Immagine Utente" class="ImmagineUtente">
             </p>
             <p><a id="mostraBannerImg" href="#">Aggiorna immagine di profilo</a></p>
 
             <p>
-                Nome : <span><?php echo get_Nome($username) ?></span> 
+                Nome : <span><?php echo get_Nome($username) ?></span>
             </p>
 
             <p>
-                Cognome : <span><?php echo get_Cognome($username) ?></span> 
+                Cognome : <span><?php echo get_Cognome($username) ?></span>
             </p>
 
-            <div class = banner>
+            <div class=banner>
                 <div class="banner-content">
-                <button class="bottoneAnnulla" id="nascondiBannerImg">
-                                Annulla
-                        </button>
-                        <p>Trascina i file qui</p>
-                        <div id="drop-area"></div>
-                        <p>Oppure clicca per selezionare un file</p>
-                        <input type="file" id="fileElem" name="file" accept="image/png, image/jpeg">
-                        <div id="file-list"></div>
-                    </div>
+                    <button class="bottoneAnnulla" id="nascondiBannerImg">
+                        Annulla
+                    </button>
+                    <p>Trascina i file qui</p>
+                    <div id="drop-area"></div>
+                    <p>Oppure clicca per selezionare un file</p>
+                    <input type="file" id="fileElem" name="file" accept="image/png, image/jpeg">
+                    <div id="file-list"></div>
                 </div>
             </div>
+        </div>
 
         </div>
 
         <div class="subTitle2Utente">
             <h2> Dati di Accesso </h2>
             <p>
-                Username : <span><?php echo $username ?></span> 
+                Username : <span><?php echo $username ?></span>
             </p>
 
             <p><a id="mostraBannerPass" href="#">Aggiorna Password</a></p>
 
             <form id="CambiaPasswordForm" method="post">
-                <div class = "banner">
+                <div class="banner">
                     <div class="banner-content">
                         <p>
                             Vecchia Password : <input type="password" name="oldPassword" required>
@@ -247,7 +249,7 @@ function changeImage($username, $newPhoto)
             </a>
 
             <a href="#">
-            ● © 2025 Cooking
+                ● © 2025 Cooking
             </a>
         </p>
     </footer>
