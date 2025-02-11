@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $_POST['usernameRegistrazione'] ?? '';
         $password = $_POST['passwordRegistrazione'] ?? '';
         $repassword = $_POST['repassword'] ?? '';
-        
+
         if ($password !== $repassword) {
             echo json_encode(['success' => false, 'message' => 'Le password non corrispondono.']);
         } elseif (username_exist($username)) {
@@ -47,7 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 
-function get_pwd($user, $db) {
+function get_pwd($user, $db)
+{
     $sql = "SELECT password FROM utente WHERE username=$1";
     $result = pg_query_params($db, $sql, array($user));
     if ($result && pg_num_rows($result) > 0) {
@@ -57,14 +58,16 @@ function get_pwd($user, $db) {
     return null;
 }
 
-function username_exist($user) {
+function username_exist($user)
+{
     global $db;
     $sql = "SELECT username FROM utente WHERE username=$1";
     $result = pg_query_params($db, $sql, array($user));
     return $result && pg_num_rows($result) > 0;
 }
 
-function insert_utente($username, $password, $nome, $cognome) {
+function insert_utente($username, $password, $nome, $cognome)
+{
     global $db;
     $hash = password_hash($password, PASSWORD_DEFAULT);
     $sql = "INSERT INTO utente(username, password, nome, cognome) VALUES($1, $2, $3, $4)";
@@ -75,25 +78,40 @@ function insert_utente($username, $password, $nome, $cognome) {
 
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styleAccesso2.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="allStyle.css">
     <title>Pagina di accesso</title>
 </head>
+
 <body>
-    <header>
-        <div class="title">Accedi a Cooking</div>
+    <header class="accesso">
+        <div class="titolo">
+            <div class="logo">
+                <img src="./img/icon.png" height="50px" width="50px">
+            </div>
+
+            <div class="title">
+                <h1>Cooking</h1>
+            </div>
+        </div>
         <div class="subtitle">Se hai già un account, accedi. Altrimenti registrati subito!</div>
+
     </header>
+
+
 
     <main id="main-content">
         <form id="loginForm">
             <p>
-            <input type="text" name="username" class="username" placeholder="Username" required>
+                <input type="text" name="username" class="username" placeholder="Username" required>
             </p>
             <p>
                 <input type="password" name="password" class="password" placeholder="Password" required id="password">
@@ -108,25 +126,25 @@ function insert_utente($username, $password, $nome, $cognome) {
     </main>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
             event.preventDefault();
-            const formData = new FormData(this); 
+            const formData = new FormData(this);
             fetch('?action=login', {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    window.location.href = 'home.php';
-                } else {
-                    alert(data.message);
-                }
-            })
-            .catch(error => console.error('Errore:', error));
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = 'home.php';
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => console.error('Errore:', error));
         });
 
-        document.getElementById('registratiCliccabile').addEventListener('click', function() {
+        document.getElementById('registratiCliccabile').addEventListener('click', function () {
             document.getElementById('main-content').innerHTML = `
                  <form id="registerForm">
                     <p>
@@ -156,23 +174,23 @@ function insert_utente($username, $password, $nome, $cognome) {
                 </form>
             `;
 
-            document.getElementById('registerForm').addEventListener('submit', function(event) {
+            document.getElementById('registerForm').addEventListener('submit', function (event) {
                 event.preventDefault();
                 const formData = new FormData(this);
                 fetch('?action=register', {
                     method: 'POST',
                     body: formData
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Registrazione completata! Ora puoi accedere.');
-                        window.location.reload();
-                    } else {
-                        alert(data.message);
-                    }
-                })
-                .catch(error => console.error('Errore:', error));
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Registrazione completata! Ora puoi accedere.');
+                            window.location.reload();
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => console.error('Errore:', error));
             });
         });
 
@@ -180,14 +198,14 @@ function insert_utente($username, $password, $nome, $cognome) {
             window.location.reload();
         }
 
-        document.getElementById('visualizzaPassword').addEventListener('mouseover',function(event) {
-            document.getElementById('password').setAttribute('type','text');
+        document.getElementById('visualizzaPassword').addEventListener('mouseover', function (event) {
+            document.getElementById('password').setAttribute('type', 'text');
         });
 
-        document.getElementById('visualizzaPassword').addEventListener('mouseout',function(event) {
-            document.getElementById('password').setAttribute('type','password');
+        document.getElementById('visualizzaPassword').addEventListener('mouseout', function (event) {
+            document.getElementById('password').setAttribute('type', 'password');
         });
-        
+
     </script>
 
     <footer>
@@ -211,4 +229,5 @@ function insert_utente($username, $password, $nome, $cognome) {
         </p>
     </footer>
 </body>
+
 </html>

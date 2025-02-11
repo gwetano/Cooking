@@ -131,7 +131,7 @@ function getIdRicette()
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.png">
-    <link rel="stylesheet" href="allStyle1.css">
+    <link rel="stylesheet" href="allStyle.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
@@ -188,32 +188,35 @@ function getIdRicette()
                     $descrizione = getDescrizioneRicetta($id);
                     $foto = getFotoRicetta($id);
                     $dataKeywords = getDataKeywords($id);
-                    
+                    echo $dataKeywords;
                     ?>
                     <div class="mainRow<?php echo $id ?>" data-keywords="<?php echo $dataKeywords ?>"
                         onclick="vaiAllaRicetta(event,<?php echo $id; ?>)">
-                        <div class="nomeRicetta">
-                            <?php
-                            echo $nome; ?>
-                        </div>
-                        <div class="descrizioneRicetta">
-                            <?php
-                            echo $descrizione; ?>
-                            <div class="star">
+                        <div class="ricetta">
+                            <div class="nomeRicetta">
                                 <?php
-                                $isPrefertito = isPrefertito($username, $id);
-                                $imgPath = $isPrefertito ? "./img/preferiti.png" : "./img/nonPreferiti.png";
-                                $toggle = $isPrefertito ? 'true' : 'false';
-                                ?>
-                                <img src="<?php echo $imgPath; ?>" alt="Immagine Preferiti"
-                                    onclick="toggleFavorite(event, <?php echo $id; ?>, <?php echo $toggle; ?>)"
-                                    id="addPreferiti<?php echo $id ?>">
-
+                                echo $nome; ?>
                             </div>
+                            <div class="descrizioneRicetta">
+                                <?php
+                                echo $descrizione; ?>
+                            </div>
+                        </div>
+                        <div class="star">
+                            <?php
+                            $isPrefertito = isPrefertito($username, $id);
+                            $imgPath = $isPrefertito ? "./img/preferiti.png" : "./img/nonPreferiti.png";
+                            $toggle = $isPrefertito ? 'true' : 'false';
+                            ?>
+                            <img src="<?php echo $imgPath; ?>" alt="Immagine Preferiti"
+                                onclick="toggleFavorite(event, <?php echo $id; ?>, <?php echo $toggle; ?>)"
+                                id="addPreferiti<?php echo $id ?>" class="starImmagine">
+
                         </div>
                         <div class="classFotoRicetta">
                             <img src="<?php echo htmlspecialchars($foto); ?>" alt="ricetta<?php echo $id ?>" height="100%">
                         </div>
+
                     </div>
 
                     <?php
@@ -247,7 +250,7 @@ function getIdRicette()
 </html>
 
 <script>
-    function vaiAllaRicetta(event,id) {
+    function vaiAllaRicetta(event, id) {
         // Cambia la pagina in base all'ID della ricetta
         window.location.href = 'ricetta.php?id=' + id;
     }
