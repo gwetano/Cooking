@@ -66,6 +66,61 @@ function getFotoRicetta($id)
     return null;
 }
 
+function getDataKeywords($id)
+{
+    global $db;
+    $sql = "SELECT 'data-keywords' FROM ricette WHERE id=$1";
+    $result = pg_query_params($db, $sql, array($id));
+    if ($result && pg_num_rows($result) > 0) {
+        $row = pg_fetch_assoc($result);
+        return $row['data-keywords'];
+    }
+    return null;
+}
+
+function getNomeRicetta($id)
+{
+    global $db;
+    $sql = "SELECT nome FROM ricette WHERE id=$1";
+    $result = pg_query_params($db, $sql, array($id));
+    if ($result && pg_num_rows($result) > 0) {
+        $row = pg_fetch_assoc($result);
+        return $row['nome'];
+    }
+    return null;
+}
+
+function getDescrizioneRicetta($id)
+{
+    global $db;
+    $sql = "SELECT descrizione FROM ricette WHERE id=$1";
+    $result = pg_query_params($db, $sql, array($id));
+    if ($result && pg_num_rows($result) > 0) {
+        $row = pg_fetch_assoc($result);
+        return $row['descrizione'];
+    }
+    return null;
+}
+
+function getIdRicette()
+{
+    global $db;
+    $query = "SELECT id FROM ricette ORDER BY id ASC";
+    $result = pg_query($db, $query);
+
+    if (!$result) {
+        echo "Errore nella query.";
+        return [];
+    }
+
+    $ids = [];
+    while ($row = pg_fetch_assoc($result)) {
+        $ids[] = $row['id'];
+    }
+
+    return $ids;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +131,7 @@ function getFotoRicetta($id)
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.png">
-    <link rel="stylesheet" href="StyleRicette.css">
+    <link rel="stylesheet" href="allStyle1.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
@@ -109,114 +164,62 @@ function getFotoRicetta($id)
             <a href="./index.php"><img src="./img/icon.png" height="50px" width="50px"></a>
         </div>
 
-        <div class="title">
+        <div class="title" id="titleHome">
             <h1>Cooking</h1>
         </div>
-
 
         <div class="search-form">
             <input id="searchInput" type="text" name="query" placeholder="Cerca una ricetta" class="search-input">
         </div>
 
-        <div class="account">
+        <div class="loggato">
             <a href="./account.php"> <img src="./img/username.png" height="40px" width="40px"></a>
         </div>
     </header>
-    <main>
-        <div class=mainRow1 data-keywords="spaghetti,aglio,olio,vegetariano" onclick="vaiAllaRicetta(1)">
-            <div class="text">
-                <div class="preview">
-                    <h2>
-                        Spaghetti Aglio e Olio
-                    </h2>
-                    <p>
-                        Un classico italiano, semplice e veloce: aglio, olio d'oliva e un pizzico di peperoncino.
-                    <div class="star">
-                        <?php
-                        $isPrefertito = isPrefertito($username, 1);
-                        $imgPath = $isPrefertito ? "./img/preferiti.png" : "./img/nonPreferiti.png";
-                        $toggle = $isPrefertito ? 'true' : 'false';
-                        ?>
-                        <img src="<?php echo $imgPath; ?>" alt="Immagine Preferiti"
-                            onclick="toggleFavorite(event, 1, <?php echo $toggle; ?>)" id="addPreferiti1">
 
+    <main class="home">
+        <?php
+        $idRicette = getIdRicette();
+        if (!empty($idRicette)) { ?>
+            <div class="allRicette">
+                <?php
+                foreach ($idRicette as $id) {
+                    $nome = getNomeRicetta($id);
+                    $descrizione = getDescrizioneRicetta($id);
+                    $foto = getFotoRicetta($id);
+                    $dataKeywords = getDataKeywords($id);
+                    
+                    ?>
+                    <div class="mainRow<?php echo $id ?>" data-keywords="<?php echo $dataKeywords ?>"
+                        onclick="vaiAllaRicetta(event,<?php echo $id; ?>)">
+                        <div class="nomeRicetta">
+                            <?php
+                            echo $nome; ?>
+                        </div>
+                        <div class="descrizioneRicetta">
+                            <?php
+                            echo $descrizione; ?>
+                            <div class="star">
+                                <?php
+                                $isPrefertito = isPrefertito($username, $id);
+                                $imgPath = $isPrefertito ? "./img/preferiti.png" : "./img/nonPreferiti.png";
+                                $toggle = $isPrefertito ? 'true' : 'false';
+                                ?>
+                                <img src="<?php echo $imgPath; ?>" alt="Immagine Preferiti"
+                                    onclick="toggleFavorite(event, <?php echo $id; ?>, <?php echo $toggle; ?>)"
+                                    id="addPreferiti<?php echo $id ?>">
+
+                            </div>
+                        </div>
+                        <div class="classFotoRicetta">
+                            <img src="<?php echo htmlspecialchars($foto); ?>" alt="ricetta<?php echo $id ?>" height="100%">
+                        </div>
                     </div>
-                    </p>
-                </div>
-                <img src=<?php echo getFotoRicetta(1) ?> alt="" class="immagineRicetta">
-            </div>
+
+                    <?php
+                }
+        } ?>
         </div>
-
-        <div class=mainRow2 data-keywords="tacos,pollo" onclick="vaiAllaRicetta(2)">
-            <div class="text">
-                <div class="preview">
-                    <h2>
-                        Tacos di Pollo
-                    </h2>
-                    <p>
-                        Tortillas croccanti ripiene di pollo speziato, guacamole e salsa fresca.
-                    <div class="star">
-                        <?php
-                        $isPrefertito = isPrefertito($username, 2);
-                        $imgPath = $isPrefertito ? "./img/preferiti.png" : "./img/nonPreferiti.png";
-                        $toggle = $isPrefertito ? 'true' : 'false';
-                        ?>
-                        <img src="<?php echo $imgPath; ?>" alt="Immagine Preferiti"
-                            onclick="toggleFavorite(event, 2, <?php echo $toggle; ?>)" id="addPreferiti2">
-
-                    </div>
-                    </p>
-                </div>
-                <img src=<?php
-                echo getFotoRicetta(2) ?> alt="" class="immagineRicetta">
-            </div>
-        </div>
-
-        <div class=mainRow3 data-keywords="zuppa,lenticchie,vegetariano" onclick="vaiAllaRicetta(3)">
-            <div class="text">
-                <div class="preview">
-                    <h2>
-                        Zuppa di Lenticchie
-                    </h2>
-                    <p>
-                        Una calda e confortante zuppa con lenticchie, verdure e un tocco di rosmarino.
-                    </p>
-                </div>
-                <img src=<?php
-                echo getFotoRicetta(3) ?> alt="" class="immagineRicetta">
-            </div>
-        </div>
-
-        <div class=mainRow4 data-keywords="pancakes,cioccolato" onclick="vaiAllaRicetta(4)">
-            <div class="text">
-                <div class="preview">
-                    <h2>
-                        Pancakes al Cioccolato
-                    </h2>
-                    <p>
-                        Soffici e golosi, con cacao nell’impasto e una cascata di sciroppo di cioccolato.
-                    </p>
-                </div>
-                <img src=<?php
-                echo getFotoRicetta(4) ?> alt="" class="immagineRicetta">
-            </div>
-        </div>
-
-        <div class=mainRow5 data-keywords="polpette,melanzane,vegetariano" onclick="vaiAllaRicetta(5)">
-            <div class="text">
-                <div class="preview">
-                    <h2>
-                        Polpette di Melanzane
-                    </h2>
-                    <p>
-                        Deliziose polpettine vegetariane, croccanti fuori e morbide dentro.
-                    </p>
-                </div>
-                <img src=<?php
-                echo getFotoRicetta(5) ?> alt="" class="immagineRicetta">
-            </div>
-        </div>
-
     </main>
 
     <footer>
@@ -244,7 +247,7 @@ function getFotoRicetta($id)
 </html>
 
 <script>
-    function vaiAllaRicetta(id) {
+    function vaiAllaRicetta(event,id) {
         // Cambia la pagina in base all'ID della ricetta
         window.location.href = 'ricetta.php?id=' + id;
     }
