@@ -41,27 +41,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         exit();
     } elseif (!empty($_FILES['file'])) {
-        // Directory di destinazione per i file caricati
         $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . "/Cooking/immaginiUser";
-
-        // Nome temporaneo del file caricato
         $tmp_name = $_FILES['file']['tmp_name'];
+        $file_type = mime_content_type($tmp_name);
 
-        // Costruisci il percorso finale per il salvataggio
+        $allowed_types = ['image/png', 'image/jpeg'];
+        if (!in_array($file_type, $allowed_types)) {
+            echo "Errore: formato file non supportato! Carica solo PNG o JPEG.";
+            exit;
+        }
+
         $path = $uploads_dir . "/$username.png";
-        echo $path;
-        // Prova a spostare il file nella destinazione
+
         move_uploaded_file($tmp_name, $path);
 
         $name = "./immaginiUser/$username.png";
-        // Verifica se il file è stato caricato correttamente
         echo "File $name caricato con successo!";
-        changeImage($username, $name); // Passa solo il nome del file, non l'array
+        changeImage($username, $name);
     }
     exit();
 }
 
-//FUNZIONI -------
+//FUNZIONI 
 function get_pwd($username)
 {
     global $db;
@@ -139,7 +140,7 @@ function changeImage($username, $newPhoto)
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.png">
-    <link rel="stylesheet" href="allStyle.css">
+    <link rel="stylesheet" href="allStyle1.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
@@ -149,7 +150,7 @@ function changeImage($username, $newPhoto)
 <body>
     <header>
         <div class="logo">
-            <img src="./img/icon.png" height="50px" width="50px">
+        <a href="./index.php"><img src="./img/icon.png" height="50px" width="50px"></a>
         </div>
 
         <div class="title">
@@ -161,23 +162,11 @@ function changeImage($username, $newPhoto)
     </header>
 
     <main class="account">
-        <div class="DatiAnagrafici">
-            <h2>
-                Dati anagrafici
-            </h2>
-            <p>
+        <div class="datiImmagine">
+            <div class="containerImmagine">
                 <img src="<?php echo getImage($username) ?>" alt="Immagine Utente" class="ImmagineUtente">
-            </p>
-            <p><a id="mostraBannerImg" href="#">Aggiorna immagine di profilo</a></p>
-
-            <p>
-                Nome : <span><?php echo get_Nome($username) ?></span>
-            </p>
-
-            <p>
-                Cognome : <span><?php echo get_Cognome($username) ?></span>
-            </p>
-
+                <img src="./img/matita.png" alt="cambiaImmagine" class="matita" id="mostraBannerImg">
+            </div>
             <div class=banner>
                 <div class="banner-content">
                     <button class="bottoneAnnulla" id="nascondiBannerImg">
@@ -192,40 +181,57 @@ function changeImage($username, $newPhoto)
             </div>
         </div>
 
-        </div>
+        <div class="Dati">
+            <div class="DatiAnagrafici">
+                <h2>
+                    Dati anagrafici
+                </h2>
+                <p>
+                    Nome : <span><?php echo get_Nome($username) ?></span>
+                </p>
 
-        <div class="subTitle2Utente">
-            <h2> Dati di Accesso </h2>
-            <p>
-                Username : <span><?php echo $username ?></span>
-            </p>
+                <p>
+                    Cognome : <span><?php echo get_Cognome($username) ?></span>
+                </p>
+            </div>
+            <div class="DatiAccesso">
+                <h2> Dati di Accesso </h2>
+                <p>
+                    Username : <span><?php echo $username ?></span>
+                </p>
 
-            <p><a id="mostraBannerPass" href="#">Aggiorna Password</a></p>
+                <p>
+                    Vuoi aggiornare la password ? <a id="mostraBannerPass" href="#">Clicca qui</a>
+                </p>
 
-            <form id="CambiaPasswordForm" method="post">
-                <div class="banner">
-                    <div class="banner-content">
-                        <p>
-                            Vecchia Password : <input type="password" name="oldPassword" required>
-                        </p>
-                        <p>
-                            Nuova Password : <input type="password" name="newPassword" required>
-                        </p>
+                <form id="CambiaPasswordForm" method="post">
+                    <div class="banner">
+                        <div class="banner-content">
+                            <div class="input-group">
+                                <label for="oldPassword">Vecchia Password:</label>
+                                <input type="password" id="oldPassword" name="oldPassword" required>
+                            </div>
 
-                        <p>
-                            Conferma Password : <input type="password" name="confermaNewPassword" required>
-                        </p>
-                        <button class="bottoneConferma">
-                            Conferma
-                        </button>
-                        <button class="bottoneAnnulla" id="nascondiBannerPass">
-                            Annulla
-                        </button>
+                            <div class="input-group">
+                                <label for="newPassword">Nuova Password:</label>
+                                <input type="password" id="newPassword" name="newPassword" required>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="confermaNewPassword">Conferma Password:</label>
+                                <input type="password" id="confermaNewPassword" name="confermaNewPassword" required>
+                            </div>
+
+                            <div class="button-group">
+                                <button class="bottoneConferma">Conferma</button>
+                                <button class="bottoneAnnulla" id="nascondiBannerPass">Annulla</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="logout" action="logout">
-                    <a href="?logout=true" class="logoutButton">Logout</a>
-                </div>
+                    <div class="Containerlogout" action="logout">
+                        <a href="?logout=true" class="logoutButton">LOGOUT</a>
+                    </div>
+            </div>
             </form>
         </div>
     </main>
@@ -247,9 +253,11 @@ function changeImage($username, $newPhoto)
             <a href="./index.php">
                 Welcome
             </a>
-
+            <a>
+                ●
+            </a>
             <a href="#">
-                ● © 2025 Cooking
+                © 2025 Cooking
             </a>
         </p>
     </footer>
@@ -294,22 +302,20 @@ function changeImage($username, $newPhoto)
             })
             .catch(error => console.error('Errore:', error));
     });
-    // Elementi della pagina
+
     const dropArea = document.getElementById('drop-area');
     const fileInput = document.getElementById('fileElem');
     const fileList = document.getElementById('file-list');
 
-    // Impediamo l'azione di default per il drag and drop
     dropArea.addEventListener('dragover', (e) => {
         e.preventDefault();
-        dropArea.style.backgroundColor = '#e9e9e9'; // cambia colore per feedback
+        dropArea.style.backgroundColor = '#e9e9e9';
     });
 
     dropArea.addEventListener('dragleave', () => {
-        dropArea.style.backgroundColor = '#fff'; // ripristina il colore
+        dropArea.style.backgroundColor = '#fff';
     });
 
-    // Gestiamo il drop dei file
     dropArea.addEventListener('drop', (e) => {
         e.preventDefault();
         dropArea.style.backgroundColor = '#fff';
@@ -318,49 +324,39 @@ function changeImage($username, $newPhoto)
         handleFiles(files);
     });
 
-    // Quando un file viene selezionato tramite input file
     fileInput.addEventListener('change', () => {
         const files = fileInput.files;
         handleFiles(files);
     });
 
-    // Funzione per mostrare i file selezionati
     function handleFiles(files) {
-        // Mostra i file nella lista
         const fileArray = Array.from(files)[0];
         fileList.innerHTML = '';
         const p = document.createElement('p');
         p.textContent = fileArray.name;
         fileList.appendChild(p);
 
-        // Chiamata per caricare i file sul server
         uploadFiles(fileArray);
     }
 
-
-    // Funzione per caricare i file sul server usando AJAX
     function uploadFiles(files) {
         const formData = new FormData();
 
         formData.append('file', files);
-        // Creazione della richiesta XMLHttpRequest
+
         const xhr = new XMLHttpRequest();
-        // Impostiamo il tipo di richiesta e l'URL del server
+
         xhr.open('POST', 'account.php', true);
 
-        // Impostiamo la funzione di callback che verrà chiamata quando la richiesta è completata
         xhr.onload = function () {
             if (xhr.status === 200) {
-                // Se la richiesta ha avuto successo
                 alert('Caricamento completato:' + xhr.responseText);
                 window.location.href = 'account.php';
             } else {
-                // Se si è verificato un errore
                 alert('Errore nel caricamento: ' + xhr.statusText);
             }
         };
 
-        // Invio dei dati tramite AJAX
         xhr.send(formData);
     }
 

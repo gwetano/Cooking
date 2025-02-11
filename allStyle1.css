@@ -5,6 +5,10 @@ body{
     font-family: 'Inter', sans-serif;
     background-color: #fefefe;
     color: black;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
 }
 
 /*INDEX header css*/
@@ -168,6 +172,7 @@ main.index {
 
 /*main CSS*/
 main.account {
+    flex:1;
     width: 100%;
     padding: 20px; /* Aggiungi un po' di spazio all'interno */
     background-color: #ffffff; /* Colore di sfondo del contenuto */
@@ -176,10 +181,36 @@ main.account {
     grid-template-columns: 1fr 1fr;
 }
 
+.datiImmagine {
+    display: flex;
+    flex-direction: column; /* Elementi in colonna */
+    align-items: center; /* Centra orizzontalmente */
+    text-align: center; /* Centra il testo */
+}
+
+.containerImmagine {
+    position: relative;
+}
+
 .ImmagineUtente {
-    width: 400px;
-    height: 500px;
-    border-radius: 50px;
+    width: 300px; 
+    height: 300px;
+    border-radius: 50%; 
+    object-fit: cover; 
+}
+
+.matita {
+    position:absolute;
+    top: 0px;
+    right: 0px;
+    padding: 5px;
+    height: 20px;
+    width: 20px;
+}
+
+.matita:hover {
+    background-color: rgb(219, 219, 219);
+    cursor: pointer;
 }
 
 .banner {
@@ -201,21 +232,76 @@ main.account {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    height: 600px;
+    height: 500px;
     width: 600px;
     z-index: 10001; /* Anche il contenuto del banner ha un z-index alto */
 }
 
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.bottoneConferma {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: 2px solid #4CAF50;
+}
+
+.bottoneAnnulla {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: 2px solid red;
+}
+
+.bottoneConferma:hover {
+    background-color: white;
+    color: #4CAF50;
+    
+}
+.bottoneAnnulla:hover {
+    background-color: white;
+    color: red;
+}
+
 #drop-area {
-    background-color: 
-    white;
+    background-color:white;
     padding: 50px;
     height: 200px;
-    border: 2px red dashed;
+    border: 2px black solid;
 }
 
 #drop-area:hover{
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: rgb(219, 219, 219);
 }
 
 #nascondiBannerImg {
@@ -231,10 +317,34 @@ main.account {
 }
 
 #nascondiBannerImg:hover {
-    background-color: darkred; /* Colore del bottone al passaggio del mouse */
+    background-color: white;
+    color: red;
+    border: 2px red solid;
 }
 
+.Containerlogout {
+    margin-top: 50px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column; /* Elementi in colonna */
+    align-items:center; /* Centra orizzontalmente */
+    text-align: center; /* Centra il testo */
+}
 
+.logoutButton {
+    padding: 20px;
+    text-decoration: none;
+    border: 2px solid red;
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+}
+
+.logoutButton:hover {
+    background-color: white;
+    color: red;
+
+}
 
 /*FOOTER GENERALE*/
 footer {
@@ -243,11 +353,8 @@ footer {
     align-items: center;     
     padding: 20px;
     background-color: #fefefe;
-    height: 50px; 
-}
-
-footer p {
-    margin: 0; 
+    height: 30px; 
+    border-top: 1px rgb(224, 224, 224) solid;
 }
 footer a {
     text-decoration: none;
