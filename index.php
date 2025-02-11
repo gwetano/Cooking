@@ -129,14 +129,14 @@ function removeRicettePreferite($username, $id)
                                 <div class="ricetta<?php echo $id ?>" onclick="vaiAllaRicetta(event, <?php echo $id; ?>)">
                                     <div class="nomeRicetta">
                                         <?php
-                                        echo getNomeRicetta($id); ?>
+                                        echo $nome; ?>
                                     </div>
                                     <div class="descrizioneRicetta">
                                         <?php
-                                        echo getDescrizioneRicetta($id) ?>
+                                        echo $descrizione; ?>
                                     </div>
                                     <div class="classFotoRicetta">
-                                        <img src="<?php echo htmlspecialchars(getFotoRicetta($id)); ?>" alt="ricetta1"
+                                        <img src="<?php echo htmlspecialchars($foto); ?>" alt="ricetta<?php echo $id; ?>"
                                             height="100%">
                                     </div>
                                 </div>
@@ -154,7 +154,7 @@ function removeRicettePreferite($username, $id)
                     ?>
                 </div>
             </div>
-
+            
             <div class="mainColumn2">
                 <div class="contenutoMainColumn">
                     <h1>Le più cliccate</h1>
@@ -337,12 +337,7 @@ function removeRicettePreferite($username, $id)
             <a href="./index.php">
                 Welcome
             </a>
-            <a>
-                ●
-            </a>
-            <a href="#">
-                © 2025 Cooking
-            </a>
+            ● © 2025 Cooking
         </div>
     </footer>
 </body>
