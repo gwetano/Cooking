@@ -1,5 +1,5 @@
 /*INDEX CSS*/
-body{
+html,body{
     margin: 0px;
     padding: 0px;
     font-family: 'Inter', sans-serif;
@@ -10,7 +10,6 @@ body{
     flex-direction: column;
 }
 
-/*INDEX header css*/
 header{
     position: relative;
     top: 0;
@@ -441,7 +440,7 @@ div[class^="mainRow"]:hover {
 }
 
 /*Accesso CSS*/
-.accesso {
+#headerAccesso {
     position: relative;
     top: 0;
     left: 0;
@@ -456,23 +455,19 @@ div[class^="mainRow"]:hover {
 }
 
 /* Stile del contenitore del titolo */
-.accesso .titolo {
+#headerAccesso .titolo {
     display: flex;
     align-items: center;
     gap: 15px; /* Distanza tra logo e titolo */
 }
 
 /* Stile del logo */
-.accesso .logo {
+#headerAccesso .logo {
     position: absolute;
-    height: 50px;
-    width: 50px;
-    left: 500px;
-
+    left: 0px;
 }
 
-/* Sottotitolo */
-.subtitle {
+#headerAccesso .subtitle {
     position: absolute;
     bottom: 10px;
     font-size: 16px;
@@ -482,10 +477,112 @@ div[class^="mainRow"]:hover {
     width: 100%;
 }
 
-/* Spazio del logo a sinistra */
-.logo {
+#headerAccesso .logo {
     margin-left: 50px;
 }
+
+#mainAccesso {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+#loginForm {
+    border: 2px solid rgb(224, 224, 224);
+    border-radius: 20px;
+    padding: 5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#registerForm {
+    border: 2px solid rgb(224, 224, 224);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    position: relative;
+}
+
+#loginForm p{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#registerForm p {
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+
+#loginForm input[type="text"],
+#loginForm input[type="password"],
+#registerForm input[type="text"],
+#registerForm input[type="password"]    {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#loginForm .viewPassword {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+#loginForm .bottone,
+#registerForm .bottone {
+    padding: 10px;
+    font-size: 15px;
+    background-color: #0037ff;
+    border: 2px #0037ff solid;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    width: 100%;
+}
+
+#loginForm .bottone:hover {
+    background-color: white;
+    color: #0037ff;
+}
+
+#loginForm .registratiCliccabile {
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+#loginForm .registratiCliccabile:hover {
+    cursor: pointer;
+}
+
+#registerForm .closeButton{
+    position: absolute;
+    top:10px;
+    right: 10px;
+    height: 30px;
+    width: 30px;
+}
+
+#registerForm .closeButton:hover {
+    cursor: pointer;
+}
+
+
+
+
 
 /*FOOTER GENERALE*/
 footer {
