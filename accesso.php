@@ -92,7 +92,7 @@ function insert_utente($username, $password, $nome, $cognome)
 </head>
 
 <body>
-    <header class="accesso">
+    <header id="headerAccesso">
         <div class="titolo">
             <div class="logo">
                 <img src="./img/icon.png" height="50px" width="50px">
@@ -103,26 +103,22 @@ function insert_utente($username, $password, $nome, $cognome)
             </div>
         </div>
         <div class="subtitle">Se hai già un account, accedi. Altrimenti registrati subito!</div>
-
     </header>
 
-
-
-    <main id="main-content">
+    <main id="mainAccesso">
         <form id="loginForm">
             <p>
                 <input type="text" name="username" class="username" placeholder="Username" required>
             </p>
             <p>
                 <input type="password" name="password" class="password" placeholder="Password" required id="password">
-                <img src="./img/viewPassword.png" alt="" id="visualizzaPassword">
+                <img src="./img/viewPassword.png" alt="" id="visualizzaPassword" height="20px" width="20px" class="viewPassword">
             </p>
             <p>
-                <button type="submit">Accedi</button>
+                <button type="submit" class="bottone">Accedi</button>
             </p>
             <p>Non hai un account? <span id="registratiCliccabile" class="registratiCliccabile">Registrati</span></p>
         </form>
-
     </main>
 
     <script>
@@ -145,12 +141,10 @@ function insert_utente($username, $password, $nome, $cognome)
         });
 
         document.getElementById('registratiCliccabile').addEventListener('click', function () {
-            document.getElementById('main-content').innerHTML = `
+            document.getElementById('mainAccesso').innerHTML = `
                  <form id="registerForm">
                     <p>
-                        <button onclick="chiudiFinestra()" class=closeButton>
-                            X
-                        </button>
+                        <img src="./img/bottoneChiudiFinestra.png" alt="chiudiFinestra" onclick="chiudiFinestra()" class="closeButton">
                     </p>
                     <p>
                         <input type="text" name="nome" placeholder="Nome" required class="nome">
@@ -170,7 +164,9 @@ function insert_utente($username, $password, $nome, $cognome)
                     <p>
                         <input type="checkbox" name="terms" required> Accetto termini e condizioni
                     </p>
-                    <button type="submit">Registrati</button>
+                    <p>
+                    <button type="submit" class="bottone">Registrati</button>
+                    </p>
                 </form>
             `;
 
