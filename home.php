@@ -69,11 +69,11 @@ function getFotoRicetta($id)
 function getDataKeywords($id)
 {
     global $db;
-    $sql = "SELECT 'data-keywords' FROM ricette WHERE id=$1";
+    $sql = "SELECT data_keywords FROM ricette WHERE id=$1";
     $result = pg_query_params($db, $sql, array($id));
     if ($result && pg_num_rows($result) > 0) {
         $row = pg_fetch_assoc($result);
-        return $row['data-keywords'];
+        return $row['data_keywords'];
     }
     return null;
 }
@@ -188,7 +188,6 @@ function getIdRicette()
                     $descrizione = getDescrizioneRicetta($id);
                     $foto = getFotoRicetta($id);
                     $dataKeywords = getDataKeywords($id);
-                    echo $dataKeywords;
                     ?>
                     <div class="mainRow<?php echo $id ?>" data-keywords="<?php echo $dataKeywords ?>"
                         onclick="vaiAllaRicetta(event,<?php echo $id; ?>)">
