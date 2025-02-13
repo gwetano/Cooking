@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </header>
 
-    <main class="home">
+    <main id="mainHome">
         <?php
         $idRicette = getIdRicette();
         if (!empty($idRicette)) { ?>
