@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="loggato">
-            <a href="./account.php"> <img src="./img/username.png" height="40px" width="40px"></a>
+            <a href="./account.php"> <img src="./img/username.png" height="50px" width="50px"></a>
         </div>
     </header>
 

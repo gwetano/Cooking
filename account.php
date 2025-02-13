@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </header>
 
-    <main class="account">
+    <main id="mainAccount">
         <div class="datiImmagine">
             <div class="containerImmagine">
                 <img src="<?php echo getImage($username) ?>" alt="Immagine Utente" class="ImmagineUtente">
@@ -124,11 +124,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     Dati anagrafici
                 </h2>
                 <p>
-                    Nome : <span><?php echo get_Nome($username) ?></span>
+                    Nome : <span><?php echo ucfirst(get_Nome($username)) ?></span>
                 </p>
 
                 <p>
-                    Cognome : <span><?php echo get_Cognome($username) ?></span>
+                    Cognome : <span><?php echo ucfirst(get_Cognome($username)) ?></span>
                 </p>
             </div>
             <div class="DatiAccesso">
