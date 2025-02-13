@@ -1,73 +1,7 @@
 <?php
 session_start();
 require './db.php';
-function getNomeRicetta($id)
-{
-    global $db;
-    $sql = "SELECT nome FROM ricette WHERE id=$1";
-    $result = pg_query_params($db, $sql, array($id));
-    if ($result && pg_num_rows($result) > 0) {
-        $row = pg_fetch_assoc($result);
-        return $row['nome'];
-    }
-    return null;
-}
-
-function getDescrizioneRicetta($id)
-{
-    global $db;
-    $sql = "SELECT descrizione FROM ricette WHERE id=$1";
-    $result = pg_query_params($db, $sql, array($id));
-    if ($result && pg_num_rows($result) > 0) {
-        $row = pg_fetch_assoc($result);
-        return $row['descrizione'];
-    }
-    return null;
-}
-
-function getFotoRicetta($id)
-{
-    global $db;
-    $sql = "SELECT foto FROM ricette WHERE id=$1";
-    $result = pg_query_params($db, $sql, array($id));
-    if ($result && pg_num_rows($result) > 0) {
-        $row = pg_fetch_assoc($result);
-        return $row['foto'];
-    }
-    return null;
-}
-
-function getRicettePreferite($username)
-{
-    global $db;
-    $sql = "SELECT id FROM preferiti WHERE username=$1";
-    $result = pg_query_params($db, $sql, array($username));
-    if ($result && pg_num_rows($result) > 0) {
-        $ids = [];
-        while ($row = pg_fetch_assoc($result)) {
-            $ids[] = $row['id'];
-        }
-        return $ids;
-    }
-    return [];
-}
-
-function addRicettePreferite($username, $id)
-{
-    global $db;
-    $sql = "INSERT INTO preferiti(username, id) VALUES($1, $2)";
-    $result = pg_query_params($db, $sql, array($username, $id));
-    return $result !== false;
-}
-
-function removeRicettePreferite($username, $id)
-{
-    global $db;
-    $sql = "DELETE FROM preferiti WHERE id = $1 AND username = $2";
-    $result = pg_query_params($db, $sql, array($id, $username));
-    return $result !== false;
-}
-
+require_once './funzioni.php'
 ?>
 
 <!DOCTYPE html>
@@ -76,15 +10,14 @@ function removeRicettePreferite($username, $id)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="allStyle.css">
-    <title>INDEX</title>
-
+    <link rel="stylesheet" href="Style.css">
+    <title>Index</title>
+    <script defer src="./funzioni.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.png">
     <link
         href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
-
 </head>
 
 <body>
@@ -346,12 +279,6 @@ function removeRicettePreferite($username, $id)
 
 <script>
 
-    function vaiAllaRicetta(event, id) {
-        // Cambia la pagina in base all'ID della ricetta
-        event.stopPropagation();
-        window.location.href = 'ricetta.php?id=' + id;
-    }
-
     document.addEventListener('DOMContentLoaded', function () {
     const ricette = document.querySelectorAll('.ricetta1, .ricetta2, .ricetta3, .ricetta4');
     const isLoggedIn = <?php echo isset($_SESSION['username']) ? 'true' : 'false'; ?>;
@@ -366,35 +293,5 @@ function removeRicettePreferite($username, $id)
         }
     });
     });
-
-    function favorites(event, id, toggle) {
-        event.stopPropagation();
-        const star = document.getElementById('addPreferiti' + id);
-        fetch('home.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                id: id,
-                action: toggle ? 'remove' : 'add'
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    if (toggle) {
-                        star.src = './img/nonPreferiti.png'
-                    } else {
-                        star.src = './img/Preferiti.png'
-                    }
-                } else {
-                    alert('C’è stato un errore durante l’operazione!');
-                }
-            })
-            .catch(error => {
-                console.error('Errore:', error);
-                alert('C’è stato un errore durante l’operazione!' + error);
-            });
-    }
+    
 </script>

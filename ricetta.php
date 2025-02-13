@@ -71,6 +71,14 @@ function getPreparazioneRicetta($id)
     return null;
 }
 
+function isPrefertito($username, $id)
+{
+    global $db;
+    $sql = "SELECT id FROM preferiti WHERE username=$1 AND id=$2";
+    $result = pg_query_params($db, $sql, array($username, $id));
+    return $result && pg_num_rows($result) > 0;
+}
+
 ?>
 <html>
 <!DOCTYPE html>
@@ -79,7 +87,7 @@ function getPreparazioneRicetta($id)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="account1.css">
+    <link rel="stylesheet" href="Style.css">
     <title>RICETTA</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -93,33 +101,55 @@ function getPreparazioneRicetta($id)
 <body>
 
     <header>
-        <div class="titleRicetta">
-            <h1>
-                <?php echo getNomeRicetta($id) ?>
-            </h1>
+        <div class="logo">
+            <a href="./index.php"><img src="./img/icon.png" height="50px" width="50px"></a>
         </div>
-        <div>
-            <a href="./home.php" class="returnHome"> Home</a>
+
+        <div class="title">
+            <h1> <?php echo getNomeRicetta($id) ?></h1>
+        </div>
+        <div class="loggato">
+            <a href="./home.php"> <img src="./img/home.png" height="50px" width="50px"></a>
         </div>
     </header>
 
-    <main>
-
-        <div class="descrizione">
-            <h2>
-                <?php
-                echo getDescrizioneRicetta($id) ?>
-            </h2>
+    <main id="mainRicetta">
+        <div class="star">
+            <?php
+            $isPrefertito = isPrefertito($username, $id);
+            $imgPath = $isPrefertito ? "./img/preferiti.png" : "./img/nonPreferiti.png";
+            $toggle = $isPrefertito ? 'true' : 'false';
+            ?>
+            <img src="<?php echo $imgPath; ?>" alt="Immagine Preferiti"
+                onclick="toggleFavorite(event, <?php echo $id; ?>, <?php echo $toggle; ?>)"
+                id="addPreferiti<?php echo $id ?>" class="starImmagine">
         </div>
+        <div class="introduzione">
+            <div class="fotoRicetta">
+                <img src=<?php
+                echo getFotoRicetta($id) ?> alt="" class="foto">
+            </div>
+            <div class="descrizioneGenerale">
 
-        <div class="Ingredienti">
-            <p><?php echo getIngredientiRicetta($id) ?></p>
-        </div>
-        <div class="fotoRicetta">
-            <img src=<?php
-            echo getFotoRicetta($id) ?> alt="" class="foto">
+                <div class="difficoltà">
+                    <p>Difficoltà : <span class="difficoltàText"> Facile </span></p>
+                </div>
+                <div class="tempo">
+                    <p>Pronto in : <span class="tempoText"> 15 min </span></p>
+                </div>
+                <div class="dosi">
+                    <p>Dosi per : <span class="dosiText"> 4 </span></p>
+                </div>
+
+            </div>
+            <div class="Ingredienti">
+                <p>Ingredienti : <br><?php echo getIngredientiRicetta($id) ?></p>
+            </div>
         </div>
         <div class="Preparazione">
+            <h2>
+                <b>Preparazione</b>
+            </h2>
             <?php
             echo getPreparazioneRicetta($id) ?></p>
         </div>
@@ -151,3 +181,44 @@ function getPreparazioneRicetta($id)
 </body>
 
 </html>
+
+<script>
+    function toggleFavorite(event, id, isFavorite) {
+        event.stopPropagation();  // Previene il click sulla ricetta
+        const star = document.getElementById('addPreferiti' + id);
+
+        // Inverti il valore di isFavorite
+        const action = isFavorite ? 'remove' : 'add';
+        const newIsFavorite = !isFavorite;  // Nuovo stato di isFavorite
+
+        fetch('home.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: id,
+                action: action
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // Parso sempre come JSON
+            })
+            .then(data => {
+                if (data.success) {
+                    star.src = newIsFavorite ? './img/preferiti.png' : './img/nonPreferiti.png';
+                    star.setAttribute('onclick', `toggleFavorite(event, ${id}, ${newIsFavorite})`);
+                } else {
+                    alert('Errore durante l’operazione: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Errore:', error);
+                alert('Errore durante l’operazione!');
+            });
+    }
+
+</script>

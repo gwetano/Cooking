@@ -1,6 +1,7 @@
 <?php
 session_start();
 require './db.php';
+require_once './funzioni.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Type: application/json');
@@ -46,34 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo json_encode(['success' => false, 'message' => 'Azione non valida.']);
     exit();
 }
-
-function get_pwd($user, $db)
-{
-    $sql = "SELECT password FROM utente WHERE username=$1";
-    $result = pg_query_params($db, $sql, array($user));
-    if ($result && pg_num_rows($result) > 0) {
-        $row = pg_fetch_assoc($result);
-        return $row['password'];
-    }
-    return null;
-}
-
-function username_exist($user)
-{
-    global $db;
-    $sql = "SELECT username FROM utente WHERE username=$1";
-    $result = pg_query_params($db, $sql, array($user));
-    return $result && pg_num_rows($result) > 0;
-}
-
-function insert_utente($username, $password, $nome, $cognome)
-{
-    global $db;
-    $hash = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO utente(username, password, nome, cognome) VALUES($1, $2, $3, $4)";
-    $result = pg_query_params($db, $sql, array($username, $hash, $nome, $cognome));
-    return $result !== false;
-}
 ?>
 
 <!DOCTYPE html>
@@ -85,10 +58,10 @@ function insert_utente($username, $password, $nome, $cognome)
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.png">
     <link
-        href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="allStyle.css">
-    <title>Pagina di accesso</title>
+        href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
+    <link rel="stylesheet" href="Style.css">
+    <title>Accesso</title>
+    <script defer src="./funzioni.js"></script>
 </head>
 
 <body>
@@ -121,7 +94,31 @@ function insert_utente($username, $password, $nome, $cognome)
         </form>
     </main>
 
-    <script>
+    <footer>
+        <p>
+            <a href="">
+                Privacy Policy
+            </a>
+            ●
+            <a href="">
+                Cookie Policy
+            </a>
+            ●
+            <a href="">
+                Termini e condizioni
+            </a>
+            ●
+            <a href="./index.php">
+                Welcome
+            </a>
+            ● © 2025 Cooking
+        </p>
+    </footer>
+</body>
+
+</html>
+
+<script>
         document.getElementById('loginForm').addEventListener('submit', function (event) {
             event.preventDefault();
             const formData = new FormData(this);
@@ -190,10 +187,6 @@ function insert_utente($username, $password, $nome, $cognome)
             });
         });
 
-        function chiudiFinestra() {
-            window.location.reload();
-        }
-
         document.getElementById('visualizzaPassword').addEventListener('mouseover', function (event) {
             document.getElementById('password').setAttribute('type', 'text');
         });
@@ -203,27 +196,3 @@ function insert_utente($username, $password, $nome, $cognome)
         });
 
     </script>
-
-    <footer>
-        <p>
-            <a href="">
-                Privacy Policy
-            </a>
-            ●
-            <a href="">
-                Cookie Policy
-            </a>
-            ●
-            <a href="">
-                Termini e condizioni
-            </a>
-            ●
-            <a href="./index.php">
-                Welcome
-            </a>
-            ● © 2025 Cooking
-        </p>
-    </footer>
-</body>
-
-</html>

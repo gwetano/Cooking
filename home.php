@@ -1,6 +1,7 @@
 <?php
 session_start();
 require './db.php';
+require_once './funzioni.php';
 
 if (!isset($_SESSION['username'])) {
     echo "<script>
@@ -45,82 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo json_encode($response);
     exit;
 }
-
-function isPrefertito($username, $id)
-{
-    global $db;
-    $sql = "SELECT id FROM preferiti WHERE username=$1 AND id=$2";
-    $result = pg_query_params($db, $sql, array($username, $id));
-    return $result && pg_num_rows($result) > 0;
-}
-
-function getFotoRicetta($id)
-{
-    global $db;
-    $sql = "SELECT foto FROM ricette WHERE id=$1";
-    $result = pg_query_params($db, $sql, array($id));
-    if ($result && pg_num_rows($result) > 0) {
-        $row = pg_fetch_assoc($result);
-        return $row['foto'];
-    }
-    return null;
-}
-
-function getDataKeywords($id)
-{
-    global $db;
-    $sql = "SELECT data_keywords FROM ricette WHERE id=$1";
-    $result = pg_query_params($db, $sql, array($id));
-    if ($result && pg_num_rows($result) > 0) {
-        $row = pg_fetch_assoc($result);
-        return $row['data_keywords'];
-    }
-    return null;
-}
-
-function getNomeRicetta($id)
-{
-    global $db;
-    $sql = "SELECT nome FROM ricette WHERE id=$1";
-    $result = pg_query_params($db, $sql, array($id));
-    if ($result && pg_num_rows($result) > 0) {
-        $row = pg_fetch_assoc($result);
-        return $row['nome'];
-    }
-    return null;
-}
-
-function getDescrizioneRicetta($id)
-{
-    global $db;
-    $sql = "SELECT descrizione FROM ricette WHERE id=$1";
-    $result = pg_query_params($db, $sql, array($id));
-    if ($result && pg_num_rows($result) > 0) {
-        $row = pg_fetch_assoc($result);
-        return $row['descrizione'];
-    }
-    return null;
-}
-
-function getIdRicette()
-{
-    global $db;
-    $query = "SELECT id FROM ricette ORDER BY id ASC";
-    $result = pg_query($db, $query);
-
-    if (!$result) {
-        echo "Errore nella query.";
-        return [];
-    }
-
-    $ids = [];
-    while ($row = pg_fetch_assoc($result)) {
-        $ids[] = $row['id'];
-    }
-
-    return $ids;
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -131,7 +56,9 @@ function getIdRicette()
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.png">
-    <link rel="stylesheet" href="allStyle.css">
+    <link rel="stylesheet" href="Style.css">
+    <title>Home</title>
+    <script defer src="./funzioni.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
@@ -247,49 +174,3 @@ function getIdRicette()
 </body>
 
 </html>
-
-<script>
-    function vaiAllaRicetta(event, id) {
-        // Cambia la pagina in base all'ID della ricetta
-        window.location.href = 'ricetta.php?id=' + id;
-    }
-
-    function toggleFavorite(event, id, isFavorite) {
-        event.stopPropagation();  // Previene il click sulla ricetta
-        const star = document.getElementById('addPreferiti' + id);
-
-        // Inverti il valore di isFavorite
-        const action = isFavorite ? 'remove' : 'add';
-        const newIsFavorite = !isFavorite;  // Nuovo stato di isFavorite
-
-        fetch('home.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                id: id,
-                action: action
-            })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json(); // Parso sempre come JSON
-            })
-            .then(data => {
-                if (data.success) {
-                    star.src = newIsFavorite ? './img/preferiti.png' : './img/nonPreferiti.png';
-                    star.setAttribute('onclick', `toggleFavorite(event, ${id}, ${newIsFavorite})`);
-                } else {
-                    alert('Errore durante l’operazione: ' + data.error);
-                }
-            })
-            .catch(error => {
-                console.error('Errore:', error);
-                alert('Errore durante l’operazione!');
-            });
-    }
-
-</script>
