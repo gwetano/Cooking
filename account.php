@@ -1,6 +1,7 @@
 <?php
 session_start();
 require './db.php';
+require_once './funzioni.php';
 
 if (!isset($_SESSION['username'])) {
     echo "<script>
@@ -62,72 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 
-//FUNZIONI 
-function get_pwd($username)
-{
-    global $db;
-    $sql = "SELECT password FROM utente WHERE username=$1";
-    $result = pg_query_params($db, $sql, array($username));
-    if ($result && pg_num_rows($result) > 0) {
-        $row = pg_fetch_assoc($result);
-        return $row['password'];
-    }
-    return null;
-}
-
-function get_Nome($username)
-{
-    global $db;
-    $sql = "SELECT nome FROM utente WHERE username=$1";
-    $result = pg_query_params($db, $sql, array($username));
-    if ($result && pg_num_rows($result) > 0) {
-        $row = pg_fetch_assoc($result);
-        return $row['nome'];
-    }
-    return null;
-}
-
-function get_Cognome($username)
-{
-    global $db;
-    $sql = "SELECT cognome FROM utente WHERE username=$1";
-    $result = pg_query_params($db, $sql, array($username));
-    if ($result && pg_num_rows($result) > 0) {
-        $row = pg_fetch_assoc($result);
-        return $row['cognome'];
-    }
-    return null;
-}
-
-function changePassword($username, $newpassword)
-{
-    global $db;
-    $Newhash = password_hash($newpassword, PASSWORD_DEFAULT);
-    $sql = "UPDATE utente SET password = $1 WHERE username = $2";
-    $result = pg_query_params($db, $sql, array($Newhash, $username));
-    return $result !== false;
-}
-
-function getImage($username)
-{
-    global $db;
-    $sql = "SELECT foto FROM utente WHERE username=$1";
-    $result = pg_query_params($db, $sql, array($username));
-    if ($result && pg_num_rows($result) > 0) {
-        $row = pg_fetch_assoc($result);
-        return $row['foto'];
-    }
-    return null;
-}
-
-function changeImage($username, $newPhoto)
-{
-    global $db;
-    $sql = "UPDATE utente SET foto = $1 WHERE username = $2";
-    $result = pg_query_params($db, $sql, array($newPhoto, $username));
-    return $result !== false;
-}
-
 ?>
 
 <html>
@@ -140,7 +75,9 @@ function changeImage($username, $newPhoto)
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.png">
-    <link rel="stylesheet" href="allStyle.css">
+    <link rel="stylesheet" href="Style.css">
+    <title>Account</title>
+    <script defer src="./funzioni.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
@@ -328,36 +265,4 @@ function changeImage($username, $newPhoto)
         const files = fileInput.files;
         handleFiles(files);
     });
-
-    function handleFiles(files) {
-        const fileArray = Array.from(files)[0];
-        fileList.innerHTML = '';
-        const p = document.createElement('p');
-        p.textContent = fileArray.name;
-        fileList.appendChild(p);
-
-        uploadFiles(fileArray);
-    }
-
-    function uploadFiles(files) {
-        const formData = new FormData();
-
-        formData.append('file', files);
-
-        const xhr = new XMLHttpRequest();
-
-        xhr.open('POST', 'account.php', true);
-
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                alert('Caricamento completato:' + xhr.responseText);
-                window.location.href = 'account.php';
-            } else {
-                alert('Errore nel caricamento: ' + xhr.statusText);
-            }
-        };
-
-        xhr.send(formData);
-    }
-
 </script>
