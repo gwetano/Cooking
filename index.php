@@ -41,7 +41,7 @@ require_once './funzioni.php'
         <?php } ?>
     </header>
 
-    <main class="index">
+    <main id="mainIndex">
 
         <?php if (isset($_SESSION['username'])) {
 /* UTENTE LOGGATO */

@@ -1,4 +1,4 @@
-/*INDEX CSS*/
+            /*CSS generale*/
 html,body{
     margin: 0px;
     padding: 0px;
@@ -10,13 +10,17 @@ html,body{
     flex-direction: column;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 header{
     position: relative;
     top: 0;
     left: 0;
     width: 100%;
     background-color:#ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0.1, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -34,12 +38,7 @@ header .title h1{
     margin-left: 50px;
 }
 
-header .loggato {
-    margin-right: 50px;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-header .nonLoggato {
+header .loggato, header .nonLoggato {
     margin-right: 50px;
     cursor: pointer;
     transition: transform 0.2s;
@@ -58,20 +57,41 @@ header .nonLoggato a:hover{
     background-color: white;
 }
 
-/*INDEX main css*/
-main.index {
+footer {
+    display: flex;
+    text-align: center;
+    justify-content: center; 
+    align-items: center;     
+    padding: 20px;
+    background-color: #fefefe;
+    height: 60px; 
+    border-top: 1px rgb(224, 224, 224) solid;
+}
+footer a {
+    text-decoration: none;
+    color: #333333;
+    margin: 0 5px;
+}
+
+footer a:hover {
+    color: #0037ff;
+}
+
+            /*Main Index*/
+
+#mainIndex {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.mainColumn1 {
+#mainIndex .mainColumn1 {
     padding: 20px;
     border: 2px solid #333; 
     border-radius: 15px; 
     margin: 20px 10px; 
 }
 
-.mainColumn2 {
+#mainIndex .mainColumn2 {
     padding: 20px;
     border: 2px solid #333; 
     border-radius: 15px; 
@@ -106,6 +126,7 @@ main.index {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
+
 #ricettaDelGiorno {
     display: flex !important;
 }
@@ -161,15 +182,14 @@ main.index {
 .goHome{
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;  /* Spinge il contenuto in basso */
-    align-items: flex-end;  /* Allinea il bottone a destra */
-    height: 100%;  /* Assicura che occupi tutta l'altezza */
+    justify-content: flex-end;  
+    align-items: flex-end;  
+    height: 100%;
 }
 
 /*ACCOUNT CSS*/
 
-/*main CSS*/
-main.account {
+#mainAccount {
     flex:1;
     width: 100%;
     padding: 20px; /* Aggiungi un po' di spazio all'interno */
@@ -179,7 +199,7 @@ main.account {
     grid-template-columns: 1fr 1fr;
 }
 
-.datiImmagine {
+#mainAccount .datiImmagine {
     display: flex;
     flex-direction: column; /* Elementi in colonna */
     align-items: center; /* Centra orizzontalmente */
@@ -589,25 +609,4 @@ div[class^="mainRow"]:hover {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
-}
-
-
-/*FOOTER GENERALE*/
-footer {
-    display: flex;
-    justify-content: center; 
-    align-items: center;     
-    padding: 20px;
-    background-color: #fefefe;
-    height: 30px; 
-    border-top: 1px rgb(224, 224, 224) solid;
-}
-footer a {
-    text-decoration: none;
-    color: #333333;
-    margin: 0 5px;
-}
-
-footer a:hover {
-    color: #0037ff;
 }
