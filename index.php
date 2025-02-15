@@ -208,10 +208,6 @@ require_once './funzioni.php'
             </a>
             ●
             <a href="">
-                Cookie Policy
-            </a>
-            ●
-            <a href="">
                 Termini e condizioni
             </a>
             ●

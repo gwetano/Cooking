@@ -95,13 +95,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </main>
 
     <footer>
-        <p>
+        <div>
             <a href="">
                 Privacy Policy
-            </a>
-            ●
-            <a href="">
-                Cookie Policy
             </a>
             ●
             <a href="">
@@ -112,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 Welcome
             </a>
             ● © 2025 Cooking
-        </p>
+        </div>
     </footer>
 </body>
 

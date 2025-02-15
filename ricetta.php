@@ -96,13 +96,9 @@ if (!isset($_SESSION['username'])) {
     </main>
 
     <footer>
-        <p>
+        <div>
             <a href="">
                 Privacy Policy
-            </a>
-            ●
-            <a href="">
-                Cookie Policy
             </a>
             ●
             <a href="">
@@ -112,11 +108,8 @@ if (!isset($_SESSION['username'])) {
             <a href="./index.php">
                 Welcome
             </a>
-
-            <a href="#">
-                ● © 2025 Cooking
-            </a>
-        </p>
+            ● © 2025 Cooking
+        </div>
     </footer>
 </body>
 

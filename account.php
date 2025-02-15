@@ -216,13 +216,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </main>
 
     <footer>
-        <p>
+        <div>
             <a href="">
                 Privacy Policy
-            </a>
-            ●
-            <a href="">
-                Cookie Policy
             </a>
             ●
             <a href="">
@@ -232,13 +228,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="./index.php">
                 Welcome
             </a>
-            <a>
-                ●
-            </a>
-            <a href="#">
-                © 2025 Cooking
-            </a>
-        </p>
+            ● © 2025 Cooking
+        </div>
     </footer>
 </body>
 
