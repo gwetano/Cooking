@@ -4,6 +4,11 @@ function vaiAllaRicetta(event, id) {
   window.location.href = "ricetta.php?id=" + id;
 }
 
+function registerOrLogin() {
+  event.stopPropagation;
+  window.location.href = "accesso.php"
+}
+
 function favorites(event, id, toggle) {
   event.stopPropagation();
   const star = document.getElementById("addPreferiti" + id);

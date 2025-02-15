@@ -47,6 +47,60 @@ require_once './funzioni.php'
             /* UTENTE LOGGATO */
             $username = $_SESSION['username']; ?>
             <div class="mainColumn1">
+                <?php $idRicettaDelGiorno = generaIdCasuale(); ?>
+                <div class="contenutoMainColumnRicettaDelGiorno" onclick="vaiAllaRicetta(event,<?php echo $idRicettaDelGiorno; ?>)">
+                    <h1>Ricetta del giorno</h1>
+                    <div class="ricette" id="ricettaDelGiorno">
+                        <div class="ricetta">
+                            <div class="infoRicetta">
+                                <div class="nomeRicetta">
+                                    <span> <?php
+                                    echo getNomeRicetta($idRicettaDelGiorno); ?></span>
+                                </div>
+                            </div>
+                            <div class="containerFotoRicetta">
+                                <img src=<?php
+                                echo getFotoRicetta($idRicettaDelGiorno) ?> alt="ricettaDelGiorno"
+                                    class="fotoRicetta">
+                            </div>
+                        </div>
+                        <div class="infoRicettaDelGiorno">
+                            <p> <img src="./img/difficoltà.png" alt="difficoltà">DIFFICOLTA' : <span style="color:red;">
+                                    FACILE </span></p>
+                            <p> <img src="./img/orologio.png" alt="orologio"> PRONTO IN : <span style="color:red;"> 4
+                                    minuti </span> </p>
+                            <p> <img src="./img/mangiare.png" alt="dosi"> DOSI PER : <span style="color:red;"> 4 persone
+                                </span> </p>
+                        </div>
+                    </div>
+
+                    <div class="presentazioneRicettaDelGiorno">
+
+                        <h3>Presentazione</h3>
+                        <p>
+                            Gli spaghetti aglio e olio sono un piatto simbolo della tradizione culinaria italiana,
+                            semplice
+                            ma ricco di sapore. Originari della Campania, ma amati in tutta Italia, questo piatto mette
+                            in
+                            evidenza l’arte di cucinare con pochi ingredienti di qualità. Il profumo avvolgente
+                            dell’aglio,
+                            il gusto ricco e aromatico dell’olio extravergine di oliva, e la piccantezza delicata del
+                            peperoncino si combinano perfettamente per un’esperienza gustativa indimenticabile.
+
+                            Questa ricetta, ideale per una cena veloce o un pranzo senza compromessi sul gusto, si
+                            prepara
+                            in pochi minuti e può essere personalizzata con aggiunta di prezzemolo fresco o una
+                            spolverata
+                            di formaggio grattugiato, se lo desideri. Facile da preparare ma incredibilmente saporito,
+                            gli
+                            spaghetti aglio e olio sono il comfort food per eccellenza.
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mainColumn2">
                 <div class="contenutoMainColumn">
                     <h1>Le tue ricette preferite</h1>
                     <?php
@@ -54,7 +108,10 @@ require_once './funzioni.php'
                     if (!empty($ricettePreferite)) { ?>
                         <div class="ricette">
                             <?php
+                            $counter = 0;
                             foreach ($ricettePreferite as $id) {
+                                if($counter >= 4)
+                                    break;
                                 $nome = getNomeRicetta($id);
                                 $descrizione = getDescrizioneRicetta($id);
                                 $foto = getFotoRicetta($id);
@@ -78,6 +135,7 @@ require_once './funzioni.php'
                                 </div>
 
                                 <?php
+                                $counter ++;
                             }
                             ?>
                         </div><?php
@@ -89,53 +147,11 @@ require_once './funzioni.php'
                     }
                     ?>
                 </div>
-            </div>
-
-            <div class="mainColumn2">
-                <div class="contenutoMainColumn">
-                    <h1>Le più cliccate</h1>
-
-                    <div class="ricette">
-
-                        <?php
-                        $VettoreIdRicetteCliccate = generaNumeriCasualiDiversi();
-                        for ($i = 0; $i < 4; $i++) {
-                            $idRicettaCliccata = $VettoreIdRicetteCliccate[$i];
-                            $nome = getNomeRicetta($idRicettaCliccata);
-                            $descrizione = getDescrizioneRicetta($idRicettaCliccata);
-                            $foto = getFotoRicetta($idRicettaCliccata);
-                            ?>
-                            <div class="ricetta<?php echo $idRicettaCliccata ?>"
-                                onclick="vaiAllaRicetta(event, <?php echo $idRicettaCliccata; ?>)">
-                                <div class="infoRicetta">
-                                    <div class="nomeRicetta">
-                                        <span><?php
-                                        echo $nome; ?></span>
-
-                                    </div>
-                                    <div class="descrizioneRicetta">
-                                        <span><?php
-                                        echo $descrizione; ?></span>
-                                    </div>
-                                </div>
-                                <div class="containerFotoRicetta">
-                                    <img src="<?php echo htmlspecialchars($foto); ?>"
-                                        alt="ricetta<?php echo $idRicettaCliccata; ?>" class="fotoRicetta">
-                                </div>
-                            </div>
-                            <?php
-                        }
-                        ?>
-                    </div>
-                    <div class="goHome">
-                        <a href="./home.php">Vai a tutte le ricette ▶</a>
-                    </div>
-                </div>
                 <?php
             /* UTENTE NON LOGGATO */
         } else { ?>
                 <div class="mainColumn1">
-                    <div class="contenutoMainColumn">
+                    <div class="contenutoMainColumnRicettaDelGiorno" onclick="registerOrLogin()">
                         <h1>Ricetta del giorno</h1>
                         <?php $idRicettaDelGiorno = generaIdCasuale(); ?>
                         <div class="ricette" id="ricettaDelGiorno">
@@ -145,10 +161,6 @@ require_once './funzioni.php'
                                         <span> <?php
                                         echo getNomeRicetta($idRicettaDelGiorno); ?></span>
                                     </div>
-                                    <div class="descrizioneRicetta">
-                                        <span><?php
-                                        echo getDescrizioneRicetta($idRicettaDelGiorno) ?></span>
-                                    </div>
                                 </div>
                                 <div class="containerFotoRicetta">
                                     <img src=<?php
@@ -156,6 +168,38 @@ require_once './funzioni.php'
                                         class="fotoRicetta">
                                 </div>
                             </div>
+                            <div class="infoRicettaDelGiorno">
+                                <p> <img src="./img/difficoltà.png" alt="difficoltà">DIFFICOLTA' : <span style="color:red;">
+                                        FACILE </span></p>
+                                <p> <img src="./img/orologio.png" alt="orologio"> PRONTO IN : <span style="color:red;"> 4
+                                        minuti </span> </p>
+                                <p> <img src="./img/mangiare.png" alt="dosi"> DOSI PER : <span style="color:red;"> 4 persone
+                                    </span> </p>
+                            </div>
+                        </div>
+
+                        <div class="presentazioneRicettaDelGiorno">
+
+                            <h3>Presentazione</h3>
+                            <p>
+                                Gli spaghetti aglio e olio sono un piatto simbolo della tradizione culinaria italiana,
+                                semplice
+                                ma ricco di sapore. Originari della Campania, ma amati in tutta Italia, questo piatto mette
+                                in
+                                evidenza l’arte di cucinare con pochi ingredienti di qualità. Il profumo avvolgente
+                                dell’aglio,
+                                il gusto ricco e aromatico dell’olio extravergine di oliva, e la piccantezza delicata del
+                                peperoncino si combinano perfettamente per un’esperienza gustativa indimenticabile.
+
+                                Questa ricetta, ideale per una cena veloce o un pranzo senza compromessi sul gusto, si
+                                prepara
+                                in pochi minuti e può essere personalizzata con aggiunta di prezzemolo fresco o una
+                                spolverata
+                                di formaggio grattugiato, se lo desideri. Facile da preparare ma incredibilmente saporito,
+                                gli
+                                spaghetti aglio e olio sono il comfort food per eccellenza.
+
+                            </p>
                         </div>
                     </div>
 
@@ -172,8 +216,7 @@ require_once './funzioni.php'
                                 $descrizione = getDescrizioneRicetta($idRicettaCliccata);
                                 $foto = getFotoRicetta($idRicettaCliccata);
                                 ?>
-                                <div class="ricetta<?php echo $idRicettaCliccata ?>"
-                                    onclick="vaiAllaRicetta(event, <?php echo $idRicettaCliccata; ?>)">
+                                <div class="ricetta<?php echo $idRicettaCliccata ?> " onclick="registerOrLogin()">
                                     <div class="infoRicetta">
                                         <div class="nomeRicetta">
                                             <span><?php
@@ -220,22 +263,3 @@ require_once './funzioni.php'
 </body>
 
 </html>
-
-<script>
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const ricette = document.querySelectorAll('.ricetta1, .ricetta2, .ricetta3, .ricetta4');
-        const isLoggedIn = <?php echo isset($_SESSION['username']) ? 'true' : 'false'; ?>;
-
-        ricette.forEach(ricetta => {
-            if (isLoggedIn) {
-                ricetta.classList.add('cursor-pointer');
-                ricetta.classList.remove('cursor-not-allowed');
-            } else {
-                ricetta.classList.add('cursor-not-allowed');
-                ricetta.classList.remove('cursor-pointer');
-            }
-        });
-    });
-
-</script>
