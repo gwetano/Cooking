@@ -24,7 +24,7 @@ require_once './funzioni.php'
 
     <header>
         <div class="logo">
-            <img src="./img/icon.png" height="50px" width="50px">
+            <img src="./img/icon.png">
         </div>
 
         <div class="title">
@@ -32,7 +32,7 @@ require_once './funzioni.php'
         </div>
         <?php if (isset($_SESSION['username'])) { ?>
             <div class="loggato">
-                <a href="./account.php"> <img src="./img/username.png" height="50px" width="50px"></a>
+                <a href="./account.php"> <img src="./img/username.png"></a>
             </div>
         <?php } else { ?>
             <div class="nonLoggato">
@@ -60,17 +60,20 @@ require_once './funzioni.php'
                                 $foto = getFotoRicetta($id);
                                 ?>
                                 <div class="ricetta<?php echo $id ?>" onclick="vaiAllaRicetta(event, <?php echo $id; ?>)">
-                                    <div class="nomeRicetta">
-                                        <?php
-                                        echo $nome; ?>
+                                    <div class="infoRicetta">
+                                        <div class="nomeRicetta">
+                                            <span><?php
+                                            echo $nome; ?></span>
+
+                                        </div>
+                                        <div class="descrizioneRicetta">
+                                            <span><?php
+                                            echo $descrizione; ?></span>
+                                        </div>
                                     </div>
-                                    <div class="descrizioneRicetta">
-                                        <?php
-                                        echo $descrizione; ?>
-                                    </div>
-                                    <div class="classFotoRicetta">
+                                    <div class="containerFotoRicetta">
                                         <img src="<?php echo htmlspecialchars($foto); ?>" alt="ricetta<?php echo $id; ?>"
-                                            height="100%">
+                                            class="fotoRicetta">
                                     </div>
                                 </div>
 
@@ -106,17 +109,18 @@ require_once './funzioni.php'
                                 onclick="vaiAllaRicetta(event, <?php echo $idRicettaCliccata; ?>)">
                                 <div class="infoRicetta">
                                     <div class="nomeRicetta">
-                                        <?php
-                                        echo $nome; ?>
+                                        <span><?php
+                                        echo $nome; ?></span>
+
                                     </div>
                                     <div class="descrizioneRicetta">
-                                        <?php
-                                        echo $descrizione; ?>
+                                        <span><?php
+                                        echo $descrizione; ?></span>
                                     </div>
                                 </div>
-                                <div class="classFotoRicetta">
+                                <div class="containerFotoRicetta">
                                     <img src="<?php echo htmlspecialchars($foto); ?>"
-                                        alt="ricetta<?php echo $idRicettaCliccata; ?>" height="100%">
+                                        alt="ricetta<?php echo $idRicettaCliccata; ?>" class="fotoRicetta">
                                 </div>
                             </div>
                             <?php
@@ -135,18 +139,21 @@ require_once './funzioni.php'
                         <h1>Ricetta del giorno</h1>
                         <?php $idRicettaDelGiorno = generaIdCasuale(); ?>
                         <div class="ricette" id="ricettaDelGiorno">
-                            <div class="ricetta1">
-                                <div class="nomeRicetta">
-                                    <?php
-                                    echo getNomeRicetta($idRicettaDelGiorno); ?>
+                            <div class="ricetta">
+                                <div class="infoRicetta">
+                                    <div class="nomeRicetta">
+                                        <span> <?php
+                                        echo getNomeRicetta($idRicettaDelGiorno); ?></span>
+                                    </div>
+                                    <div class="descrizioneRicetta">
+                                        <span><?php
+                                        echo getDescrizioneRicetta($idRicettaDelGiorno) ?></span>
+                                    </div>
                                 </div>
-                                <div class="descrizioneRicetta">
-                                    <?php
-                                    echo getDescrizioneRicetta($idRicettaDelGiorno) ?>
-                                </div>
-                                <div class="classFotoRicetta">
+                                <div class="containerFotoRicetta">
                                     <img src=<?php
-                                    echo getFotoRicetta($idRicettaDelGiorno) ?> alt="ricetta1" height="100%">
+                                    echo getFotoRicetta($idRicettaDelGiorno) ?> alt="ricettaDelGiorno"
+                                        class="fotoRicetta">
                                 </div>
                             </div>
                         </div>
@@ -167,17 +174,20 @@ require_once './funzioni.php'
                                 ?>
                                 <div class="ricetta<?php echo $idRicettaCliccata ?>"
                                     onclick="vaiAllaRicetta(event, <?php echo $idRicettaCliccata; ?>)">
-                                    <div class="nomeRicetta">
-                                        <?php
-                                        echo $nome; ?>
+                                    <div class="infoRicetta">
+                                        <div class="nomeRicetta">
+                                            <span><?php
+                                            echo $nome; ?></span>
+
+                                        </div>
+                                        <div class="descrizioneRicetta">
+                                            <span><?php
+                                            echo $descrizione; ?></span>
+                                        </div>
                                     </div>
-                                    <div class="descrizioneRicetta">
-                                        <?php
-                                        echo $descrizione; ?>
-                                    </div>
-                                    <div class="classFotoRicetta">
+                                    <div class="containerFotoRicetta">
                                         <img src="<?php echo htmlspecialchars($foto); ?>"
-                                            alt="ricetta<?php echo $idRicettaCliccata; ?>" height="100%">
+                                            alt="ricetta<?php echo $idRicettaCliccata; ?>" class="fotoRicetta">
                                     </div>
                                 </div>
                                 <?php
