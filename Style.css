@@ -5,7 +5,7 @@ html,body{
     font-family: 'Inter', sans-serif;
     background-color: #fefefe;
     color: black;
-    height: 100%;
+    height:100vh;
     display: flex;
     flex-direction: column;
 }
@@ -15,7 +15,6 @@ html,body{
 }
 
 header{
-    position: relative;
     position: sticky;
     top: 0px;
     padding-left: 20px;
@@ -65,6 +64,9 @@ header .title h1{
     background-color: #0037ff;
     border-radius: 20px;
     border: 2px solid #0037ff;
+    display: inline-block;
+    padding: 10px 20px;
+    font-weight: bold;
 }
 
 .nonLoggato a:hover{
@@ -84,6 +86,7 @@ footer {
     width: 100%; /* Assicura che il footer occupi tutta la larghezza */
     margin-top: auto; /* Spinge il footer verso il basso */
 }
+
 footer a {
     text-decoration: none;
     color: #333333;
@@ -137,7 +140,7 @@ footer a:hover {
     background-color: white;
 }
 
-.ricette {
+#mainIndex .ricette {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -147,7 +150,7 @@ footer a:hover {
     display: flex !important;
 }
 
-.ricette > div[class^="ricetta"] {
+#mainIndex .ricette > div[class^="ricetta"] {
     position: relative;
     background-size: cover;
     background-position: center;
@@ -170,7 +173,7 @@ footer a:hover {
     cursor: not-allowed;
 }
 
-.ricette .nomeRicetta {
+#mainIndex .ricette .nomeRicetta {
     font-size: 1.2rem;
     font-weight: bold;
     padding: 10px;
@@ -178,7 +181,7 @@ footer a:hover {
     z-index: 2;
 }
 
-.ricette .descrizioneRicetta {
+#mainIndex .ricette .descrizioneRicetta {
     font-size: 0.9rem;
     padding: 10px;
     background: rgba(0, 0, 0, 0.6);
@@ -186,7 +189,7 @@ footer a:hover {
     z-index: 2;
 }
 
-.ricette .classFotoRicetta {
+#mainIndex .ricette .classFotoRicetta {
     position: absolute;
     top: 0;
     left: 0;
@@ -211,12 +214,18 @@ footer a:hover {
     padding: 20px; /* Aggiungi un po' di spazio all'interno */
     background-color: #ffffff; /* Colore di sfondo del contenuto */
     margin-top: 0; /* Rimuovi eventuali margini extra */
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     min-height: 100%;
 }
 
-#mainAccount .datiImmagine {
+.mainAccountRow1 {
+    width: 100%;
+    padding: 20px; /* Aggiungi un po' di spazio all'interno */
+    margin-top: 0; /* Rimuovi eventuali margini extra */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.datiImmagine {
     display: flex;
     flex-direction: column; /* Elementi in colonna */
     align-items: center; /* Centra orizzontalmente */
@@ -239,8 +248,8 @@ footer a:hover {
     top: 0px;
     right: 0px;
     padding: 5px;
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
 }
 
 .matita:hover {
@@ -381,6 +390,10 @@ footer a:hover {
 
 }
 
+.mainAccountRow2 {
+
+}
+
 @media (max-width: 768px) {
     #mainAccount {
         grid-template-columns: 1fr; /* Una sola colonna quando lo schermo è piccolo */
@@ -422,13 +435,14 @@ footer a:hover {
 #mainHome {
     margin: 10px;
 }
-.allRicette {
+
+#mainHome .allRicette {
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 15px;
 }
 
-div[class^="mainRow"]{
+#mainHome div[class^="mainRow"]{
     position: relative;
     background-size: cover;
     background-position: center;
@@ -443,11 +457,11 @@ div[class^="mainRow"]{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-div[class^="mainRow"]:hover {
+#mainHome div[class^="mainRow"]:hover {
     cursor: pointer;
 }
 
-.ricetta {
+#mainHome .ricetta {
     position: absolute;
     bottom: 0px;
     z-index: 2;
@@ -498,6 +512,7 @@ div[class^="mainRow"]:hover {
 }
 
 /*Accesso CSS*/
+
 #headerAccesso {
     position: relative;
     top: 0;
@@ -539,7 +554,7 @@ div[class^="mainRow"]:hover {
     margin-left: 50px;
 }
 
-#mainAccesso {
+#mainAccesso {  
     flex: 1;
     display: flex;
     flex-direction: column;

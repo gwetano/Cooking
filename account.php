@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <header>
         <div class="logo">
-        <a href="./index.php"><img src="./img/icon.png" height="50px" width="50px"></a>
+            <a href="./index.php"><img src="./img/icon.png" height="50px" width="50px"></a>
         </div>
 
         <div class="title">
@@ -99,78 +99,120 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </header>
 
     <main id="mainAccount">
-        <div class="datiImmagine">
-            <div class="containerImmagine">
-                <img src="<?php echo getImage($username) ?>" alt="Immagine Utente" class="ImmagineUtente">
-                <img src="./img/matita.png" alt="cambiaImmagine" class="matita" id="mostraBannerImg">
-            </div>
-            <div class=banner>
-                <div class="banner-content">
-                    <button class="bottoneAnnulla" id="nascondiBannerImg">
-                        Annulla
-                    </button>
-                    <p>Trascina i file qui</p>
-                    <div id="drop-area"></div>
-                    <p>Oppure clicca per selezionare un file</p>
-                    <input type="file" id="fileElem" name="file" accept="image/png, image/jpeg">
-                    <div id="file-list"></div>
+        <div class="mainAccountRow1">
+            <div class="datiImmagine">
+                <div class="containerImmagine">
+                    <img src="<?php echo getImage($username) ?>" alt="Immagine Utente" class="ImmagineUtente">
+                    <img src="./img/matita.png" alt="cambiaImmagine" class="matita" id="mostraBannerImg">
+                </div>
+                <div class=banner>
+                    <div class="banner-content">
+                        <button class="bottoneAnnulla" id="nascondiBannerImg">
+                            Annulla
+                        </button>
+                        <p>Trascina i file qui</p>
+                        <div id="drop-area"></div>
+                        <p>Oppure clicca per selezionare un file</p>
+                        <input type="file" id="fileElem" name="file" accept="image/png, image/jpeg">
+                        <div id="file-list"></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="Dati">
-            <div class="DatiAnagrafici">
-                <h2>
-                    Dati anagrafici
-                </h2>
-                <p>
-                    Nome : <span><?php echo ucfirst(get_Nome($username)) ?></span>
-                </p>
+            <div class="Dati">
+                <div class="DatiAnagrafici">
+                    <h2>
+                        Dati anagrafici
+                    </h2>
+                    <p>
+                        Nome : <span><?php echo ucfirst(get_Nome($username)) ?></span>
+                    </p>
 
-                <p>
-                    Cognome : <span><?php echo ucfirst(get_Cognome($username)) ?></span>
-                </p>
-            </div>
-            <div class="DatiAccesso">
-                <h2> Dati di Accesso </h2>
-                <p>
-                    Username : <span><?php echo $username ?></span>
-                </p>
+                    <p>
+                        Cognome : <span><?php echo ucfirst(get_Cognome($username)) ?></span>
+                    </p>
+                </div>
+                <div class="DatiAccesso">
+                    <h2> Dati di Accesso </h2>
+                    <p>
+                        Username : <span><?php echo $username ?></span>
+                    </p>
 
-                <p>
-                    Vuoi aggiornare la password ? <a id="mostraBannerPass" href="#">Clicca qui</a>
-                </p>
+                    <p>
+                        Vuoi aggiornare la password ? <a id="mostraBannerPass" href="#">Clicca qui</a>
+                    </p>
 
-                <form id="CambiaPasswordForm" method="post">
-                    <div class="banner">
-                        <div class="banner-content">
-                            <div class="input-group">
-                                <label for="oldPassword">Vecchia Password:</label>
-                                <input type="password" id="oldPassword" name="oldPassword" required>
-                            </div>
+                    <form id="CambiaPasswordForm" method="post">
+                        <div class="banner">
+                            <div class="banner-content">
+                                <div class="input-group">
+                                    <label for="oldPassword">Vecchia Password:</label>
+                                    <input type="password" id="oldPassword" name="oldPassword" required>
+                                </div>
 
-                            <div class="input-group">
-                                <label for="newPassword">Nuova Password:</label>
-                                <input type="password" id="newPassword" name="newPassword" required>
-                            </div>
+                                <div class="input-group">
+                                    <label for="newPassword">Nuova Password:</label>
+                                    <input type="password" id="newPassword" name="newPassword" required>
+                                </div>
 
-                            <div class="input-group">
-                                <label for="confermaNewPassword">Conferma Password:</label>
-                                <input type="password" id="confermaNewPassword" name="confermaNewPassword" required>
-                            </div>
+                                <div class="input-group">
+                                    <label for="confermaNewPassword">Conferma Password:</label>
+                                    <input type="password" id="confermaNewPassword" name="confermaNewPassword" required>
+                                </div>
 
-                            <div class="button-group">
-                                <button class="bottoneConferma">Conferma</button>
-                                <button class="bottoneAnnulla" id="nascondiBannerPass">Annulla</button>
+                                <div class="button-group">
+                                    <button class="bottoneConferma">Conferma</button>
+                                    <button class="bottoneAnnulla" id="nascondiBannerPass">Annulla</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="Containerlogout" action="logout">
-                        <a href="?logout=true" class="logoutButton">LOGOUT</a>
-                    </div>
+                        <div class="Containerlogout" action="logout">
+                            <a href="?logout=true" class="logoutButton">LOGOUT</a>
+                        </div>
+                </div>
+                </form>
             </div>
-            </form>
         </div>
+
+        <div class="mainAccountRow2">
+            <h1>Le tue ricette preferite</h1>
+            <?php
+            $ricettePreferite = getRicettePreferite($username);
+            if (!empty($ricettePreferite)) { ?>
+                <div class="ricettePreferiteAreaUtente">
+                    <?php
+                    foreach ($ricettePreferite as $id) {
+                        $nome = getNomeRicetta($id);
+                        $descrizione = getDescrizioneRicetta($id);
+                        $foto = getFotoRicetta($id);
+                        ?>
+                        <div class="ricetta<?php echo $id ?>" onclick="vaiAllaRicetta(event, <?php echo $id; ?>)">
+                            <div class="nomeRicetta">
+                                <?php
+                                echo $nome; ?>
+                            </div>
+                            <div class="descrizioneRicetta">
+                                <?php
+                                echo $descrizione; ?>
+                            </div>
+                            <div class="classFotoRicetta">
+                                <img src="<?php echo htmlspecialchars($foto); ?>" alt="ricetta<?php echo $id; ?>" height="20px">
+                            </div>
+                        </div>
+
+                        <?php
+                    }
+                    ?>
+                </div><?php
+            } else { ?>
+                <div class="contenutoEmptyMainColumn1">
+                    <p>Nessuna ricetta nei preferiti</p>
+                </div>
+                <?php
+            }
+            ?>
+        </div>
+        
     </main>
 
     <footer>
