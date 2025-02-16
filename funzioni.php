@@ -34,6 +34,55 @@ function getFotoRicetta($id)
     }
     return null;
 }
+
+function getDifficoltaRicetta($id)
+{
+    global $db;
+    $sql = "SELECT difficolta FROM ricette WHERE id=$1";
+    $result = pg_query_params($db, $sql, array($id));
+    if ($result && pg_num_rows($result) > 0) {
+        $row = pg_fetch_assoc($result);
+        return $row['difficolta'];
+    }
+    return null;
+}
+
+function getTempoRicetta($id)
+{
+    global $db;
+    $sql = "SELECT tempo FROM ricette WHERE id=$1";
+    $result = pg_query_params($db, $sql, array($id));
+    if ($result && pg_num_rows($result) > 0) {
+        $row = pg_fetch_assoc($result);
+        return $row['tempo'];
+    }
+    return null;
+}
+
+function getDosiRicetta($id)
+{
+    global $db;
+    $sql = "SELECT dosi FROM ricette WHERE id=$1";
+    $result = pg_query_params($db, $sql, array($id));
+    if ($result && pg_num_rows($result) > 0) {
+        $row = pg_fetch_assoc($result);
+        return $row['dosi'];
+    }
+    return null;
+}
+
+function getPresentazioneRicetta($id)
+{
+    global $db;
+    $sql = "SELECT presentazione FROM ricette WHERE id=$1";
+    $result = pg_query_params($db, $sql, array($id));
+    if ($result && pg_num_rows($result) > 0) {
+        $row = pg_fetch_assoc($result);
+        return $row['presentazione'];
+    }
+    return null;
+}
+
 function getDataKeywords($id)
 {
     global $db;

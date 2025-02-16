@@ -48,7 +48,8 @@ require_once './funzioni.php'
             $username = $_SESSION['username']; ?>
             <div class="mainColumn1">
                 <?php $idRicettaDelGiorno = generaIdCasuale(); ?>
-                <div class="contenutoMainColumnRicettaDelGiorno" onclick="vaiAllaRicetta(event,<?php echo $idRicettaDelGiorno; ?>)">
+                <div class="contenutoMainColumnRicettaDelGiorno"
+                    onclick="vaiAllaRicetta(event,<?php echo $idRicettaDelGiorno; ?>)">
                     <h1>Ricetta del giorno</h1>
                     <div class="ricette" id="ricettaDelGiorno">
                         <div class="ricetta">
@@ -66,10 +67,13 @@ require_once './funzioni.php'
                         </div>
                         <div class="infoRicettaDelGiorno">
                             <p> <img src="./img/difficoltà.png" alt="difficoltà">DIFFICOLTA' : <span style="color:red;">
-                                    FACILE </span></p>
-                            <p> <img src="./img/orologio.png" alt="orologio"> PRONTO IN : <span style="color:red;"> 4
-                                    minuti </span> </p>
-                            <p> <img src="./img/mangiare.png" alt="dosi"> DOSI PER : <span style="color:red;"> 4 persone
+                                    <?php
+                                    echo getDifficoltaRicetta($idRicettaDelGiorno); ?> </span></p>
+                            <p> <img src="./img/orologio.png" alt="orologio"> PRONTO IN : <span style="color:red;"> <?php
+                            echo getTempoRicetta($idRicettaDelGiorno); ?>
+                                </span> </p>
+                            <p> <img src="./img/mangiare.png" alt="dosi"> DOSI PER : <span style="color:red;"> <?php
+                            echo getDosiRicetta($idRicettaDelGiorno); ?>
                                 </span> </p>
                         </div>
                     </div>
@@ -78,23 +82,8 @@ require_once './funzioni.php'
 
                         <h3>Presentazione</h3>
                         <p>
-                            Gli spaghetti aglio e olio sono un piatto simbolo della tradizione culinaria italiana,
-                            semplice
-                            ma ricco di sapore. Originari della Campania, ma amati in tutta Italia, questo piatto mette
-                            in
-                            evidenza l’arte di cucinare con pochi ingredienti di qualità. Il profumo avvolgente
-                            dell’aglio,
-                            il gusto ricco e aromatico dell’olio extravergine di oliva, e la piccantezza delicata del
-                            peperoncino si combinano perfettamente per un’esperienza gustativa indimenticabile.
-
-                            Questa ricetta, ideale per una cena veloce o un pranzo senza compromessi sul gusto, si
-                            prepara
-                            in pochi minuti e può essere personalizzata con aggiunta di prezzemolo fresco o una
-                            spolverata
-                            di formaggio grattugiato, se lo desideri. Facile da preparare ma incredibilmente saporito,
-                            gli
-                            spaghetti aglio e olio sono il comfort food per eccellenza.
-
+                            <?php
+                            echo getPresentazioneRicetta($idRicettaDelGiorno); ?>
                         </p>
                     </div>
                 </div>
@@ -110,7 +99,7 @@ require_once './funzioni.php'
                             <?php
                             $counter = 0;
                             foreach ($ricettePreferite as $id) {
-                                if($counter >= 4)
+                                if ($counter >= 4)
                                     break;
                                 $nome = getNomeRicetta($id);
                                 $descrizione = getDescrizioneRicetta($id);
@@ -121,7 +110,6 @@ require_once './funzioni.php'
                                         <div class="nomeRicetta">
                                             <span><?php
                                             echo $nome; ?></span>
-
                                         </div>
                                         <div class="descrizioneRicetta">
                                             <span><?php
@@ -135,7 +123,7 @@ require_once './funzioni.php'
                                 </div>
 
                                 <?php
-                                $counter ++;
+                                $counter++;
                             }
                             ?>
                         </div><?php
@@ -146,7 +134,11 @@ require_once './funzioni.php'
                         <?php
                     }
                     ?>
+                    <div class="goHome">
+                        <a href="./home.php">Vai a tutte le ricette ▶</a>
                 </div>
+                </div>
+            </div>
                 <?php
             /* UTENTE NON LOGGATO */
         } else { ?>
@@ -169,81 +161,70 @@ require_once './funzioni.php'
                                 </div>
                             </div>
                             <div class="infoRicettaDelGiorno">
-                                <p> <img src="./img/difficoltà.png" alt="difficoltà">DIFFICOLTA' : <span style="color:red;">
-                                        FACILE </span></p>
-                                <p> <img src="./img/orologio.png" alt="orologio"> PRONTO IN : <span style="color:red;"> 4
-                                        minuti </span> </p>
-                                <p> <img src="./img/mangiare.png" alt="dosi"> DOSI PER : <span style="color:red;"> 4 persone
-                                    </span> </p>
-                            </div>
+                            <p> <img src="./img/difficoltà.png" alt="difficoltà">DIFFICOLTA' : <span style="color:red;">
+                                    <?php
+                                    echo getDifficoltaRicetta($idRicettaDelGiorno); ?> </span></p>
+                            <p> <img src="./img/orologio.png" alt="orologio"> PRONTO IN : <span style="color:red;"> <?php
+                            echo getTempoRicetta($idRicettaDelGiorno); ?>
+                                </span> </p>
+                            <p> <img src="./img/mangiare.png" alt="dosi"> DOSI PER : <span style="color:red;"> <?php
+                            echo getDosiRicetta($idRicettaDelGiorno); ?>
+                                </span> </p>
                         </div>
-
-                        <div class="presentazioneRicettaDelGiorno">
-
-                            <h3>Presentazione</h3>
-                            <p>
-                                Gli spaghetti aglio e olio sono un piatto simbolo della tradizione culinaria italiana,
-                                semplice
-                                ma ricco di sapore. Originari della Campania, ma amati in tutta Italia, questo piatto mette
-                                in
-                                evidenza l’arte di cucinare con pochi ingredienti di qualità. Il profumo avvolgente
-                                dell’aglio,
-                                il gusto ricco e aromatico dell’olio extravergine di oliva, e la piccantezza delicata del
-                                peperoncino si combinano perfettamente per un’esperienza gustativa indimenticabile.
-
-                                Questa ricetta, ideale per una cena veloce o un pranzo senza compromessi sul gusto, si
-                                prepara
-                                in pochi minuti e può essere personalizzata con aggiunta di prezzemolo fresco o una
-                                spolverata
-                                di formaggio grattugiato, se lo desideri. Facile da preparare ma incredibilmente saporito,
-                                gli
-                                spaghetti aglio e olio sono il comfort food per eccellenza.
-
-                            </p>
                         </div>
                     </div>
 
-                </div>
-                <div class="mainColumn2">
-                    <div class="contenutoMainColumn">
-                        <h1>Le più cliccate</h1>
-                        <div class="ricette">
-                            <?php
-                            $VettoreIdRicetteCliccate = generaNumeriCasualiDiversi();
-                            for ($i = 0; $i < 4; $i++) {
-                                $idRicettaCliccata = $VettoreIdRicetteCliccate[$i];
-                                $nome = getNomeRicetta($idRicettaCliccata);
-                                $descrizione = getDescrizioneRicetta($idRicettaCliccata);
-                                $foto = getFotoRicetta($idRicettaCliccata);
-                                ?>
-                                <div class="ricetta<?php echo $idRicettaCliccata ?> " onclick="registerOrLogin()">
-                                    <div class="infoRicetta">
-                                        <div class="nomeRicetta">
-                                            <span><?php
-                                            echo $nome; ?></span>
+                    <div class="presentazioneRicettaDelGiorno">
 
-                                        </div>
-                                        <div class="descrizioneRicetta">
-                                            <span><?php
-                                            echo $descrizione; ?></span>
-                                        </div>
+                        <h3>Presentazione</h3>
+                        <p>
+                            <?php
+                            echo getPresentazioneRicetta($idRicettaDelGiorno); ?>
+                        </p>
+                    </div>
+                </div>
+
+            <div class="mainColumn2">
+                <div class="contenutoMainColumn">
+                    <h1>Le più cliccate</h1>
+                    <div class="ricette">
+                        <?php
+                        $VettoreIdRicetteCliccate = generaNumeriCasualiDiversi();
+                        for ($i = 0; $i < 4; $i++) {
+                            $idRicettaCliccata = $VettoreIdRicetteCliccate[$i];
+                            $nome = getNomeRicetta($idRicettaCliccata);
+                            $descrizione = getDescrizioneRicetta($idRicettaCliccata);
+                            $foto = getFotoRicetta($idRicettaCliccata);
+                            ?>
+                            <div class="ricetta<?php echo $idRicettaCliccata ?> " onclick="registerOrLogin()">
+                                <div class="infoRicetta">
+                                    <div class="nomeRicetta">
+                                        <span><?php
+                                        echo $nome; ?></span>
+
                                     </div>
-                                    <div class="containerFotoRicetta">
-                                        <img src="<?php echo htmlspecialchars($foto); ?>"
-                                            alt="ricetta<?php echo $idRicettaCliccata; ?>" class="fotoRicetta">
+                                    <div class="descrizioneRicetta">
+                                        <span><?php
+                                        echo $descrizione; ?></span>
                                     </div>
                                 </div>
-                                <?php
-                            }
-                            ?>
-                        </div>
+                                <div class="containerFotoRicetta">
+                                    <img src="<?php echo htmlspecialchars($foto); ?>"
+                                        alt="ricetta<?php echo $idRicettaCliccata; ?>" class="fotoRicetta">
+                                </div>
+                            </div>
+                            <?php
+                        }
+                        ?>
                     </div>
                 </div>
-                <?php
+            </div>
+            <?php
         }
         ?>
 
     </main>
+
     <footer>
         <div>
             <a href="">
