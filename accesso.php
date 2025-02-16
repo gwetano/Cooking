@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <header id="headerAccesso">
         <div class="titolo">
             <div class="logo">
-                <img src="./img/icon.png" height="50px" width="50px">
+                <a href="./index.php"><img src="./img/icon.png" class="logoHome"></a>
             </div>
 
             <div class="title">
