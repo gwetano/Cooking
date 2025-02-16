@@ -31,12 +31,12 @@ require_once './funzioni.php'
             <h1>Cooking</h1>
         </div>
         <?php if (isset($_SESSION['username'])) { ?>
-            <div class="loggato">
-                <a href="./account.php"> <img src="./img/username.png"></a>
+            <div class="containerImmagine">
+            <a href="./account.php"> <img src="<?php echo getImage($_SESSION['username']) ?>" alt="Immagine Utente" class="loggato"> </a>
             </div>
         <?php } else { ?>
-            <div class="nonLoggato">
-                <a href="./accesso.php"> Accesso</a>
+            <div>
+                <a href="./accesso.php"> <p class="nonLoggato">Accesso</p></a>
             </div>
         <?php } ?>
     </header>

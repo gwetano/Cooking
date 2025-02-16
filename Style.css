@@ -16,7 +16,7 @@ html,body{
 }
 
 header{
-    position: sticky;
+    position: fixed;
     top: 0px;
     min-width: 100%;
     width: 100%;
@@ -35,25 +35,29 @@ header .title h1{
     font-weight: bold;
 }
 
-.logo, .title, .search-form, .loggato, .nonLoggato {
+.logo, .title, .search-form, .loggato {
     display: flex;
     align-items: center; 
 }
 
 .logo img,
 .loggato img {
-    max-width: 50px; /* Limita la larghezza massima a 50px */
-    max-height: 50px; /* Limita l'altezza massima a 50px */
-    width: auto; /* Mantiene le proporzioni dell'immagine */
-    height: auto; /* Mantiene le proporzioni dell'immagine */
+    max-width: 50px; 
+    max-height: 50px; 
+    width: auto; 
+    height: auto; 
 }
 
 .logo {
     margin-left: 20px;
 }
 
-.loggato, .nonLoggato {
+.loggato {
     margin-right: 20px;
+    width: 50px; 
+    height: 50px;
+    border-radius: 50%; 
+    object-fit: cover; 
 }
 
 .search-form {
@@ -70,7 +74,10 @@ header .title h1{
     font-size: 1rem;
 }
 
-.nonLoggato a{
+.nonLoggato{
+    margin-right: 20px;
+    display: flex;
+    align-items: center; 
     text-decoration: none;
     color: white;
     background-color: #0037ff;
@@ -81,7 +88,7 @@ header .title h1{
     font-weight: bold;
 }
 
-.nonLoggato a:hover{
+.nonLoggato:hover{
     color: #0037ff;
     background-color: white;
 }
@@ -112,6 +119,7 @@ footer a:hover {
 /*Index*/
 
 #mainIndex {
+    margin-top: 100px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -119,7 +127,6 @@ footer a:hover {
 #mainIndex .mainColumn1, 
 #mainIndex .mainColumn2 {
     padding: 2em;
-    border: 2px solid #333; 
     border-radius: 15px; 
     margin: 2em 1em; 
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Ombra con sfumatura */
@@ -306,6 +313,26 @@ footer a:hover {
     #ricettaDelGiorno .infoRicetta {
         height: 3em;
     }
+
+    .nonLoggato{
+        margin-right: 10px;
+        display: flex;
+        font-size: 15px;
+        align-items: center; 
+        text-decoration: none;
+        color: white;
+        background-color: #0037ff;
+        border-radius: 20px;
+        border: 2px solid #0037ff;
+        display: inline-block;
+        padding: 8px 18px;
+        font-weight: bold;
+    }
+    
+    .nonLoggato:hover{
+        color: #0037ff;
+        background-color: white;
+    }
 }
 
 /* MEDIA QUERY PER 1024px */
@@ -331,21 +358,42 @@ footer a:hover {
         height: 3em;
     }
 }
+
 /*ACCOUNT CSS*/
 
+#headerAccount{
+    position: fixed;
+    top: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+    background-color:#ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.183);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    height: 100px;
+}
+
+#headerAccount .title{
+    font-size: em;
+}
+
 #mainAccount {
+    margin-top: 80px;
+    position: relative;
     flex:1;
     width: 100%;
     padding: 20px; /* Aggiungi un po' di spazio all'interno */
     background-color: #ffffff; /* Colore di sfondo del contenuto */
-    margin-top: 0; /* Rimuovi eventuali margini extra */
-    min-height: 100%;
+    margin-top: 0; 
 }
 
 .mainAccountRow1 {
     width: 100%;
     padding: 20px; /* Aggiungi un po' di spazio all'interno */
-    margin-top: 0; /* Rimuovi eventuali margini extra */
+    margin-top: 80px; /* Rimuovi eventuali margini extra */
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -515,11 +563,33 @@ footer a:hover {
 
 }
 
-.mainAccountRow2 {
-
+.mainAccountRow2{
+    position: relative;
+    width: 100%;
+    padding: 20px; /* Aggiungi un po' di spazio all'interno */
+    margin-top: 0; /* Rimuovi eventuali margini extra */
+    display: grid;
 }
 
+
+
 @media (max-width: 768px) {
+
+    .mainAccountRow1 {
+        width: 100%;
+        padding: 20px; /* Aggiungi un po' di spazio all'interno */
+        margin-top: 0; /* Rimuovi eventuali margini extra */
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    
+    .ImmagineUtente {
+        width: 150px; 
+        height: 150px;
+        border-radius: 50%; 
+        object-fit: cover; 
+    }
+
     #mainAccount {
         grid-template-columns: 1fr; /* Una sola colonna quando lo schermo è piccolo */
         padding: 10px; /* Riduci il padding per schermi più piccoli */
@@ -527,7 +597,6 @@ footer a:hover {
 
     .datiImmagine, .Dati {
         width: 100%; /* Assicurati che i contenitori occupino tutta la larghezza disponibile */
-        text-align: center; /* Centra il testo */
     }
 
     .Dati {
@@ -555,10 +624,29 @@ footer a:hover {
     }
 }
 
-/*Main Home*/
+/*Home*/
+
+
+#headerHome{
+    position: fixed;
+    top: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+    background-color:#ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.183);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    height: 100px;
+}
 
 #mainHome {
-    margin: 10px;
+    margin-top: 130px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 30px;
 }
 
 #mainHome .allRicette {
@@ -596,10 +684,12 @@ footer a:hover {
 
 #mainHome .starImmagine {
     position: absolute;
-    top: 0px;
-    right: 5px;
-    height: 70px;
-    width: 70px;
+    top: 5px;
+    right: 0px;
+    height: 20%;
+    width: 20%;
+    max-width: 50px;
+    max-height: 50px;
     z-index: 2;
 }
 
@@ -626,7 +716,7 @@ footer a:hover {
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-#mainHome .containerFotoRicetta {
+#mainHome .classFotoRicetta {
     position: absolute;
     top: 0;
     left: 0;
@@ -634,6 +724,51 @@ footer a:hover {
     height: 100%;
     z-index: 1;
     object-fit: cover;
+}
+.logoHome{
+    height: 50px;
+    width: 50px;
+}
+
+@media (max-width: 768px) {
+    #mainHome {
+        margin-top: 130px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 30px;
+    }
+    
+    #mainHome .allRicette {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 15px;
+    }
+
+    .loggato{
+        margin-right: 20px;
+        width: 40px; 
+        height: 40px;
+        border-radius: 50%; 
+        object-fit: cover; 
+    }
+    .logoHome{
+        height: 40px;
+        width: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    #mainHome .allRicette {
+        display: grid;
+        grid-template-columns:1fr;
+        gap: 15px;
+    }
+    header .title h1{
+        text-align: center;
+        font-size: 35px;
+        letter-spacing: -2px;
+        font-weight: bold;
+    }
 }
 
 /*Accesso CSS*/
@@ -652,14 +787,13 @@ footer a:hover {
     flex-direction: column;
 }
 
-/* Stile del contenitore del titolo */
 #headerAccesso .titolo {
     display: flex;
     align-items: center;
-    gap: 15px; /* Distanza tra logo e titolo */
+    gap: 15px; 
 }
 
-/* Stile del logo */
+
 #headerAccesso .logo {
     position: absolute;
     left: 0px;
@@ -778,6 +912,47 @@ footer a:hover {
     cursor: pointer;
 }
 
+@media (max-width: 768px) {
+    #mainHome {
+        margin-top: 130px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 30px;
+    }
+    
+    #mainHome .allRicette {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 15px;
+    }
+
+    .loggato{
+        margin-right: 20px;
+        width: 40px; 
+        height: 40px;
+        border-radius: 50%; 
+        object-fit: cover; 
+    }
+    .logoHome{
+        height: 40px;
+        width: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    #mainHome .allRicette {
+        display: grid;
+        grid-template-columns:1fr;
+        gap: 15px;
+    }
+    header .title h1{
+        text-align: center;
+        font-size: 35px;
+        letter-spacing: -2px;
+        font-weight: bold;
+    }
+}
+
 /*Ricetta CSS*/
 #titleRicetta {
     display: flex; /* Usa il flexbox per mettere gli elementi sulla stessa riga */
@@ -786,15 +961,16 @@ footer a:hover {
 }
 
 #titleRicetta   .star {
-    display: flex; /* Flexbox per centrare l'icona */
-    align-items: center; /* Centra l'icona verticalmente */
+    display: flex; 
+    align-items: center; 
 }
 
 #mainRicetta{
     display: grid;
-    grid-template-columns: 2fr 1fr; /* La colonna principale è 2 volte più larga di quella più piccola */
+    grid-template-columns: 2fr 1fr; 
     gap: 20px;
     padding: 20px;
+    margin-top:120px;
 }
 
 .mainColumnSX {

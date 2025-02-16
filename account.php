@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         exit();
     } elseif (!empty($_FILES['file'])) {
-        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . "/Cooking/immaginiUser";
+        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . "/TW/Cooking/immaginiUser";
         $tmp_name = $_FILES['file']['tmp_name'];
         $file_type = mime_content_type($tmp_name);
 
@@ -87,14 +87,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <header>
         <div class="logo">
-            <a href="./index.php"><img src="./img/icon.png" height="50px" width="50px"></a>
+            <a href="./index.php"><img src="./img/icon.png" class="logoHome"></a>
         </div>
 
         <div class="title">
             <h1>Area Utente</h1>
         </div>
         <div class="loggato">
-            <a href="./home.php"> <img src="./img/home.png" height="50px" width="50px"></a>
+            <a href="./home.php"> <img src="./img/home.png" class="logoHome"></a>
         </div>
     </header>
 

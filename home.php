@@ -86,21 +86,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             });
         });
     </script>
-    <header>
+    <header id="headerHome">
         <div class="logo">
-            <a href="./index.php"><img src="./img/icon.png" height="50px" width="50px"></a>
+            <a href="./index.php"><img src="./img/icon.png" class="logoHome"></a>
         </div>
-
-        <div class="title" id="titleHome">
-            <h1>Cooking</h1>
-        </div>
-
         <div class="search-form">
             <input id="searchInput" type="text" name="query" placeholder="Cerca una ricetta" class="search-input">
         </div>
 
-        <div class="loggato">
-            <a href="./account.php"> <img src="./img/username.png" height="50px" width="50px"></a>
+        <div class="containerImmagine">
+            <a href="./account.php"> <img src="<?php echo getImage($username) ?>" alt="Immagine Utente" class="loggato"> </a>
         </div>
     </header>
 
