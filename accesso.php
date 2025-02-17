@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
 
-        $hash = get_pwd($username, $db);
+        $hash = get_pwd($username);
 
         if (!$hash) {
             echo json_encode(['success' => false, 'message' => "L'utente $username non esiste."]);
