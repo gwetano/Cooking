@@ -575,6 +575,7 @@ footer a:hover {
 
 .ricettePreferiteAreaUtente {
     flex-direction: row;
+    background-color: black;
 }
 
 
