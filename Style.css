@@ -111,7 +111,7 @@ footer a:hover {
 #mainIndex .mainColumn1, 
 #mainIndex .mainColumn2 {
     padding: 2em;
-    border-radius: 15px; 
+    border-radius: 0px; 
     margin: 2em 1em; 
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Ombra con sfumatura */
 }
@@ -557,6 +557,10 @@ footer a:hover {
     align-items: center;
 }
 
+.mainAccountRow2 h1{
+    text-align: center;
+}
+
 .ricettePreferiteAreaUtente {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -597,6 +601,7 @@ footer a:hover {
 .infoRicettaAccount .nomeRicetta {
     font-size: 2.2em;
     font-weight: bold;
+    text-align: center;
 }
 
 .infoRicettaAccount .descrizioneRicetta {
@@ -877,11 +882,6 @@ footer a:hover {
     font-size: 15px;
 }
 
-
-
-
-
-
 #mainAccesso {
     margin-top: 30px;
     flex: 1;
@@ -963,12 +963,14 @@ footer a:hover {
     color: #0037ff;
 }
 
-#loginForm .registratiCliccabile {
+#loginForm .registratiCliccabile, #mostraBannerPass {
     margin-left: 5px;
     font-weight: bold;
+    text-decoration: none;
+    color: black;
 }
 
-#loginForm .registratiCliccabile:hover {
+#loginForm .registratiCliccabile:hover, #mostraBannerPass:hover {
     cursor: pointer;
 }
 
@@ -983,15 +985,6 @@ footer a:hover {
 #registerForm .closeButton:hover {
     cursor: pointer;
 }
-
-
-
-
-
-
-
-
-
 
 @media(max-width:768px){
     #headerAccesso .titolo .title h1{
