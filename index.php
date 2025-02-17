@@ -20,25 +20,34 @@ require_once './funzioni.php'
 </head>
 
 <body>
-
-    <header id="headerIndex">
-        <div class="logo">
-            <img src="./img/icon.png">
-        </div>
-
-        <div class="title">
-            <h1>Cooking</h1>
-        </div>
-        <?php if (isset($_SESSION['username'])) { ?>
-            <div class="containerImmagine">
-            <a href="./account.php"> <img src="<?php echo getImage($_SESSION['username']) ?>" alt="Immagine Utente" class="loggato"> </a>
+    <header id="topIndex">
+        <div id="headerIndex">
+            <div class="logo">
+                <img src="./img/icon.png">
             </div>
-        <?php } else { ?>
-            <div>
-                <a href="./accesso.php"> <p class="nonLoggato">Accesso</p></a>
+
+            <div class="title">
+                <h1>Cooking</h1>
             </div>
-        <?php } ?>
+
+            <?php if (isset($_SESSION['username'])) { ?>
+                <div class="containerImmagine">
+                    <a href="./account.php"> <img src="<?php echo getImage($_SESSION['username']) ?>" alt="Immagine Utente" class="loggato"> </a>
+                </div>
+            <?php } else { ?>
+                <div>
+                    <a href="./accesso.php"> <p class="nonLoggato">Accesso</p></a>
+                 </div>
+                <?php } ?>
+        </div>
+        <div id="animated-navbar">
+            <div class="buttons-container">
+                <a href="./home.php" class="nav-button">TUTTE LE RICETTE</a>
+                <a href="./Relazione_Tecnologie_Web.pdf" class="nav-button">ABOUT</a>
+            </div>
+        </div>
     </header>
+    
 
     <main id="mainIndex">
 
