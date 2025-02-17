@@ -15,7 +15,7 @@ html,body{
     box-sizing: border-box;
 }
 
-header{
+#headerIndex, #headerAccount, #headerRicetta{
     position: fixed;
     top: 0px;
     min-width: 100%;
@@ -28,16 +28,10 @@ header{
     z-index: 1000;
 }
 
-header .title h1{
-    text-align: center;
-    font-size: 45px;
-    letter-spacing: -3.5px;
-    font-weight: bold;
-}
-
-.logo, .title, .search-form, .loggato {
+.logo {
     display: flex;
     align-items: center; 
+    margin-left: 20px;
 }
 
 .logo img,
@@ -48,49 +42,14 @@ header .title h1{
     height: auto; 
 }
 
-.logo {
-    margin-left: 20px;
-}
-
 .loggato {
+    display: flex;
+    align-items: center; 
     margin-right: 20px;
     width: 50px; 
     height: 50px;
     border-radius: 50%; 
     object-fit: cover; 
-}
-
-.search-form {
-    flex: 1; 
-    margin: 0 20px; 
-}
-
-.search-input {
-    width: 100%;
-    max-width: 300px;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-.nonLoggato{
-    margin-right: 20px;
-    display: flex;
-    align-items: center; 
-    text-decoration: none;
-    color: white;
-    background-color: #0037ff;
-    border-radius: 20px;
-    border: 2px solid #0037ff;
-    display: inline-block;
-    padding: 10px 20px;
-    font-weight: bold;
-}
-
-.nonLoggato:hover{
-    color: #0037ff;
-    background-color: white;
 }
 
 footer {
@@ -102,8 +61,8 @@ footer {
     background-color: #fefefe;
     height: 60px; 
     border-top: 1px rgb(224, 224, 224) solid;
-    width: 100%; /* Assicura che il footer occupi tutta la larghezza */
-    margin-top: auto; /* Spinge il footer verso il basso */
+    width: 100%; 
+    margin-top: auto;
 }
 
 footer a {
@@ -117,6 +76,31 @@ footer a:hover {
 }
 
 /*Index*/
+#headerIndex .title h1{
+    text-align: center;
+    font-size: 45px;
+    letter-spacing: -3.5px;
+    font-weight: bold;
+}
+
+#headerIndex .nonLoggato{
+    margin-right: 20px;
+    display: flex;
+    align-items: center; 
+    text-decoration: none;
+    color: white;
+    background-color: #0037ff;
+    border-radius: 20px;
+    border: 2px solid #0037ff;
+    display: inline-block;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+#headerIndex .nonLoggato:hover{
+    color: #0037ff;
+    background-color: white;
+}
 
 #mainIndex {
     margin-top: 100px;
@@ -385,15 +369,15 @@ footer a:hover {
     position: relative;
     flex:1;
     width: 100%;
-    padding: 20px; /* Aggiungi un po' di spazio all'interno */
-    background-color: #ffffff; /* Colore di sfondo del contenuto */
+    padding: 20px;
+    background-color: #ffffff; 
     margin-top: 5em; 
 }
 
 .mainAccountRow1 {
     width: 100%;
-    padding: 20px; /* Aggiungi un po' di spazio all'interno */
-    margin-top: 80px; /* Rimuovi eventuali margini extra */
+    padding: 20px;
+    margin-top: 40px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -574,8 +558,57 @@ footer a:hover {
 }
 
 .ricettePreferiteAreaUtente {
-    flex-direction: row;
-    background-color: black;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+}
+
+.mainAccountRow2 [class^="ricetta"] {
+    height: auto;
+    margin: 2em;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.183);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.mainAccountRow2 [class^="ricetta"]:hover{
+    cursor: pointer;
+}
+
+.fotoRicettaAccount {
+    display: flex;
+    justify-content: center; /* Centra orizzontalmente /
+    align-items: center; / Centra verticalmente */
+    overflow: hidden;
+}
+
+.fotoRicettaAccount img {
+    width: 80%;
+    height: 80%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.infoRicettaAccount {
+    margin: 2em;
+}
+
+.infoRicettaAccount .nomeRicetta {
+    font-size: 2.2em;
+    font-weight: bold;
+}
+
+.infoRicettaAccount .descrizioneRicetta {
+    margin-top: 2em;
+}
+
+@media (max-width: 1024px) {
+
+    .ricettePreferiteAreaUtente {
+        display: flex;
+        flex-direction: column ;
+    }
 }
 
 
@@ -646,6 +679,22 @@ footer a:hover {
     justify-content: space-between;
     z-index: 1000;
     height: 100px;
+}
+
+#headerHome .search-form {
+    flex: 1; 
+    margin: 0 20px; 
+    display: flex;
+    align-items: center; 
+}
+
+#headerHome .search-input {
+    width: 100%;
+    max-width: 300px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
 }
 
 #mainHome {
@@ -779,47 +828,57 @@ footer a:hover {
 
 /*Accesso CSS*/
 
-#headerAccesso {
+#headerAccesso{
     position: relative;
-    top: 0;
-    left: 0;
+    top: 0px;
+    min-width: 100%;
     width: 100%;
-    background-color: #ffffff;
+    background-color:#ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     z-index: 1000;
-    flex-direction: column;
 }
 
-#headerAccesso .titolo {
+#headerAccesso .titolo{
     display: flex;
-    align-items: center;
-    gap: 15px; 
+    flex-direction: row;
 }
-
-
-#headerAccesso .logo {
-    position: absolute;
-    left: 0px;
-}
-
-#headerAccesso .subtitle {
-    position: absolute;
-    bottom: 10px;
-    font-size: 16px;
-    color: #666;
-    margin-top: 5px;
+#headerAccesso .titolo .title h1{
     text-align: center;
-    width: 100%;
+    font-size: 45px;
+    letter-spacing: -3.5px;
+    font-weight: bold;
+    margin:10px 0px;
+    margin-left: 20px;
+}
+#headerAccesso .titolo .logo{
+    margin-left:0px;
+
 }
 
-#headerAccesso .logo {
-    margin-left: 50px;
+#headerAccesso .titolo .logo img{
+    max-width: 50px; 
+    max-height: 50px; 
+    width: auto; 
+    height: auto; 
 }
 
-#mainAccesso {  
+#headerAccesso .subtitle{
+    margin: 10px 0;
+    color:grey;
+    font-size: 15px;
+}
+
+
+
+
+
+
+#mainAccesso {
+    margin-top: 30px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -830,8 +889,8 @@ footer a:hover {
 
 #loginForm {
     border: 2px solid rgb(224, 224, 224);
-    border-radius: 20px;
-    padding: 5em;
+    border-radius: 0px;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -839,14 +898,15 @@ footer a:hover {
 }
 
 #registerForm {
+    position: relative;
     border: 2px solid rgb(224, 224, 224);
-    border-radius: 20px;
+    border-radius: 0px;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 50%;
-    position: relative;
+    margin-bottom: 30px;
 }
 
 #loginForm p{
@@ -857,9 +917,10 @@ footer a:hover {
 }
 
 #registerForm p {
-    display: flex;
+    display: flex;    
+    position: relative;
     align-items: center;
-    width: 50%;
+    width: 100%;
 }
 
 #loginForm input[type="text"],
@@ -873,7 +934,7 @@ footer a:hover {
     font-size: 16px;
 }
 
-#loginForm .viewPassword {
+#loginForm .viewPassword{
     position: absolute;
     right: 10px;
     cursor: pointer;
@@ -918,52 +979,43 @@ footer a:hover {
     cursor: pointer;
 }
 
-@media (max-width: 768px) {
-    #mainHome {
-        margin-top: 130px;
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-bottom: 30px;
-    }
-    
-    #mainHome .allRicette {
-        display: grid;
-        grid-template-columns: repeat(2,1fr);
-        gap: 15px;
-    }
 
-    .loggato{
-        margin-right: 20px;
-        width: 40px; 
-        height: 40px;
-        border-radius: 50%; 
-        object-fit: cover; 
-    }
-    .logoHome{
-        height: 40px;
-        width: 40px;
-    }
-}
 
-@media (max-width: 600px) {
-    #mainHome .allRicette {
-        display: grid;
-        grid-template-columns:1fr;
-        gap: 15px;
-    }
-    header .title h1{
+
+
+
+
+
+
+
+@media(max-width:768px){
+    #headerAccesso .titolo .title h1{
         text-align: center;
         font-size: 35px;
-        letter-spacing: -2px;
+        letter-spacing: -3.5px;
         font-weight: bold;
+        margin:10px 0px;
+        margin-left: 10px;
+    }
+    #headerAccesso .titolo .logo img{
+        max-width: 30px; 
+        max-height: 30px; 
+        width: auto; 
+        height: auto; 
+    }
+    
+    #headerAccesso .subtitle{
+        margin: 10px 0;
+        color:grey;
+        font-size: 12px;
     }
 }
 
 /*Ricetta CSS*/
 #titleRicetta {
-    display: flex; /* Usa il flexbox per mettere gli elementi sulla stessa riga */
-    align-items: center; /* Allinea verticalmente gli elementi al centro */
-    gap: 10px; /* Spazio tra il nome della ricetta e l'icona dei preferiti */
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
 }
 
 #titleRicetta   .star {
@@ -989,7 +1041,7 @@ footer a:hover {
 .mainColumnDX {
     grid-column: 2;
     display: grid;
-    grid-template-rows: 1fr 1fr; /* La colonna più piccola è divisa in due righe */
+    grid-template-rows: 1fr 1fr; 
     gap: 20px;
 }
 

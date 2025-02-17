@@ -33,7 +33,7 @@ if (!isset($_SESSION['username'])) {
 
 <body>
 
-    <header>
+    <header id="headerRicetta">
         <div class="logo">
             <a href="./index.php"><img src="./img/icon.png" height="50px" width="50px"></a>
         </div>
