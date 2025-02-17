@@ -387,7 +387,7 @@ footer a:hover {
     width: 100%;
     padding: 20px; /* Aggiungi un po' di spazio all'interno */
     background-color: #ffffff; /* Colore di sfondo del contenuto */
-    margin-top: 0; 
+    margin-top: 5em; 
 }
 
 .mainAccountRow1 {
@@ -421,8 +421,8 @@ footer a:hover {
     top: 0px;
     right: 0px;
     padding: 5px;
-    height: 30px;
-    width: 30px;
+    height: 1.5em;
+    width: 1.5em;
 }
 
 .matita:hover {
@@ -568,9 +568,14 @@ footer a:hover {
     width: 100%;
     padding: 20px; /* Aggiungi un po' di spazio all'interno */
     margin-top: 0; /* Rimuovi eventuali margini extra */
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.ricettePreferiteAreaUtente {
+    flex-direction: row;
+}
 
 
 @media (max-width: 768px) {
