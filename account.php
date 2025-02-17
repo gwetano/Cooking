@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <header>
+    <header id="headerAccount">
         <div class="logo">
             <a href="./index.php"><img src="./img/icon.png" class="logoHome"></a>
         </div>
@@ -187,17 +187,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $foto = getFotoRicetta($id);
                         ?>
                         <div class="ricetta<?php echo $id ?>" onclick="vaiAllaRicetta(event, <?php echo $id; ?>)">
-                            <div class="nomeRicetta">
-                                <?php
-                                echo $nome; ?>
-                            </div>
-                            <div class="descrizioneRicetta">
-                                <?php
-                                echo $descrizione; ?>
-                            </div>
-                            <div class="classFotoRicetta">
+                            <div class="fotoRicettaAccount">
                                 <img src="<?php echo htmlspecialchars($foto); ?>" alt="ricetta<?php echo $id; ?>" height="20px">
                             </div>
+                            <div class="infoRicettaAccount">
+                                <div class="nomeRicetta">
+                                    <?php
+                                    echo $nome; ?>
+                                </div>
+                                <div class="descrizioneRicetta">
+                                    <?php
+                                    echo $descrizione; ?>
+                                </div>
+                            </div>
+
                         </div>
 
                         <?php

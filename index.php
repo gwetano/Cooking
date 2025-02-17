@@ -16,13 +16,12 @@ require_once './funzioni.php'
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.png">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
 </head>
 
 <body>
 
-    <header>
+    <header id="headerIndex">
         <div class="logo">
             <img src="./img/icon.png">
         </div>
