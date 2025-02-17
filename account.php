@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $newPassword = $_POST['newPassword'] ?? '';
         $confermaNewPassword = $_POST['confermaNewPassword'] ?? '';
 
-        $hash = get_pwd($username, $db);
+        $hash = get_pwd($username);
         if (password_verify($password, $hash)) {
             if ($newPassword !== $confermaNewPassword) {
                 echo json_encode(['success' => false, 'message' => 'Le password non corrispondono.']);

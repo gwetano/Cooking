@@ -184,7 +184,7 @@ footer a:hover {
 }
 
 #mainIndex .ricette > div[class^="ricetta"]:hover, 
-.contenutoMainColumnRicettaDelGiorno:hover {
+.mainColumn1:hover {
     cursor: pointer;
 }
 
@@ -680,6 +680,8 @@ footer a:hover {
     z-index: 2;
     height: 100px;
     text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);;
+    width: 100%;
 }
 
 #mainHome .starImmagine {
@@ -704,7 +706,6 @@ footer a:hover {
     font-weight: bold;
     padding: 10px;
     z-index: 2;
-    background-color: rgba(0, 0, 0, 0.6);;
 }
 
 #mainHome .descrizioneRicetta {
@@ -713,7 +714,6 @@ footer a:hover {
     padding: 10px;
     line-height: 1.4;
     z-index: 2;
-    background-color: rgba(0, 0, 0, 0.6);
 }
 
 #mainHome .classFotoRicetta {
