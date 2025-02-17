@@ -35,6 +35,28 @@ function getFotoRicetta($id)
     return null;
 }
 
+function getIngredientiRicetta($id) {
+    global $db;
+    $sql = "SELECT ingredienti FROM ricette WHERE id=$1";
+    $result = pg_query_params($db, $sql, array($id));
+    if ($result && pg_num_rows($result) > 0) {
+        $row = pg_fetch_assoc($result);
+        return $row['ingredienti'];
+    }
+    return null;
+}
+
+function getPreparazioneRicetta($id) {
+    global $db;
+    $sql = "SELECT preparazione FROM ricette WHERE id=$1";
+    $result = pg_query_params($db, $sql, array($id));
+    if ($result && pg_num_rows($result) > 0) {
+        $row = pg_fetch_assoc($result);
+        return $row['preparazione'];
+    }
+    return null;
+}
+
 function getDifficoltaRicetta($id)
 {
     global $db;

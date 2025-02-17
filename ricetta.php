@@ -35,7 +35,7 @@ if (!isset($_SESSION['username'])) {
 
     <header id="headerRicetta">
         <div class="logo">
-            <a href="./index.php"><img src="./img/icon.png" height="50px" width="50px"></a>
+            <a href="./index.php"><img src="./img/icon.png"></a>
         </div>
 
         <div class="title" id="titleRicetta">
@@ -53,46 +53,56 @@ if (!isset($_SESSION['username'])) {
         </div>
 
         <div class="loggato">
-            <a href="./home.php"> <img src="./img/home.png" height="50px" width="50px"></a>
+            <a href="./home.php"> <img src="./img/home.png" ></a>
         </div>
     </header>
 
     <main id="mainRicetta">
-        <div class="mainColumnSX">
-            <div class="primaRiga">
-                <div class="fotoRicetta">
-                    <img src=<?php
-                    echo getFotoRicetta($id) ?> alt="" class="foto" height="50px" width="50px">
-                </div>
+        <div class="mainColumn">
+            <div class="mainColumnSX">
+                <img src=<?php
+                echo getFotoRicetta($id) ?> alt="" class="<?php
+                   echo getFotoRicetta($id) ?>">
             </div>
-            <div class="secondaRiga">
-                <div class="difficoltà">
-                    <p>Difficoltà : <span class="difficoltàText"> Facile </span></p>
+
+            <div class="mainColumnDX">
+                <div class="infoRicettaSingola">
+                <p> <img src="./img/difficoltà.png" alt="difficoltà">Difficoltà : <span>
+                        <?php
+                        echo getDifficoltaRicetta($id); ?> </span></p>
+                <p> <img src="./img/orologio.png" alt="orologio"> Pronto in : <span> <?php
+                echo getTempoRicetta($id); ?>
+                    </span> </p>
+                <p> <img src="./img/mangiare.png" alt="dosi"> Dosi per : <span> <?php
+                echo getDosiRicetta($id); ?>
+                    </span> </p>
                 </div>
-                <div class="tempo">
-                    <p>Pronto in : <span class="tempoText"> 15 min </span></p>
-                </div>
-                <div class="dosi">
-                    <p>Dosi per : <span class="dosiText"> 4 </span></p>
+                <hr>
+                <div class="Ingredienti">
+                    <p>Ingredienti </p>
+                    <?php echo getIngredientiRicetta($id) ?>
                 </div>
             </div>
         </div>
-
-        <div class="mainColumnDX">
-            <div class="descrizione">
-
-            </div>
-            <div class="Ingredienti">
-                <p>Ingredienti : <br><?php echo getIngredientiRicetta($id) ?></p>
-            </div>
-            <div class="preparazione">
-                <h2>
-                    <b>Preparazione</b>
-                </h2>
+        <div class="presentazione">
+            <h1>
+                Presentazione
+            </h1>
+            <p>
                 <?php
-                echo getPreparazioneRicetta($id) ?></p>
-            </div>
+                echo getPresentazioneRicetta($id) ?>
+            </p>
         </div>
+
+        <div class="preparazione">
+            <h1>
+                <b>Preparazione</b>
+            </h1>
+            <p><?php
+            echo getPreparazioneRicetta($id) ?></p>
+
+        </div>
+
     </main>
 
     <footer>
