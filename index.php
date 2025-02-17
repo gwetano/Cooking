@@ -65,13 +65,13 @@ require_once './funzioni.php'
                             </div>
                         </div>
                         <div class="infoRicettaDelGiorno">
-                            <p> <img src="./img/difficoltà.png" alt="difficoltà">DIFFICOLTA' : <span style="color:red;">
+                            <p> <img src="./img/difficoltà.png" alt="difficoltà">Difficoltà : <span>
                                     <?php
                                     echo getDifficoltaRicetta($idRicettaDelGiorno); ?> </span></p>
-                            <p> <img src="./img/orologio.png" alt="orologio"> PRONTO IN : <span style="color:red;"> <?php
+                            <p> <img src="./img/orologio.png" alt="orologio"> Pronto in : <span> <?php
                             echo getTempoRicetta($idRicettaDelGiorno); ?>
                                 </span> </p>
-                            <p> <img src="./img/mangiare.png" alt="dosi"> DOSI PER : <span style="color:red;"> <?php
+                            <p> <img src="./img/mangiare.png" alt="dosi"> Dosi per : <span> <?php
                             echo getDosiRicetta($idRicettaDelGiorno); ?>
                                 </span> </p>
                         </div>
@@ -79,7 +79,7 @@ require_once './funzioni.php'
 
                     <div class="presentazioneRicettaDelGiorno">
 
-                        <h3>Presentazione</h3>
+                        <h2>Presentazione</h2>
                         <p>
                             <?php
                             echo getPresentazioneRicetta($idRicettaDelGiorno); ?>
@@ -160,13 +160,13 @@ require_once './funzioni.php'
                                 </div>
                             </div>
                             <div class="infoRicettaDelGiorno">
-                            <p> <img src="./img/difficoltà.png" alt="difficoltà">DIFFICOLTA' : <span style="color:red;">
+                            <p> <img src="./img/difficoltà.png" alt="difficoltà">Difficoltà : <span>
                                     <?php
                                     echo getDifficoltaRicetta($idRicettaDelGiorno); ?> </span></p>
-                            <p> <img src="./img/orologio.png" alt="orologio"> PRONTO IN : <span style="color:red;"> <?php
+                            <p> <img src="./img/orologio.png" alt="orologio"> Pronto in : <span> <?php
                             echo getTempoRicetta($idRicettaDelGiorno); ?>
                                 </span> </p>
-                            <p> <img src="./img/mangiare.png" alt="dosi"> DOSI PER : <span style="color:red;"> <?php
+                            <p> <img src="./img/mangiare.png" alt="dosi"> Dosi per : <span> <?php
                             echo getDosiRicetta($idRicettaDelGiorno); ?>
                                 </span> </p>
                         </div>
@@ -175,7 +175,7 @@ require_once './funzioni.php'
 
                     <div class="presentazioneRicettaDelGiorno">
 
-                        <h3>Presentazione</h3>
+                        <h2>Presentazione</h2>
                         <p>
                             <?php
                             echo getPresentazioneRicetta($idRicettaDelGiorno); ?>

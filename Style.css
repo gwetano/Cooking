@@ -28,6 +28,10 @@ html,body{
     z-index: 1000;
 }
 
+#headerRicetta .loggato {
+    margin-left: 10px;
+}
+
 .logo {
     display: flex;
     align-items: center; 
@@ -186,7 +190,7 @@ footer a:hover {
 .infoRicettaDelGiorno {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra orizzontalmente gli elementi */
+    align-items: start; /* Centra orizzontalmente gli elementi */
     justify-content: center; /* Centra verticalmente se c'è spazio */
     text-align: center; /* Centra il testo */
     gap: 10px; /* Distanza tra gli elementi */
@@ -197,21 +201,27 @@ footer a:hover {
     display: flex;
     align-items: center; /* Allinea verticalmente le icone con il testo */
     justify-content: center; /* Centra orizzontalmente l'intero contenuto */
-    font-size: 1.2em;
+    font-size: 17px;
     margin: 5px 0;
     font-weight: bold;
 }
 
-
 .infoRicettaDelGiorno span {
     margin-left: 1em;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), -2px -2px 5px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), -2px -2px 5px rgba(0, 0, 0, 0.2);
+    color: rgb(255, 132, 0);
+    font-size: 20px;
 }
+
 
 .infoRicettaDelGiorno img {
     width: 30px; /* Imposta una dimensione fissa per le icone */
     height: auto;
     margin-right: 10px; /* Distanza tra l'icona e il testo */
+}
+
+.presentazioneRicettaDelGiorno {
+    font-size: 20px;
 }
 
 
@@ -582,8 +592,8 @@ footer a:hover {
 
 .fotoRicettaAccount {
     display: flex;
-    justify-content: center; /* Centra orizzontalmente /
-    align-items: center; / Centra verticalmente */
+    justify-content: center; 
+    align-items: center; 
     overflow: hidden;
 }
 
@@ -693,10 +703,11 @@ footer a:hover {
 
 #headerHome .search-form {
     flex: 1; 
-    margin: 0 20px; 
+    margin: 0 50px; 
     display: flex;
     align-items: center; 
 }
+
 
 #headerHome .search-input {
     width: 100%;
@@ -705,6 +716,7 @@ footer a:hover {
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 1rem;
+    height: 50px;
 }
 
 #mainHome {
@@ -743,27 +755,23 @@ footer a:hover {
     position: absolute;
     bottom: 0px;
     z-index: 2;
-    height: 100px;
+    height: 150px;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.6);;
+    background-color: rgba(0, 0, 0, 0.6);
     width: 100%;
 }
 
 #mainHome .starImmagine {
     position: absolute;
     top: 5px;
-    right: 0px;
+    right: 10px;
     height: 20%;
     width: 20%;
-    max-width: 50px;
-    max-height: 50px;
+    max-width: 30px;
+    max-height: 30px;
     z-index: 2;
 }
 
-#mainHome .starImmagine:hover {
-    cursor: pointer;
-    z-index: 2;
-}
 
 #mainHome .nomeRicetta {
     color: white;
@@ -809,7 +817,8 @@ footer a:hover {
         gap: 15px;
     }
 
-    .loggato{
+    .loggato,
+    .logo{
         margin-right: 20px;
         width: 40px; 
         height: 40px;
@@ -819,6 +828,9 @@ footer a:hover {
     .logoHome{
         height: 40px;
         width: 40px;
+    }
+    #headerHome .search-form {
+        margin: 0 30px; 
     }
 }
 
@@ -833,6 +845,9 @@ footer a:hover {
         font-size: 35px;
         letter-spacing: -2px;
         font-weight: bold;
+    }
+    #headerHome .search-form {
+        margin: 0 15px; 
     }
 }
 
@@ -1016,39 +1031,121 @@ footer a:hover {
     gap: 10px; 
 }
 
-#titleRicetta   .star {
+#titleRicetta .star {
     display: flex; 
-    align-items: center; 
+    align-items: center;
 }
 
-#mainRicetta{
-    display: grid;
-    grid-template-columns: 2fr 1fr; 
-    gap: 20px;
-    padding: 20px;
-    margin-top:120px;
+#titleRicetta .star img {
+    height: 30px;
+    width: 30px; 
 }
 
-.mainColumnSX {
-    grid-column: 1;
+#mainRicetta {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    flex: 1;
+    margin-top: 80px;
+
 }
 
-.mainColumnDX {
-    grid-column: 2;
+
+#mainRicetta .mainColumn {
     display: grid;
-    grid-template-rows: 1fr 1fr; 
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    margin: 20px 20px;
+    background-color: #f5f5f5;
 }
 
-.mainColumnDX .primaRiga{
-    background-color: #f0f0f0;
-    padding: 10px;
+#mainRicetta .mainColumnSX {
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
-.mainColumnDX .secondaRiga {
-    background-color: #f0f0f0;
-    padding: 10px;
+#mainRicetta .mainColumnSX img {
+    height: auto;
+    max-height: 90%;
+    width: 80%;
+    border-radius: 10px;
+}
+
+#mainRicetta .mainColumnDX {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    font-size: 20px;
+}
+.Ingredienti p{
+    margin-top: 10px;
+
+    font-weight: bold;
+    font-size: 25px;
+}
+
+#mainRicetta .presentazione,
+#mainRicetta .preparazione 
+{
+    margin: 0px 40px;
+    font-size: 20px;
+}
+
+.infoRicettaSingola {
+    display: flex;
+    flex-direction: column;
+    align-items: start; /* Centra orizzontalmente gli elementi */
+    justify-content: center; /* Centra verticalmente se c'è spazio */
+    text-align: center; /* Centra il testo */
+    gap: 10px; /* Distanza tra gli elementi */
+    margin-top: 30px;
+}
+
+.infoRicettaSingola p {
+    display: flex;
+    align-items: center; /* Allinea verticalmente le icone con il testo */
+    justify-content: center; /* Centra orizzontalmente l'intero contenuto */
+    font-size: 20px;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.infoRicettaSingola span {
+    margin-left: 1em;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), -2px -2px 5px rgba(0, 0, 0, 0.2);
+    color: rgb(255, 132, 0);
+    font-size: 20px;
+}
+
+
+.infoRicettaSingola img {
+    width: 30px; /* Imposta una dimensione fissa per le icone */
+    height: auto;
+    margin-right: 10px; /* Distanza tra l'icona e il testo */
+}
+
+hr {
+    border: none;
+    height: 2px; /* Spessore della linea */
+    background-color: orange; /* Colore della linea */
+    width: 10%;
+    margin-left: 0px;
+}
+
+@media (max-width:760px) {
+
+    #mainRicetta .mainColumn {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #mainRicetta .mainColumnDX {
+        padding: 40px;
+        padding-top: 0px;
+
+    }
 }
