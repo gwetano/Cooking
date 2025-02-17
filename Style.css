@@ -661,6 +661,11 @@ footer a:hover {
     .Containerlogout {
         margin-top: 20px;
     }
+
+    .mainAccountRow2 [class^="ricetta"] {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 /*Home*/
