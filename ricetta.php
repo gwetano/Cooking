@@ -105,7 +105,7 @@ if (!isset($_SESSION['username'])) {
 
     <footer>
         <div>
-            <a href="https://youtu.be/kdMt6pPOh_M?si=63RgC2QPCiWUvf24">
+            <a href="https://youtu.be/kdMt6pPOh_M?si=63RgC2QPCiWUvf24" target="_blank">
                 Link utili
             </a>
             ●

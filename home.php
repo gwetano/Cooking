@@ -52,13 +52,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="styleFile.css">
     <title>Home</title>
     <script defer src="./funzioni.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
 </head>
 
 <body>
@@ -83,8 +84,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             });
         });
     </script>
-
-    <div id="headerHome">
+    
+    <header id="headerHome">
         <div class="logo">
             <img src="./img/icon.png" onclick="vaiAIndex(event)">
         </div>
@@ -97,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="./account.php"> <img src="<?php echo getImage($username) ?>" alt="Immagine Utente" class="loggato">
             </a>
         </div>
-    </div>
+    </header>
 
     <main id="mainHome">
         <?php
@@ -148,12 +149,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <footer>
         <div>
-            <a href="https://youtu.be/kdMt6pPOh_M?si=63RgC2QPCiWUvf24">
+            <a href="https://youtu.be/kdMt6pPOh_M?si=63RgC2QPCiWUvf24" target="_blank">
                 Link utili
             </a>
             ●
             <a href="mailto:miaomiaodevelopers@email.com">
-                Mail to
+            Contact Us
             </a>
             ●
             <a href="./index.php">

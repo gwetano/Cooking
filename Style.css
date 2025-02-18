@@ -1003,7 +1003,7 @@ hr{
     #ricettaDelGiorno .infoRicetta {
         height: 3em;
     }
-
+    /*account*/
     .ricettePreferiteAreaUtente {
         display: flex;
         flex-direction: column ;
