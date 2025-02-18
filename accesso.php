@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <header id="headerAccesso">
         <div class="titolo">
             <div class="logo">
-                <a href="./index.php"><img src="./img/icon.png" class="logoHome"></a>
+                <img src="./img/icon.png" onclick="vaiAIndex(event)">
             </div>
 
             <div class="title">

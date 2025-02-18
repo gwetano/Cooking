@@ -4,6 +4,11 @@ function vaiAllaRicetta(event, id) {
   window.location.href = "ricetta.php?id=" + id;
 }
 
+function vaiAIndex(event) {
+  event.stopPropagation();
+  window.location.href = "index.php";
+}
+
 function registerOrLogin(event,id) {
   event.stopPropagation;
   window.location.href = "accesso.php?id="+ id;

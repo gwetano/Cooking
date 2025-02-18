@@ -18,20 +18,21 @@ html,body{
 #headerAccount, #headerRicetta{
     position: fixed;
     top: 0px;
-    min-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
     width: 100%;
     background-color:#ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.183);
     display: flex;
     align-items: center;
     justify-content: space-between;
     z-index: 1000;
+    height: 100px;
 }
 
 .logo {
     display: flex;
     align-items: center; 
-    margin-left: 20px;
 }
 
 .logo img,
@@ -45,7 +46,6 @@ html,body{
 .loggato {
     display: flex;
     align-items: center; 
-    margin-right: 20px;
     width: 50px; 
     height: 50px;
     border-radius: 50%; 
@@ -77,13 +77,18 @@ footer a:hover {
 
 /*INDEX*/
 #headerIndex{
-    position: relative;
-    min-width: 100%;
+    position: fixed;
+    top: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
     width: 100%;
     background-color:#ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.183);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 1000;
+    height: 100px;
 }
 
 #headerIndex .title h1{
@@ -94,7 +99,6 @@ footer a:hover {
 }
 
 #headerIndex .nonLoggato{
-    margin-right: 20px;
     display: flex;
     align-items: center; 
     text-decoration: none;
@@ -113,7 +117,7 @@ footer a:hover {
 }
 
 #mainIndex{
-    margin-top: 160px;
+    margin-top: 120px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -276,14 +280,15 @@ footer a:hover {
 
 .goHome a{
     display: inline-block; 
-    padding: clamp(0.1em, 1vw, 2em);
-    font-size: clamp(0.1em, 1.5vw, 2.5em);
+    padding: 20px;
+    font-size: 15px;
     text-decoration: none;
     color: white;
     background-color: #0037ff;
     border-radius: 10px;
     border: 2px solid #0037ff;
     text-align: center;
+    font-weight: bold;
 }
 
 .goHome a:hover{
@@ -356,6 +361,24 @@ footer a:hover {
 
     #ricettaDelGiorno .infoRicetta {
         height: 3em;
+    }
+}
+
+@media (max-width: 760px) {
+    .logo img {
+        height: 50px;
+        width: 50px;
+    }
+
+    .nonLoggato{
+        font-size: 12px;
+        padding: 5px 5px;
+    }
+    #headerIndex {
+        padding: 10px;
+    }
+    #mainIndex .infoRicetta .descrizioneRicetta{ 
+        font-size: 15px;
     }
 }
 
@@ -632,6 +655,8 @@ footer a:hover {
 }
 
 /*HOME*/
+
+
 #headerHome{
     position: fixed;
     top: 0px;
@@ -647,11 +672,14 @@ footer a:hover {
     height: 100px;
 }
 
+
+
 #headerHome .search-form{
     flex: 1; 
-    margin: 0 50px; 
     display: flex;
     align-items: center; 
+    justify-content: center;
+    width: auto;    
 }
 
 #headerHome .search-input{
@@ -766,6 +794,8 @@ footer a:hover {
 #headerAccesso .titolo{
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 #headerAccesso .titolo .title h1{
@@ -777,16 +807,6 @@ footer a:hover {
     margin-left: 20px;
 }
 
-#headerAccesso .titolo .logo{
-    margin-left:0px;
-}
-
-#headerAccesso .titolo .logo img{
-    max-width: 50px; 
-    max-height: 50px; 
-    width: auto; 
-    height: auto; 
-}
 
 #headerAccesso .subtitle{
     margin: 10px 0;
@@ -1046,27 +1066,6 @@ hr{
         height: 3em;
     }
 
-    .nonLoggato{
-        margin-right: 10px;
-        display: flex;
-        font-size: 15px;
-        align-items: center; 
-        text-decoration: none;
-        color: white;
-        background-color: #0037ff;
-        border-radius: 20px;
-        border: 2px solid #0037ff;
-        display: inline-block;
-        padding: 8px 18px;
-        font-weight: bold;
-    }
-    
-    .nonLoggato:hover{
-        color: #0037ff;
-        background-color: white;
-    }
-
-
     /*ACCESSO*/
     #headerAccesso .titolo .title h1{
         text-align: center;
@@ -1157,20 +1156,14 @@ hr{
     }
 
     .loggato, .logo{
-        margin-right: 20px;
-        width: 40px; 
-        height: 40px;
         border-radius: 50%; 
         object-fit: cover; 
     }
+
     .logoHome{
         height: 40px;
         width: 40px;
     }
-    #headerHome .search-form {
-        margin: 0 30px; 
-    }
-
 }
 
 
@@ -1195,13 +1188,24 @@ hr{
         grid-template-columns:1fr;
         gap: 15px;
     }
-    header .title h1{
+    #headerHome header .title h1{
         text-align: center;
         font-size: 35px;
         letter-spacing: -2px;
         font-weight: bold;
     }
-    #headerHome .search-form {
-        margin: 0 15px; 
+
+    #headerHome .logo,
+    #headerHome .containerImmagine {
+        padding: 5px;
+    }
+
+    /*RICETTA*/
+    #titleRicetta {
+        gap:2px;
+    }
+    #titleRicetta  h1{
+        font-size: 18px;
+        text-align: center;
     }
 }
