@@ -151,9 +151,9 @@ require_once './funzioni.php'
             /* UTENTE NON LOGGATO */
         } else { ?>
                 <div class="mainColumn1">
-                    <div class="contenutoMainColumnRicettaDelGiorno" onclick="registerOrLogin()">
+                <?php $idRicettaDelGiorno = generaIdCasuale(); ?>
+                    <div class="contenutoMainColumnRicettaDelGiorno" onclick="registerOrLogin(event,<?php echo $idRicettaDelGiorno?>)">
                         <h1>Ricetta del giorno</h1>
-                        <?php $idRicettaDelGiorno = generaIdCasuale(); ?>
                         <div class="ricette" id="ricettaDelGiorno">
                             <div class="ricetta">
                                 <div class="infoRicetta">
@@ -204,7 +204,7 @@ require_once './funzioni.php'
                             $descrizione = getDescrizioneRicetta($idRicettaCliccata);
                             $foto = getFotoRicetta($idRicettaCliccata);
                             ?>
-                            <div class="ricetta<?php echo $idRicettaCliccata ?> " onclick="registerOrLogin()">
+                            <div class="ricetta<?php echo $idRicettaCliccata ?> " onclick="registerOrLogin(event,<?php echo $idRicettaCliccata?>)">
                                 <div class="infoRicetta">
                                     <div class="nomeRicetta">
                                         <span><?php
