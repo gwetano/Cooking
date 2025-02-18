@@ -3,7 +3,8 @@ session_start();
 require './db.php';
 require_once './funzioni.php';
 
-$idRicetta = $_GET['id'];
+if(!isset($_GET['id'])) $idRicetta = 0;
+else $idRicetta = $_GET['id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Type: application/json');

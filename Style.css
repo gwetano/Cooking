@@ -41,6 +41,7 @@ html,body{
     max-height: 50px; 
     width: auto; 
     height: auto; 
+    cursor: pointer;
 }
 
 .loggato {
@@ -77,13 +78,12 @@ footer a:hover {
 
 /*INDEX*/
 #headerIndex{
-    position: fixed;
+    position: relative;
     top: 0px;
     padding-left: 20px;
     padding-right: 20px;
     width: 100%;
     background-color:#ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.183);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -117,7 +117,7 @@ footer a:hover {
 }
 
 #mainIndex{
-    margin-top: 120px;
+    margin-top: 130px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -315,7 +315,7 @@ footer a:hover {
     width: 100%;
     padding: 10px;
     background-color: rgb(255, 255, 255);
-    border-top: 1px solid rgb(230, 230, 230);
+    border-top: 1px solid rgb(224, 224, 224);
 }
 .buttons-container{
     display: flex;
@@ -1079,7 +1079,7 @@ hr{
         max-width: 30px; 
         max-height: 30px; 
         width: auto; 
-        height: auto; 
+        height: auto;
     }
     
     #headerAccesso .subtitle{
