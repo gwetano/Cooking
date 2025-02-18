@@ -86,18 +86,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             });
         });
     </script>
-    <header id="headerHome">
-        <div class="logo">
-            <a href="./index.php"><img src="./img/icon.png" class="logoHome"></a>
-        </div>
-        <div class="search-form">
-            <input id="searchInput" type="text" name="query" placeholder="Cerca una ricetta" class="search-input">
-        </div>
 
-        <div class="containerImmagine">
+        <div id="headerHome">
+            <div class="logo">
+                <img src="./img/icon.png" onclick="vaiAIndex(event)">
+            </div>
+
+            <div class="search-form">
+                <input id="searchInput" type="text" name="query" placeholder="Cerca una ricetta" class="search-input">
+            </div>
+
+            <div class="containerImmagine">
             <a href="./account.php"> <img src="<?php echo getImage($username) ?>" alt="Immagine Utente" class="loggato"> </a>
         </div>
-    </header>
+        </div>
 
     <main id="mainHome">
         <?php

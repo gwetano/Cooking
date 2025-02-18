@@ -35,7 +35,7 @@ if (!isset($_SESSION['username'])) {
 
     <header id="headerRicetta">
         <div class="logo">
-            <a href="./index.php"><img src="./img/icon.png"></a>
+            <img src="./img/icon.png" onclick="vaiAIndex(event)"></a>
         </div>
 
         <div class="title" id="titleRicetta">
