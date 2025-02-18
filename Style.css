@@ -540,12 +540,11 @@ footer a:hover {
 }
 
 .Containerlogout {
-    margin-top: 50px;
+    margin-top: 30px;
     font-weight: bold;
     display: flex;
     flex-direction: column;
-    align-items:center;
-    text-align: center;
+    align-items: start;
 }
 
 .logoutButton {
@@ -871,9 +870,11 @@ footer a:hover {
     width: 100%;
 }
 
-#loginForm .bottone:hover {
+#loginForm .bottone:hover,
+#registerForm .bottone:hover {
     background-color: white;
     color: #0037ff;
+    cursor: pointer;
 }
 
 #loginForm .registratiCliccabile, #mostraBannerPass {

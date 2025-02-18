@@ -3,6 +3,8 @@ session_start();
 require './db.php';
 require_once './funzioni.php';
 
+$idRicetta = $_GET['id'];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Type: application/json');
 
@@ -61,7 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
 </head>
 
 <body>
@@ -81,11 +84,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <main id="mainAccesso">
         <form id="loginForm">
             <p>
+                <input type="hidden" name="idRicetta" id="idRicetta" value="<?php echo $idRicetta ?>">
                 <input type="text" name="username" class="username" placeholder="Username" required>
             </p>
             <p>
                 <input type="password" name="password" class="password" placeholder="Password" required id="password">
-                <img src="./img/viewPassword.png" alt="" id="visualizzaPassword" height="20px" width="20px" class="viewPassword">
+                <img src="./img/viewPassword.png" alt="" id="visualizzaPassword" height="20px" width="20px"
+                    class="viewPassword">
             </p>
             <p>
                 <button type="submit" class="bottone">Accedi</button>
@@ -115,26 +120,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </html>
 
 <script>
-        document.getElementById('loginForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            const formData = new FormData(this);
-            fetch('?action=login', {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        window.location.href = 'home.php';
-                    } else {
-                        alert(data.message);
-                    }
-                })
-                .catch(error => console.error('Errore:', error));
-        });
+    
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        const id = document.getElementById('idRicetta').value;
 
-        document.getElementById('registratiCliccabile').addEventListener('click', function () {
-            document.getElementById('mainAccesso').innerHTML = `
+        fetch('?action=login', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    if(id > 0) {
+                        window.location.href = 'ricetta.php?id=' + id;
+                    }
+                    else {
+                        window.location.href = 'index.php';
+                    }
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => console.error('Errore:', error));
+    });
+
+    document.getElementById('registratiCliccabile').addEventListener('click', function () {
+        document.getElementById('mainAccesso').innerHTML = `
                  <form id="registerForm">
         
                     <img src="./img/bottoneChiudiFinestra.png" alt="chiudiFinestra" onclick="chiudiFinestra()" class="closeButton">
@@ -163,32 +176,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </form>
             `;
 
-            document.getElementById('registerForm').addEventListener('submit', function (event) {
-                event.preventDefault();
-                const formData = new FormData(this);
-                fetch('?action=register', {
-                    method: 'POST',
-                    body: formData
+        document.getElementById('registerForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch('?action=register', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Registrazione completata! Ora puoi accedere.');
+                        window.location.reload();
+                    } else {
+                        alert(data.message);
+                    }
                 })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            alert('Registrazione completata! Ora puoi accedere.');
-                            window.location.reload();
-                        } else {
-                            alert(data.message);
-                        }
-                    })
-                    .catch(error => console.error('Errore:', error));
-            });
+                .catch(error => console.error('Errore:', error));
         });
+    });
 
-        document.getElementById('visualizzaPassword').addEventListener('mouseover', function (event) {
-            document.getElementById('password').setAttribute('type', 'text');
-        });
+    document.getElementById('visualizzaPassword').addEventListener('mouseover', function (event) {
+        document.getElementById('password').setAttribute('type', 'text');
+    });
 
-        document.getElementById('visualizzaPassword').addEventListener('mouseout', function (event) {
-            document.getElementById('password').setAttribute('type', 'password');
-        });
+    document.getElementById('visualizzaPassword').addEventListener('mouseout', function (event) {
+        document.getElementById('password').setAttribute('type', 'password');
+    });
 
-    </script>
+</script>
