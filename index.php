@@ -16,7 +16,8 @@ require_once './funzioni.php'
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
 </head>
 
 <body>
@@ -32,13 +33,16 @@ require_once './funzioni.php'
 
             <?php if (isset($_SESSION['username'])) { ?>
                 <div class="containerImmagine">
-                    <a href="./account.php"> <img src="<?php echo getImage($_SESSION['username']) ?>" alt="Immagine Utente" class="loggato"> </a>
+                    <a href="./account.php"> <img src="<?php echo getImage($_SESSION['username']) ?>" alt="Immagine Utente"
+                            class="loggato"> </a>
                 </div>
             <?php } else { ?>
                 <div>
-                    <a href="./accesso.php"> <p class="nonLoggato">Accesso</p></a>
-                 </div>
-                <?php } ?>
+                    <a href="./accesso.php">
+                        <p class="nonLoggato">Accesso</p>
+                    </a>
+                </div>
+            <?php } ?>
         </div>
         <div id="animated-navbar">
             <div class="buttons-container">
@@ -47,7 +51,7 @@ require_once './funzioni.php'
             </div>
         </div>
     </header>
-    
+
 
     <main id="mainIndex">
 
@@ -144,31 +148,32 @@ require_once './funzioni.php'
                     ?>
                     <div class="goHome">
                         <a href="./home.php">Vai a tutte le ricette ▶</a>
-                </div>
+                    </div>
                 </div>
             </div>
-                <?php
+            <?php
             /* UTENTE NON LOGGATO */
         } else { ?>
-                <div class="mainColumn1">
+            <div class="mainColumn1">
                 <?php $idRicettaDelGiorno = generaIdCasuale(); ?>
-                    <div class="contenutoMainColumnRicettaDelGiorno" onclick="registerOrLogin(event,<?php echo $idRicettaDelGiorno?>)">
-                        <h1>Ricetta del giorno</h1>
-                        <div class="ricette" id="ricettaDelGiorno">
-                            <div class="ricetta">
-                                <div class="infoRicetta">
-                                    <div class="nomeRicetta">
-                                        <span> <?php
-                                        echo getNomeRicetta($idRicettaDelGiorno); ?></span>
-                                    </div>
-                                </div>
-                                <div class="containerFotoRicetta">
-                                    <img src=<?php
-                                    echo getFotoRicetta($idRicettaDelGiorno) ?> alt="ricettaDelGiorno"
-                                        class="fotoRicetta">
+                <div class="contenutoMainColumnRicettaDelGiorno"
+                    onclick="registerOrLogin(event,<?php echo $idRicettaDelGiorno ?>)">
+                    <h1>Ricetta del giorno</h1>
+                    <div class="ricette" id="ricettaDelGiorno">
+                        <div class="ricetta">
+                            <div class="infoRicetta">
+                                <div class="nomeRicetta">
+                                    <span> <?php
+                                    echo getNomeRicetta($idRicettaDelGiorno); ?></span>
                                 </div>
                             </div>
-                            <div class="infoRicettaDelGiorno">
+                            <div class="containerFotoRicetta">
+                                <img src=<?php
+                                echo getFotoRicetta($idRicettaDelGiorno) ?> alt="ricettaDelGiorno"
+                                    class="fotoRicetta">
+                            </div>
+                        </div>
+                        <div class="infoRicettaDelGiorno">
                             <p> <img src="./img/difficoltà.png" alt="difficoltà">Difficoltà : <span>
                                     <?php
                                     echo getDifficoltaRicetta($idRicettaDelGiorno); ?> </span></p>
@@ -179,18 +184,18 @@ require_once './funzioni.php'
                             echo getDosiRicetta($idRicettaDelGiorno); ?>
                                 </span> </p>
                         </div>
-                        </div>
-                    </div>
-
-                    <div class="presentazioneRicettaDelGiorno">
-
-                        <h2>Presentazione</h2>
-                        <p>
-                            <?php
-                            echo getPresentazioneRicetta($idRicettaDelGiorno); ?>
-                        </p>
                     </div>
                 </div>
+
+                <div class="presentazioneRicettaDelGiorno">
+
+                    <h2>Presentazione</h2>
+                    <p>
+                        <?php
+                        echo getPresentazioneRicetta($idRicettaDelGiorno); ?>
+                    </p>
+                </div>
+            </div>
 
             <div class="mainColumn2">
                 <div class="contenutoMainColumn">
@@ -204,7 +209,8 @@ require_once './funzioni.php'
                             $descrizione = getDescrizioneRicetta($idRicettaCliccata);
                             $foto = getFotoRicetta($idRicettaCliccata);
                             ?>
-                            <div class="ricetta<?php echo $idRicettaCliccata ?> " onclick="registerOrLogin(event,<?php echo $idRicettaDelGiorno?>)">
+                            <div class="ricetta<?php echo $idRicettaCliccata ?> "
+                                onclick="registerOrLogin(event,<?php echo $idRicettaDelGiorno ?>)">
                                 <div class="infoRicetta">
                                     <div class="nomeRicetta">
                                         <span><?php
@@ -235,12 +241,8 @@ require_once './funzioni.php'
 
     <footer>
         <div>
-            <a href="">
-                Privacy Policy
-            </a>
-            ●
-            <a href="">
-                Termini e condizioni
+            <a href="mailto:miaomiaodevelopers@email.com">
+                Mail to
             </a>
             ●
             <a href="./index.php">

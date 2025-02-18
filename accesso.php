@@ -3,8 +3,10 @@ session_start();
 require './db.php';
 require_once './funzioni.php';
 
-if(!isset($_GET['id'])) $idRicetta = 0;
-else $idRicetta = $_GET['id'];
+if (!isset($_GET['id']))
+    $idRicetta = 0;
+else
+    $idRicetta = $_GET['id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Type: application/json');
@@ -102,12 +104,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <footer>
         <div>
-            <a href="">
-                Privacy Policy
-            </a>
-            ●
-            <a href="">
-                Termini e condizioni
+            <a href="mailto:miaomiaodevelopers@email.com">
+                Mail to
             </a>
             ●
             <a href="./index.php">
@@ -121,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </html>
 
 <script>
-    
+
     document.getElementById('loginForm').addEventListener('submit', function (event) {
         event.preventDefault();
         const formData = new FormData(this);
@@ -134,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    if(id > 0) {
+                    if (id > 0) {
                         window.location.href = 'ricetta.php?id=' + id;
                     }
                     else {

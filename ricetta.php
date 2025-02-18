@@ -53,7 +53,7 @@ if (!isset($_SESSION['username'])) {
         </div>
 
         <div class="loggato">
-            <a href="./home.php"> <img src="./img/home.png" ></a>
+            <a href="./home.php"> <img src="./img/home.png"></a>
         </div>
     </header>
 
@@ -67,15 +67,15 @@ if (!isset($_SESSION['username'])) {
 
             <div class="mainColumnDX">
                 <div class="infoRicettaSingola">
-                <p> <img src="./img/difficoltà.png" alt="difficoltà">Difficoltà : <span>
-                        <?php
-                        echo getDifficoltaRicetta($id); ?> </span></p>
-                <p> <img src="./img/orologio.png" alt="orologio"> Pronto in : <span> <?php
-                echo getTempoRicetta($id); ?>
-                    </span> </p>
-                <p> <img src="./img/mangiare.png" alt="dosi"> Dosi per : <span> <?php
-                echo getDosiRicetta($id); ?>
-                    </span> </p>
+                    <p> <img src="./img/difficoltà.png" alt="difficoltà">Difficoltà : <span>
+                            <?php
+                            echo getDifficoltaRicetta($id); ?> </span></p>
+                    <p> <img src="./img/orologio.png" alt="orologio"> Pronto in : <span> <?php
+                    echo getTempoRicetta($id); ?>
+                        </span> </p>
+                    <p> <img src="./img/mangiare.png" alt="dosi"> Dosi per : <span> <?php
+                    echo getDosiRicetta($id); ?>
+                        </span> </p>
                 </div>
                 <hr>
                 <div class="Ingredienti">
@@ -107,12 +107,8 @@ if (!isset($_SESSION['username'])) {
 
     <footer>
         <div>
-            <a href="">
-                Privacy Policy
-            </a>
-            ●
-            <a href="">
-                Termini e condizioni
+            <a href="mailto:miaomiaodevelopers@email.com">
+                Mail to
             </a>
             ●
             <a href="./index.php">

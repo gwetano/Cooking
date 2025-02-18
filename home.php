@@ -86,19 +86,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         });
     </script>
 
-        <div id="headerHome">
-            <div class="logo">
-                <img src="./img/icon.png" onclick="vaiAIndex(event)">
-            </div>
-
-            <div class="search-form">
-                <input id="searchInput" type="text" name="query" placeholder="Cerca una ricetta" class="search-input">
-            </div>
-
-            <div class="containerImmagine">
-            <a href="./account.php"> <img src="<?php echo getImage($username) ?>" alt="Immagine Utente" class="loggato"> </a>
+    <div id="headerHome">
+        <div class="logo">
+            <img src="./img/icon.png" onclick="vaiAIndex(event)">
         </div>
+
+        <div class="search-form">
+            <input id="searchInput" type="text" name="query" placeholder="Cerca una ricetta" class="search-input">
         </div>
+
+        <div class="containerImmagine">
+            <a href="./account.php"> <img src="<?php echo getImage($username) ?>" alt="Immagine Utente" class="loggato">
+            </a>
+        </div>
+    </div>
 
     <main id="mainHome">
         <?php
@@ -149,12 +150,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <footer>
         <div>
-            <a href="">
-                Privacy Policy
-            </a>
-            ●
-            <a href="">
-                Termini e condizioni
+            <a href="mailto:miaomiaodevelopers@email.com">
+                Mail to
             </a>
             ●
             <a href="./index.php">
