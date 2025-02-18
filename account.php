@@ -214,17 +214,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             ?>
         </div>
-        
+
     </main>
 
     <footer>
         <div>
-            <a href="">
-                Privacy Policy
-            </a>
-            ●
-            <a href="">
-                Termini e condizioni
+            <a href="mailto:miaomiaodevelopers@email.com">
+                Mail to
             </a>
             ●
             <a href="./index.php">
