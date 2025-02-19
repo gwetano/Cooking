@@ -1115,9 +1115,26 @@ hr{
         margin-top: 20px;
     }
 
+    #mainAccount .fotoRicettaAccount img  {
+        padding:20px;
+    }
+
     #mainAccount .mainAccountRow2 [class^="ricetta"] {
         display: flex;
         flex-direction: column;
+        margin-top: 0px;
+    }
+
+    #mainAccount .infoRicettaAccount {
+        margin: 20px;
+    }
+
+    #mainAccount .infoRicettaAccount .nomeRicetta {
+        font-size: 25px;
+    }
+
+    #mainAccount .infoRicettaAccount .descrizioneRicetta {
+        margin-top: 10px;
     }
 }
 
