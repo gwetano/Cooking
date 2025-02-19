@@ -64,19 +64,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const searchInput = document.getElementById('searchInput'); // Campo di input
-            const recipes = document.querySelectorAll('[class^="mainRow"]'); // Seleziona tutte le ricette
+            const searchInput = document.getElementById('searchInput'); 
+            const recipes = document.querySelectorAll('[class^="mainRow"]'); 
 
             searchInput.addEventListener('input', function () {
-                const query = searchInput.value.toLowerCase(); // Ottiene il valore della ricerca in minuscolo
+                const query = searchInput.value.toLowerCase(); 
 
                 recipes.forEach(recipe => {
-                    const keywords = recipe.getAttribute('data-keywords')?.toLowerCase(); // Ottiene le parole chiave della ricetta
+                    const keywords = recipe.getAttribute('data-keywords')?.toLowerCase(); 
                     if (!query || (keywords && keywords.includes(query))) {
-                        // Mostra la ricetta se il campo è vuoto o corrisponde alla ricerca
                         recipe.style.display = 'block';
                     } else {
-                        // Nasconde la ricetta se non corrisponde
                         recipe.style.display = 'none';
                     }
                 });

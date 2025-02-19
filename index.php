@@ -2,7 +2,7 @@
 session_start();
 require './db.php';
 require_once './funzioni.php'
-    ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +47,7 @@ require_once './funzioni.php'
         <div class="animated-navbar">
             <div class="buttons-container">
                 <a href="./home.php" class="nav-button">TUTTE LE RICETTE</a>
-                <a href="./Relazione_Tecnologie_Web.pdf" class="nav-button">ABOUT</a>
+                <a href="./relazione/Relazione_Tecnologie_Web.pdf" download="./relazione/Relazione_Tecnologie_Web.pdf" class="nav-button">ABOUT</a>
             </div>
         </div>
     </header>
