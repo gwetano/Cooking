@@ -83,35 +83,23 @@ function toggleFavorite(event, id, isFavorite) {
         });
 }
 
-function handleFiles(files) {
-    const fileArray = Array.from(files)[0];
-    fileList.innerHTML = '';
-    const p = document.createElement('p');
-    p.textContent = fileArray.name;
-    fileList.appendChild(p);
+function uploadFiles(file) {
+  const formData = new FormData();
+  formData.append('file', file);
 
-    uploadFiles(fileArray);
-}
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', 'account.php', true);
 
-function uploadFiles(files) {
-    const formData = new FormData();
+  xhr.onload = function () {
+      if (xhr.status === 200) {
+          alert(xhr.responseText);
+          window.location.href = 'account.php';
+      } else {
+          alert('Errore nel caricamento: ' + xhr.statusText);
+      }
+  };
 
-    formData.append('file', files);
-
-    const xhr = new XMLHttpRequest();
-
-    xhr.open('POST', 'account.php', true);
-
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            alert('Caricamento completato:' + xhr.responseText);
-            window.location.href = 'account.php';
-        } else {
-            alert('Errore nel caricamento: ' + xhr.statusText);
-        }
-    };
-
-    xhr.send(formData);
+  xhr.send(formData);
 }
 
 function chiudiFinestra() {

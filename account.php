@@ -34,14 +34,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo json_encode(['success' => false, 'message' => 'Nessun cambiamento, vecchia password e nuova password corrispondono']);
             } else {
                 changePassword($username, $newPassword);
-                echo json_encode(['success' => true, 'message' => "Password modificate con successo"]);
+                echo json_encode(['success' => true, 'message' => "Password modificata con successo"]);
             }
         } else {
             echo json_encode(['success' => false, 'message' => 'Password errata']);
         }
         exit();
     } elseif (!empty($_FILES['file'])) {
-        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . "/TW/mioCooking/Cooking/immaginiUser";
+        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . "/Cooking/immaginiUser";
         $tmp_name = $_FILES['file']['tmp_name'];
         $file_type = mime_content_type($tmp_name);
         $allowed_types = ['image/png', 'image/jpeg'];
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         move_uploaded_file($tmp_name, $path);
 
         $name = "./immaginiUser/$username.png";
-        echo "File $name caricato con successo!";
+        echo "File caricato con successo!";
         changeImage($username, $name);
     }
     exit();
@@ -76,7 +76,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="./img/icon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
 </head>
 
 <body>
@@ -269,7 +270,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     const dropArea = document.getElementById('drop-area');
     const fileInput = document.getElementById('fileElem');
-    const fileList = document.getElementById('file-list');
 
     dropArea.addEventListener('dragover', (e) => {
         e.preventDefault();
@@ -285,11 +285,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         dropArea.style.backgroundColor = '#fff';
 
         const files = e.dataTransfer.files;
-        handleFiles(files);
+        if (files.length > 0) {
+            uploadFiles(files[0]); 
+        }
     });
 
     fileInput.addEventListener('change', () => {
         const files = fileInput.files;
-        handleFiles(files);
+        if (files.length > 0) {
+            uploadFiles(files[0]); 
+        }
     });
 </script>
