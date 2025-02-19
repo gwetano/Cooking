@@ -16,69 +16,59 @@ function registerOrLogin(event,id) {
 function favorites(event, id, toggle) {
   event.stopPropagation();
   const star = document.getElementById("addPreferiti" + id);
+
+  const formData = new FormData();
+  formData.append('id', id);
+  formData.append('action', toggle ? 'remove' : 'add');
+
   fetch("home.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      id: id,
-      action: toggle ? "remove" : "add",
-    }),
+      method: "POST",
+      body: formData
   })
-    .then((response) => response.json())
-    .then((data) => {
+  .then(response => response.json())
+  .then(data => {
       if (data.success) {
-        if (toggle) {
-          star.src = "./img/nonPreferiti.png";
-        } else {
-          star.src = "./img/Preferiti.png";
-        }
+          star.src = toggle ? "./img/nonPreferiti.png" : "./img/Preferiti.png";
       } else {
-        alert("C’è stato un errore durante l’operazione!");
+          alert("C’è stato un errore durante l’operazione!");
       }
-    })
-    .catch((error) => {
+  })
+  .catch(error => {
       console.error("Errore:", error);
-      alert("C’è stato un errore durante l’operazione!" + error);
-    });
+      alert("C’è stato un errore durante l’operazione! " + error);
+  });
 }
 
 function toggleFavorite(event, id, isFavorite) {
-    event.stopPropagation();  
-    const star = document.getElementById('addPreferiti' + id);
+  event.stopPropagation();  
+  const star = document.getElementById('addPreferiti' + id);
 
-    const action = isFavorite ? 'remove' : 'add';
-    const newIsFavorite = !isFavorite; 
+  const action = isFavorite ? 'remove' : 'add';
+  const newIsFavorite = !isFavorite; 
 
-    fetch('home.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            id: id,
-            action: action
-        })
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                star.src = newIsFavorite ? './img/preferiti.png' : './img/nonPreferiti.png';
-                star.setAttribute('onclick', `toggleFavorite(event, ${id}, ${newIsFavorite})`);
-            } else {
-                alert('Errore durante l’operazione: ' + data.error);
-            }
-        })
-        .catch(error => {
-            console.error('Errore:', error);
-            alert('Errore durante l’operazione!');
-        });
+  const formData = new FormData();
+  formData.append('id', id);
+  formData.append('action', action);
+
+  fetch('home.php', {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => {
+      return response.json();
+  })
+  .then(data => {
+      if (data.success) {
+          star.src = newIsFavorite ? './img/preferiti.png' : './img/nonPreferiti.png';
+          star.setAttribute('onclick', 'toggleFavorite(event, ${id}, ${newIsFavorite})');
+      } else {
+          alert('Errore durante l’operazione: ' + data.error);
+      }
+  })
+  .catch(error => {
+      console.error('Errore:', error);
+      alert('Errore durante l’operazione!');
+  });
 }
 
 function uploadFiles(file) {
