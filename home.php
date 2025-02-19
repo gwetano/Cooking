@@ -12,37 +12,27 @@ if (!isset($_SESSION['username'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    header('Content-Type:application/json'); // Imposta l'intestazione per JSON
-    $data = json_decode(file_get_contents('php://input'), true);
-    $action = $data['action'] ?? '';
-    $id = $data['id'] ?? '';
+    header('Content-Type: application/json');
+
+    $action = $_POST['action'] ?? '';
+    $id = $_POST['id'] ?? '';
 
     if (!$id) {
-        $response['error'] = 'ID non valido';
-        echo json_encode($response);
+        echo json_encode(['error' => 'ID non valido']);
         exit;
     }
 
     if ($action === 'add') {
-        $sql = "INSERT INTO preferiti (username, id) VALUES ($1, $2)";
-        $result = pg_query_params($db, $sql, array($username, $id));
+        $result = addRicettePreferite($username,$id);
     } elseif ($action === 'remove') {
-        $sql = "DELETE FROM preferiti WHERE username = $1 AND id = $2";
-        $result = pg_query_params($db, $sql, array($username, $id));
+        $result = removeRicettePreferite($username,$id);
     } else {
-        $response['error'] = 'Azione non valida';
-        echo json_encode($response);
+        echo json_encode(['error' => 'Azione non valida']);
         exit;
     }
 
-    if ($result) {
-        $response['success'] = true;
-    } else {
-        $response['error'] = pg_last_error($db);
-    }
-
-    echo json_encode($response);
-    exit;
+    echo json_encode(['success' => $result ? true : false, 'error' => $result ? null : pg_last_error($db)]);
+    exit();
 }
 ?>
 <!DOCTYPE html>

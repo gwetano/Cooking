@@ -74,7 +74,7 @@ if (!isset($_SESSION['username'])) {
                     echo getDosiRicetta($id); ?>
                         </span> </p>
                 </div>
-                <hr>
+                <hr/>
                 <div class="Ingredienti">
                     <p>Ingredienti </p>
                     <?php echo getIngredientiRicetta($id) ?>
