@@ -10,7 +10,7 @@ require_once './funzioni.php'
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="StyleFile.css">
+    <link rel="stylesheet" href="Style.css">
     <title>Index</title>
     <script defer src="./funzioni.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -237,10 +237,6 @@ require_once './funzioni.php'
 
     <footer>
         <div>
-            <a href="https://youtu.be/kdMt6pPOh_M?si=63RgC2QPCiWUvf24" target="_blank">
-                Link utili
-            </a>
-            ●
             <a href="mailto:miaomiaodevelopers@email.com">
             Contact Us
             </a>
