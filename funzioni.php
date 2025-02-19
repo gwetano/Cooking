@@ -266,10 +266,7 @@ function generaIdCasuale() {
 function generaNumeriCasualiDiversi() {
     $arrayNumeri = getIdRicette();
     $count = 4;
-    // Mescola l'array per randomizzare l'ordine
     shuffle($arrayNumeri);
-    
-    // Restituisci i primi 4 numeri casuali
     return array_slice($arrayNumeri, 0, $count);
 }
 

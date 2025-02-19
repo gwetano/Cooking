@@ -1,5 +1,4 @@
 function vaiAllaRicetta(event, id) {
-  // Cambia la pagina in base all'ID della ricetta
   event.stopPropagation();
   window.location.href = "ricetta.php?id=" + id;
 }
@@ -46,12 +45,11 @@ function favorites(event, id, toggle) {
 }
 
 function toggleFavorite(event, id, isFavorite) {
-    event.stopPropagation();  // Previene il click sulla ricetta
+    event.stopPropagation();  
     const star = document.getElementById('addPreferiti' + id);
 
-    // Inverti il valore di isFavorite
     const action = isFavorite ? 'remove' : 'add';
-    const newIsFavorite = !isFavorite;  // Nuovo stato di isFavorite
+    const newIsFavorite = !isFavorite; 
 
     fetch('home.php', {
         method: 'POST',
@@ -67,7 +65,7 @@ function toggleFavorite(event, id, isFavorite) {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            return response.json(); // Parso sempre come JSON
+            return response.json();
         })
         .then(data => {
             if (data.success) {
