@@ -206,7 +206,7 @@ require_once './funzioni.php'
                             $foto = getFotoRicetta($idRicettaCliccata);
                             ?>
                             <div class="ricetta<?php echo $idRicettaCliccata ?> "
-                                onclick="registerOrLogin(event,<?php echo $idRicettaDelGiorno ?>)">
+                                onclick="registerOrLogin(event,<?php echo $idRicettaCliccata ?>)">
                                 <div class="infoRicetta">
                                     <div class="nomeRicetta">
                                         <span><?php

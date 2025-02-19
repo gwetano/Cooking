@@ -4,9 +4,8 @@ require './db.php';
 require_once './funzioni.php';
 if (!isset($_SESSION['username'])) {
     echo "<script>
-                alert('Accesso non autorizzato. Sarai reindirizzato alla pagina di login.');
-                window.location.href = 'accesso.php'; 
-              </script>";
+        window.location.href = 'accesso.php';
+    </script>";
     exit;
 } else {
     $username = $_SESSION['username'];
