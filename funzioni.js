@@ -10,7 +10,7 @@ function vaiAIndex(event) {
 }
 
 function registerOrLogin(event,id) {
-  event.stopPropagation;
+  event.stopPropagation();
   window.location.href = "accesso.php?id="+ id;
 }
 

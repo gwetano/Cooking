@@ -3,11 +3,10 @@ session_start();
 require './db.php';
 require_once './funzioni.php';
 
-if (!isset($_SESSION['username'])) { ?>
-    <script>
+if (!isset($_SESSION['username'])) { 
+    echo "<script>
         window.location.href = 'accesso.php';
-    </script>
-    <?php
+    </script>";
 } else {
     $username = $_SESSION['username'];
 }
