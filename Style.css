@@ -1,4 +1,4 @@
-/*GLOBALE*/
+/*general css*/
 html,body{
     margin: 0px;
     padding: 0px;
@@ -15,11 +15,9 @@ html,body{
     box-sizing: border-box;
 }
 
-#headerAccount, #headerRicetta{
+header {
     position: fixed;
     top: 0px;
-    padding-left: 20px;
-    padding-right: 20px;
     width: 100%;
     background-color:#ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.183);
@@ -30,18 +28,10 @@ html,body{
     height: 100px;
 }
 
-.logo {
-    display: flex;
-    align-items: center; 
-}
-
 .logo img,
 .loggato img {
     max-width: 50px; 
     max-height: 50px; 
-    width: auto; 
-    height: auto; 
-    cursor: pointer;
 }
 
 .loggato {
@@ -76,8 +66,13 @@ footer a:hover {
     color: #0037ff;
 }
 
-/*INDEX*/
+/* header index.php */
+
 #headerIndex{
+    flex-direction: column;
+}
+
+#headerIndex .topIndex{
     position: relative;
     top: 0px;
     padding-left: 20px;
@@ -91,14 +86,14 @@ footer a:hover {
     height: 100px;
 }
 
-#headerIndex .title h1{
+#headerIndex .topIndex .title h1{
     text-align: center;
     font-size: 45px;
     letter-spacing: -3.5px;
     font-weight: bold;
 }
 
-#headerIndex .nonLoggato{
+#headerIndex .topIndex .nonLoggato{
     display: flex;
     align-items: center; 
     text-decoration: none;
@@ -111,10 +106,42 @@ footer a:hover {
     font-weight: bold;
 }
 
-#headerIndex .nonLoggato:hover{
+#headerIndex .topIndex .nonLoggato:hover{
     color: #0037ff;
     background-color: white;
 }
+
+#headerIndex .animated-navbar{
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    border-top: 1px solid rgb(224, 224, 224);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.183);
+}
+#headerIndex .buttons-container{
+    display: flex;
+    flex-direction: row;
+ animation: moveButtons 15s linear infinite;
+}
+#headerIndex .nav-button{
+    letter-spacing: -1px;
+    text-align: center;
+    text-decoration: none;
+    color: rgb(72, 72, 72);
+    font-size:20px;
+    flex:1;
+}
+
+@keyframes moveButtons {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* main index.php */
 
 #mainIndex{
     margin-top: 130px;
@@ -129,7 +156,8 @@ footer a:hover {
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.contenutoMainColumnRicettaDelGiorno h1{
+#mainIndex .contenutoMainColumnRicettaDelGiorno h1,
+#mainIndex .contenutoMainColumn h1{
     text-align: left;
     font-size: 32px;
     margin:0px;
@@ -137,38 +165,12 @@ footer a:hover {
     letter-spacing: -1.5px;
 }
 
-.contenutoMainColumn h1{
-    text-align: left;
-    font-size: 32px;
-    margin:0px;
-    margin-bottom: 20px;
-    letter-spacing: -1.5px;
-}
-
-.infoRicetta span{
-    font-size: clamp(0.6em, 1vw, 1.3em);
-}
-
-.contenutoMainColumn, .contenutoMainColumnRicettaDelGiorno{
+#mainIndex .contenutoMainColumn, 
+#mainIndex .contenutoMainColumnRicettaDelGiorno{
     display: flex;
     flex-direction: column;
     text-align: center;
     gap: 1em;
-}
-
-.contenutoMainColumn a{
-    text-decoration: none;
-    color: white;
-    background-color: #0037ff;
-    padding: 1em;
-    border: 2px solid #0037ff;
-    border-radius: 25px;
-    font-size: large;
-}
-
-.contenutoMainColumn a:hover{
-    color: #0037ff;
-    background-color: white;
 }
 
 #mainIndex .ricette{
@@ -192,7 +194,8 @@ footer a:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#mainIndex .ricette > div[class^="ricetta"]:hover, .mainColumn1:hover{
+#mainIndex .ricette > div[class^="ricetta"]:hover,
+#mainIndex .mainColumn1:hover{
     cursor: pointer;
 }
 
@@ -201,13 +204,29 @@ footer a:hover {
     z-index: 2;
     height: 8.5em;
     padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
 }
 
-#ricettaDelGiorno .infoRicetta{
+#mainIndex #ricettaDelGiorno .nomeRicetta{
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2;
     height: 3em;
+    padding: 0.5em;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    font-weight: bold;
 }
 
-.infoRicettaDelGiorno{
+#mainIndex .infoRicetta span,
+#mainIndex .nomeRicetta span{
+    font-size: clamp(0.8em, 1vw, 1.5em);
+}
+
+#mainIndex .contenutoMainColumnRicettaDelGiorno  .infoRicettaDelGiorno{
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -217,8 +236,7 @@ footer a:hover {
     margin-top: 20px;
 }
 
-.infoRicettaDelGiorno p{
-    display: flex;
+#mainIndex .contenutoMainColumnRicettaDelGiorno  .infoRicettaDelGiorno p{
     align-items: center;
     justify-content: center;
     font-size: 17px;
@@ -226,7 +244,7 @@ footer a:hover {
     font-weight: bold;
 }
 
-.infoRicettaDelGiorno span{
+#mainIndex .contenutoMainColumnRicettaDelGiorno  .infoRicettaDelGiorno span{
     margin-left: 1em;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), -2px -2px 5px rgba(0, 0, 0, 0.2);
     color: rgb(255, 132, 0);
@@ -234,24 +252,21 @@ footer a:hover {
 }
 
 
-.infoRicettaDelGiorno img{
+#mainIndex .contenutoMainColumnRicettaDelGiorno  .infoRicettaDelGiorno img{
     width: 30px;
     height: auto;
     margin-right: 10px;
 }
 
-.presentazioneRicettaDelGiorno{
+#mainIndex  .presentazioneRicettaDelGiorno{
     font-size: 20px;
 }
 
-
-#mainIndex .ricette .nomeRicetta{
-    font-size: 1.2rem;
+#mainIndex .contenutoMainColumn .ricette .nomeRicetta{
     font-weight: bold;
 }
 
-#mainIndex .ricette .descrizioneRicetta{
-    padding-top: 0.5em;
+#mainIndex .contenutoMainColumn .ricette .descrizioneRicetta{
     font-size: 1.2rem;
 }
 
@@ -270,474 +285,37 @@ footer a:hover {
     height: 100%;
 }
 
-.goHome{
+#mainIndex .goHome{
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;  
     align-items: flex-end;  
-    height: 100%;
+    height: 100%;   
 }
 
-.goHome a{
-    display: inline-block; 
-    padding: 20px;
-    font-size: 15px;
+#mainIndex .goHome a{
     text-decoration: none;
     color: white;
     background-color: #0037ff;
-    border-radius: 10px;
+    padding: 1em;
     border: 2px solid #0037ff;
-    text-align: center;
-    font-weight: bold;
+    border-radius: 25px;
+    font-size: large;
 }
 
-.goHome a:hover{
-    background-color: white;
+#mainIndex .goHome a:hover{
     color: #0037ff;
-    border: 2px #0037ff solid;
-}
-
-#topIndex{
-    position: fixed;
-    top: 0px;
-    min-width: 100%;
-    width: 100%;
-    background-color:#ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1000;
-}
-
-#animated-navbar{
-    width: 100%;
-    padding: 10px;
-    background-color: rgb(255, 255, 255);
-    border-top: 1px solid rgb(224, 224, 224);
-}
-.buttons-container{
-    display: flex;
-    flex-direction: row;
- animation: moveButtons 15s linear infinite;
-}
-.nav-button{
-    letter-spacing: -1px;
-    text-align: center;
-    text-decoration: none;
-    color: rgb(72, 72, 72);
-    font-size:20px;
-    flex:1;
-}
-
-@keyframes moveButtons {
-    from {
-        transform: translateX(100%);
-    }
-    to {
-        transform: translateX(-100%);
-    }
-}
-
-
-/*ACCOUNT*/
-#headerAccount{
-    position: fixed;
-    top: 0px;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 100%;
-    background-color:#ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.183);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1000;
-    height: 100px;
-}
-
-#headerAccount .title{
-    font-size: em;
-}
-
-#mainAccount {
-    margin-top: 80px;
-    position: relative;
-    flex:1;
-    width: 100%;
-    padding: 20px;
-    background-color: #ffffff; 
-    margin-top: 5em; 
-}
-
-.mainAccountRow1 {
-    width: 100%;
-    padding: 20px;
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.datiImmagine {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.containerImmagine {
-    position: relative;
-}
-
-.ImmagineUtente {
-    width: 300px; 
-    height: 300px;
-    border-radius: 50%; 
-    object-fit: cover; 
-}
-
-.matita {
-    position:absolute;
-    top: 0px;
-    right: 0px;
-    padding: 5px;
-    height: 1.5em;
-    width: 1.5em;
-}
-
-.matita:hover {
-    background-color: rgb(219, 219, 219);
-    cursor: pointer;
-}
-
-.banner {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 10000;
-    justify-content: center;
-    align-items: center;
-}
-
-.banner-content {
-    position: fixed;
     background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    height: 500px;
-    width: 600px;
-    z-index: 10001;
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-}
-
-.input-group label {
-    text-align: left;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.input-group input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.button-group {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-}
-
-.bottoneConferma {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    border: 2px solid #4CAF50;
-}
-
-.bottoneAnnulla {
-    background-color: #f44336;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    border: 2px solid red;
-}
-
-.bottoneConferma:hover {
-    background-color: white;
-    color: #4CAF50;
-    
-}
-.bottoneAnnulla:hover {
-    background-color: white;
-    color: red;
-}
-
-#drop-area {
-    background-color:white;
-    padding: 50px;
-    height: 200px;
-    border: 2px black solid;
-}
-
-#drop-area:hover{
-    background-color: rgb(219, 219, 219);
-}
-
-#nascondiBannerImg {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#nascondiBannerImg:hover {
-    background-color: white;
-    color: red;
-    border: 2px red solid;
-}
-
-.Containerlogout {
-    margin-top: 30px;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-}
-
-.logoutButton {
-    padding: 20px;
-    text-decoration: none;
-    border: 2px solid red;
-    background-color: red;
-    border-radius: 10px;
-    color: white;
-}
-
-.logoutButton:hover {
-    background-color: white;
-    color: red;
-
-}
-
-.mainAccountRow2{
-    position: relative;
-    width: 100%;
-    padding: 20px;
-    margin-top: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.mainAccountRow2 h1{
-    text-align: center;
-}
-
-.ricettePreferiteAreaUtente {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
-}
-
-.mainAccountRow2 [class^="ricetta"] {
-    height: auto;
-    margin: 2em;
-    border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.183);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.mainAccountRow2 [class^="ricetta"]:hover{
-    cursor: pointer;
-}
-
-.fotoRicettaAccount {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    overflow: hidden;
-}
-
-.fotoRicettaAccount img {
-    width: 80%;
-    height: 80%;
-    border-radius: 20px;
-    object-fit: cover;
-}
-
-.infoRicettaAccount {
-    margin: 2em;
-}
-
-.infoRicettaAccount .nomeRicetta {
-    font-size: 2.2em;
-    font-weight: bold;
-    text-align: center;
-}
-
-.infoRicettaAccount .descrizioneRicetta {
-    margin-top: 2em;
-}
-
-
-/*HOME*/
-#headerHome{
-    position: fixed;
-    top: 0px;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 100%;
-    background-color:#ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.183);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1000;
-    height: 100px;
 }
 
 
 
-#headerHome .search-form{
-    flex: 1; 
-    display: flex;
-    align-items: center; 
-    justify-content: center;
-    width: auto;    
-}
-
-#headerHome .search-input{
-    width: 100%;
-    max-width: 300px;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    height: 50px;
-}
-
-#mainHome{
-    margin-top: 130px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 30px;
-}
-
-#mainHome .allRicette{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 15px;
-}
-
-#mainHome div[class^="mainRow"]{
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    border-radius: 5px;
-    overflow: hidden;
-    width: 100%;
-    aspect-ratio: 1 / 1; 
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#mainHome div[class^="mainRow"]:hover{
-    cursor: pointer;
-}
-
-#mainHome .ricetta{
-    position: absolute;
-    bottom: 0px;
-    z-index: 2;
-    height: 150px;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.6);
-    width: 100%;
-}
-
-#mainHome .starImmagine{
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    height: 20%;
-    width: 20%;
-    max-width: 30px;
-    max-height: 30px;
-    z-index: 2;
-}
-
-
-#mainHome .nomeRicetta{
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 10px;
-    z-index: 2;
-}
-
-#mainHome .descrizioneRicetta{
-    color: white;
-    font-size: 0.9rem;
-    padding: 10px;
-    line-height: 1.4;
-    z-index: 2;
-}
-
-#mainHome .classFotoRicetta{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    object-fit: cover;
-}
-.logoHome{
-    height: 50px;
-    width: 50px;
-}
-
-/*ACCESSO*/
+/* header accesso.php */
 #headerAccesso{
+    padding-top: 20px;
     position: relative;
-    top: 0px;
-    min-width: 100%;
-    width: 100%;
-    background-color:#ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1000;
+    min-height: 100px;
+    height: auto;
 }
 
 #headerAccesso .titolo{
@@ -756,12 +334,12 @@ footer a:hover {
     margin-left: 20px;
 }
 
-
-#headerAccesso .subtitle{
-    margin: 10px 0;
+#headerAccesso .subtitle p{
     color:grey;
     font-size: 15px;
 }
+
+/* main accesso.php */
 
 #mainAccesso {
     margin-top: 30px;
@@ -869,35 +447,152 @@ footer a:hover {
     cursor: pointer;
 }
 
-/*RICETTA*/
+/* header home.php */
+
+#headerHome{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#headerHome .search-form{
+    flex: 1; 
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    width: auto;    
+}
+
+#headerHome .search-input{
+    width: 100%;
+    max-width: 300px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    height: 50px;
+}
+
+/* main home.php */
+
+#mainHome{
+    margin-top: 130px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+}
+
+#mainHome .allRicette{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+}
+
+#mainHome div[class^="mainRow"]{
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 1 / 1; 
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#mainHome div[class^="mainRow"]:hover{
+    cursor: pointer;
+}
+
+#mainHome .ricetta{
+    position: absolute;
+    bottom: 0px;
+    z-index: 2;
+    height: 150px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+}
+
+#mainHome .starImmagine{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    height: 20%;
+    width: 20%;
+    max-width: 30px;
+    max-height: 30px;
+    z-index: 2;
+}
+
+#mainHome .nomeRicetta{
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px;
+    z-index: 2;
+}
+
+#mainHome .descrizioneRicetta{
+    color: white;
+    font-size: 0.9rem;
+    padding: 10px;
+    line-height: 1.4;
+    z-index: 2;
+}
+
+#mainHome .classFotoRicetta{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    object-fit: cover;
+}
+
+/* header ricetta.php */
+
+#headerRicetta {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#headerRicetta .title h1 {
+    letter-spacing: -2px;
+}
+
 #headerRicetta .loggato {
     margin-left: 10px;
 }
 
-#titleRicetta {
+#headerRicetta .title  {
     display: flex;
-    align-items: center; 
-    gap: 10px; 
+    align-items: center;
+    text-align: center; 
 }
 
-#titleRicetta .star {
+#headerRicetta .title  .star {
+    margin-left: 5px;
     display: flex; 
     align-items: center;
 }
 
-#titleRicetta .star img {
+#headerRicetta .title  .star img {
     height: 30px;
     width: 30px; 
 }
+
+/* main ricetta.php */
 
 #mainRicetta{
     display: flex;
     flex-direction: column;
     flex: 1;
     margin-top: 100px;
-
 }
-
 
 #mainRicetta .mainColumn {
     display: grid;
@@ -930,19 +625,20 @@ footer a:hover {
     justify-content: center;
     font-size: 20px;
 }
-.Ingredienti p{
+#mainRicetta .Ingredienti p{
     margin-top: 10px;
 
     font-weight: bold;
     font-size: 25px;
 }
 
-#mainRicetta .presentazione, #mainRicetta .preparazione{
+#mainRicetta .presentazione, 
+#mainRicetta .preparazione{
     margin: 0px 40px;
     font-size: 20px;
 }
 
-.infoRicettaSingola{
+#mainRicetta .infoRicettaSingola{
     display: flex;
     flex-direction: column;
     align-items: start; 
@@ -952,7 +648,7 @@ footer a:hover {
     margin-top: 30px;
 }
 
-.infoRicettaSingola p{
+#mainRicetta .infoRicettaSingola p{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -961,15 +657,14 @@ footer a:hover {
     font-weight: bold;
 }
 
-.infoRicettaSingola span{
+#mainRicetta .infoRicettaSingola span{
     margin-left: 1em;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), -2px -2px 5px rgba(0, 0, 0, 0.2);
     color: rgb(255, 132, 0);
     font-size: 20px;
 }
 
-
-.infoRicettaSingola img{
+#mainRicetta .infoRicettaSingola img{
     width: 30px; 
     height: auto;
     margin-right: 10px; 
@@ -982,41 +677,314 @@ hr{
     width: 10%;
     margin-left: 0px;
 }
+
+/* header account.php */
+#headerAccount {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* main account.php */
+
+#headerAccount .title{
+    font-size: em;
+}
+
+#mainAccount {
+    margin-top: 80px;
+    position: relative;
+    flex:1;
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff; 
+    margin-top: 5em; 
+}
+
+#mainAccount .mainAccountRow1 {
+    width: 100%;
+    padding: 20px;
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#mainAccount .datiImmagine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#mainAccount .containerImmagine {
+    position: relative;
+}
+
+#mainAccount .ImmagineUtente {
+    width: 300px; 
+    height: 300px;
+    border-radius: 50%; 
+    object-fit: cover; 
+}
+
+#mainAccount .matita {
+    position:absolute;
+    top: 0px;
+    right: 0px;
+    padding: 5px;
+    height: 1.5em;
+    width: 1.5em;
+}
+
+#mainAccount .matita:hover {
+    background-color: rgb(219, 219, 219);
+    cursor: pointer;
+}
+
+#mainAccount .banner {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+}
+
+#mainAccount .banner-content {
+    position: fixed;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    height: 500px;
+    width: 600px;
+    z-index: 10001;
+}
+
+#mainAccount .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+#mainAccount .input-group label {
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#mainAccount .input-group input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#mainAccount .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+#mainAccount .bottoneConferma {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: 2px solid #4CAF50;
+}
+
+#mainAccount .bottoneAnnulla {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: 2px solid red;
+}
+
+#mainAccount .bottoneConferma:hover {
+    background-color: white;
+    color: #4CAF50;
+    
+}
+
+#mainAccount .bottoneAnnulla:hover {
+    background-color: white;
+    color: red;
+}
+
+#drop-area {
+    background-color:white;
+    padding: 50px;
+    height: 200px;
+    border: 2px black solid;
+}
+
+#drop-area:hover{
+    background-color: rgb(219, 219, 219);
+}
+
+#nascondiBannerImg {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#nascondiBannerImg:hover {
+    background-color: white;
+    color: red;
+    border: 2px red solid;
+}
+
+#mainAccount .Containerlogout {
+    margin-top: 30px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+#mainAccount .logoutButton {
+    padding: 20px;
+    text-decoration: none;
+    border: 2px solid red;
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+}
+
+#mainAccount .logoutButton:hover {
+    background-color: white;
+    color: red;
+
+}
+
+#mainAccount .mainAccountRow2{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mainAccount .mainAccountRow2 h1{
+    text-align: center;
+}
+
+#mainAccount .ricettePreferiteAreaUtente {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+}
+
+#mainAccount .mainAccountRow2 [class^="ricetta"] {
+    height: auto;
+    margin: 2em;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.183);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#mainAccount .mainAccountRow2 [class^="ricetta"]:hover{
+    cursor: pointer;
+}
+
+#mainAccount .fotoRicettaAccount {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    overflow: hidden;
+}
+
+#mainAccount .fotoRicettaAccount img {
+    width: 80%;
+    height: 80%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+#mainAccount .infoRicettaAccount {
+    margin: 2em;
+}
+
+#mainAccount .infoRicettaAccount .nomeRicetta {
+    font-size: 2.2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+#mainAccount .infoRicettaAccount .descrizioneRicetta {
+    margin-top: 2em;
+}
+
 @media (max-width: 1024px) {
+
+    /*media 1024px index.php*/
+
     #mainIndex {
         grid-template-columns: 1fr; 
     }
 
     #mainIndex .infoRicetta {
         height: 7em;
-    }    
-
-    .infoRicetta span {
-        font-size: clamp(0.9em, 1.8vw, 2em);
+    } 
+       
+    #ricettaDelGiorno .infoRicetta {
+        height: 3em;
     }
 
-    .goHome a {
+    #mainIndex .goHome a {
         font-size: 15px;
         padding: 20px;
     }
 
-    #ricettaDelGiorno .infoRicetta {
-        height: 3em;
+    #mainIndex span {
+        font-size: 15px;
     }
-    /*account*/
-    .ricettePreferiteAreaUtente {
+
+    /* media 1024px account.php*/
+    #mainAccount .ricettePreferiteAreaUtente {
         display: flex;
         flex-direction: column ;
     }
 }
 
 @media(max-width:768px){
-    /*INDEX*/
+    
+    /* media 768px general */
+
+    .logo img,
+    .logoHome img,
+    .loggato img
+    {
+        height: 40px;
+        width: 40px;
+    }
+
+    /*media index.php*/
+
     #mainIndex {
         grid-template-columns: 1fr; 
     }
 
-    .contenutoMainColumn h1 {
+    #mainIndex  .contenutoMainColumn h1 {
         font-size: 30px;
     }
 
@@ -1024,41 +992,26 @@ hr{
         grid-template-columns: 1fr; 
     }
 
-    .contenutoMainColumn {
+    #mainIndex .contenutoMainColumn {
         flex-direction: column;
         gap: 10px;
     }
 
-    .goHome a {
+    #mainIndex  .goHome a {
         font-size: 0.9rem;
         width: 100%;
     }
 
-    .infoRicetta span {
-        font-size: clamp(1em, 2vw, 2em);
-    }
-
-    #ricettaDelGiorno .infoRicetta {
-        height: 3em;
-    }
-
-    .logo img {
-        height: 50px;
-        width: 50px;
-    }
-
-    .nonLoggato{
+    #mainIndex  .nonLoggato{
         font-size: 12px;
         padding: 5px 5px;
     }
-    #headerIndex {
-        padding: 10px;
-    }
+
     #mainIndex .infoRicetta .descrizioneRicetta{ 
         font-size: 15px;
     }
 
-    /*ACCESSO*/
+    /* 768px accesso.php */
     #headerAccesso .titolo .title h1{
         text-align: center;
         font-size: 35px;
@@ -1067,6 +1020,7 @@ hr{
         margin:10px 0px;
         margin-left: 10px;
     }
+
     #headerAccesso .titolo .logo img{
         max-width: 30px; 
         max-height: 30px; 
@@ -1074,66 +1028,20 @@ hr{
         height: auto;
     }
     
-    #headerAccesso .subtitle{
-        margin: 10px 0;
+    #headerAccesso .subtitle p{
         color:grey;
         font-size: 12px;
     }
 
-
-    /*ACCOUNT*/
-    .mainAccountRow1 {
-        width: 100%;
-        padding: 20px;
-        margin-top: 0;
-        display: grid;
-        grid-template-columns: 1fr;
+    /* 768px home.php */
+    #headerHome {
+        gap:5px;
     }
-    
-    .ImmagineUtente {
-        width: 150px; 
-        height: 150px;
-        border-radius: 50%; 
-        object-fit: cover; 
+    #headerHome .containerImmagine img {
+        height: 40px;
+        width: 40px;
     }
 
-    #mainAccount {
-        grid-template-columns: 1fr;
-        padding: 10px;
-    }
-
-    .datiImmagine, .Dati {
-        width: 100%;
-    }
-
-    .Dati {
-        margin-top: 20px; 
-    }
-
-    .banner-content {
-        width: 90%;
-        height: auto;
-    }
-
-    #drop-area {
-        height: auto;
-        padding: 20px;
-    }
-
-    .input-group input {
-        width: 100%;
-    }
-
-    .Containerlogout {
-        margin-top: 20px;
-    }
-
-    .mainAccountRow2 [class^="ricetta"] {
-        display: flex;
-        flex-direction: column;
-    }
-
-    /*HOME*/
     #mainHome{
         margin-top: 130px;
         margin-left: 10px;
@@ -1147,17 +1055,8 @@ hr{
         gap: 15px;
     }
 
-    .loggato, .logo{
-        border-radius: 50%; 
-        object-fit: cover; 
-    }
+    /* 768px ricetta.php*/
 
-    .logoHome{
-        height: 40px;
-        width: 40px;
-    }
-
-    /*RICETTA*/
     #mainRicetta .mainColumn {
         display: flex;
         flex-direction: column;
@@ -1168,11 +1067,64 @@ hr{
         padding-top: 0px;
 
     }
+
+    /* 768px account.php */
+    #mainAccount .mainAccountRow1 {
+        width: 100%;
+        padding: 20px;
+        margin-top: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    
+    #mainAccount .ImmagineUtente {
+        width: 150px; 
+        height: 150px;
+        border-radius: 50%; 
+        object-fit: cover; 
+    }
+
+    #mainAccount {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    #mainAccount.datiImmagine, .Dati {
+        width: 100%;
+    }
+
+    #mainAccount .Dati {
+        margin-top: 20px; 
+    }
+
+    #mainAccount .banner-content {
+        width: 90%;
+        height: auto;
+    }
+
+    #drop-area {
+        height: auto;
+        padding: 80px;
+    }
+
+    #mainAccount .input-group input {
+        width: 100%;
+    }
+
+    #mainAccount .Containerlogout {
+        margin-top: 20px;
+    }
+
+    #mainAccount .mainAccountRow2 [class^="ricetta"] {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 
 @media (max-width: 600px) {
-    /*HOME*/
+
+    /* media 600px home.php */
     #mainHome .allRicette {
         display: grid;
         grid-template-columns:1fr;
@@ -1190,12 +1142,5 @@ hr{
         padding: 5px;
     }
 
-    /*RICETTA*/
-    #titleRicetta {
-        gap:2px;
-    }
-    #titleRicetta  h1{
-        font-size: 18px;
-        text-align: center;
-    }
+
 }
