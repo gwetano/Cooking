@@ -32,8 +32,8 @@ header {
 .loggato img {
     max-width: 50px; 
     max-height: 50px; 
+    cursor: pointer;
 }
-
 .loggato {
     display: flex;
     align-items: center; 
