@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($password !== $repassword) {
             echo json_encode(['success' => false, 'message' => 'Le password non corrispondono.']);
         } elseif (username_exist($username)) {
-            echo json_encode(['success' => false, 'message' => 'Username già esistente.']);
+            echo json_encode(['success' => false, 'message' => 'username già esistente.']);
         } elseif (insert_utente($username, $password, $nome, $cognome)) {
             echo json_encode(['success' => true]);
         } else {
