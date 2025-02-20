@@ -76,7 +76,7 @@ require_once './funzioni.php'
                             </div>
                         </div>
                         <div class="infoRicettaDelGiorno">
-                            <p> <img src="./img/difficolta.png" alt="difficoltà">Difficoltà : <span>
+                            <p> <img src="./img/difficolta.png" alt="difficolta">Difficoltà : <span>
                                     <?php
                                     echo getDifficoltaRicetta($idRicettaDelGiorno); ?> </span></p>
                             <p> <img src="./img/orologio.png" alt="orologio"> Pronto in : <span> <?php
@@ -170,7 +170,7 @@ require_once './funzioni.php'
                             </div>
                         </div>
                         <div class="infoRicettaDelGiorno">
-                            <p> <img src="./img/difficoltà.png" alt="difficoltà">Difficoltà : <span>
+                            <p> <img src="./img/difficolta.png" alt="difficolta">Difficoltà : <span>
                                     <?php
                                     echo getDifficoltaRicetta($idRicettaDelGiorno); ?> </span></p>
                             <p> <img src="./img/orologio.png" alt="orologio"> Pronto in : <span> <?php
