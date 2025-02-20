@@ -265,6 +265,7 @@ footer a:hover {
 #mainIndex .contenutoMainColumn .ricette .nomeRicetta{
     font-weight: bold;
     font-size: 1.2rem;
+    margin-bottom: 5px;
 }
 #mainIndex .ricette .containerFotoRicetta{
     position: absolute;
@@ -533,10 +534,10 @@ footer a:hover {
 
 #mainHome .descrizioneRicetta{
     color: white;
-    font-size: 0.9rem;
-    padding: 10px;
+    font-size: 1.1rem;
     line-height: 1.4;
     z-index: 2;
+    margin: 0px 5px;
 }
 
 #mainHome .classFotoRicetta{
@@ -960,6 +961,11 @@ hr{
         display: flex;
         flex-direction: column ;
     }
+
+    /* media 1024px home.php*/
+    #mainHome .descrizioneRicetta{
+        font-size: 0.9rem;
+    }
 }
 
 @media(max-width:768px){
@@ -1049,6 +1055,10 @@ hr{
         display: grid;
         grid-template-columns: repeat(2,1fr);
         gap: 15px;
+    }
+
+    #mainHome .ricetta {
+        height: 130px;
     }
 
     /* 768px ricetta.php*/
