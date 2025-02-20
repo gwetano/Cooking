@@ -14,7 +14,7 @@ if (!isset($_SESSION['username'])) {
 if (isset($_GET['logout'])) {
     session_unset();
     session_destroy();
-    header("Location: accesso.php");
+    header("Location: index.php");
     exit;
 }
 
