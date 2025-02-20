@@ -64,7 +64,7 @@ if (!isset($_SESSION['username'])) {
 
             <div class="mainColumnDX">
                 <div class="infoRicettaSingola">
-                    <p> <img src="./img/difficoltà.png" alt="difficoltà">Difficoltà : <span>
+                    <p> <img src="./img/difficolta.png" alt="difficoltà">Difficoltà : <span>
                             <?php
                             echo getDifficoltaRicetta($id); ?> </span></p>
                     <p> <img src="./img/orologio.png" alt="orologio"> Pronto in : <span> <?php
