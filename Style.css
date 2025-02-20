@@ -223,7 +223,7 @@ footer a:hover {
 
 #mainIndex .infoRicetta span,
 #mainIndex .nomeRicetta span{
-    font-size: clamp(0.8em, 1vw, 1.5em);
+    font-size: 0.9em; 
 }
 
 #mainIndex .contenutoMainColumnRicettaDelGiorno  .infoRicettaDelGiorno{
@@ -264,12 +264,8 @@ footer a:hover {
 
 #mainIndex .contenutoMainColumn .ricette .nomeRicetta{
     font-weight: bold;
-}
-
-#mainIndex .contenutoMainColumn .ricette .descrizioneRicetta{
     font-size: 1.2rem;
 }
-
 #mainIndex .ricette .containerFotoRicetta{
     position: absolute;
     top: 0;
