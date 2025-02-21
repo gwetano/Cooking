@@ -757,7 +757,7 @@ hr{
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    height: 500px;
+    height: auto;
     width: 600px;
     z-index: 10001;
 }
