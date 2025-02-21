@@ -12,7 +12,6 @@ if (!isset($_SESSION['username'])) {
     $id = $_GET['id'];
 }
 ?>
-<html>
 <!DOCTYPE html>
 <html lang="en">
 

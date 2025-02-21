@@ -63,7 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ?>
 
-<html>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -252,20 +251,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     document.getElementById('CambiaPasswordForm').addEventListener('submit', function (event) {
         event.preventDefault();
         const formData = new FormData(this);
-        fetch('?action=cambiaPassword', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'account.php?action=cambiaPassword', true);
+
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                var response = JSON.parse(xhr.responseText);
+                if (response.success == true) {
+                    alert(response.message);
                     window.location.href = 'account.php';
-                    alert(data.message);
-                } else {
-                    alert(data.message);
                 }
-            })
-            .catch(error => console.error('Errore:', error));
+                else {
+                    alert(response.message);
+                }
+            }
+            else {
+                alert('Errore nel caricamento;');
+            }
+        };
+        xhr.send(formData);
     });
 
     const dropArea = document.getElementById('drop-area');
@@ -286,14 +291,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         const files = e.dataTransfer.files;
         if (files.length > 0) {
-            uploadFiles(files[0]); 
+            uploadFiles(files[0]);
         }
     });
 
     fileInput.addEventListener('change', () => {
         const files = fileInput.files;
         if (files.length > 0) {
-            uploadFiles(files[0]); 
+            uploadFiles(files[0]);
         }
     });
 </script>

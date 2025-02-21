@@ -571,10 +571,11 @@ footer a:hover {
     text-align: center; 
 }
 
-#headerRicetta .title  .star {
+#headerRicetta .title  .star{
     margin-left: 5px;
     display: flex; 
     align-items: center;
+    cursor: pointer;
 }
 
 #headerRicetta .title  .star img {
