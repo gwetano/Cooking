@@ -289,7 +289,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         event.preventDefault();
         dropArea.style.backgroundColor = '#fff';
 
-        const files = e.dataTransfer.files;
+        const files = event.dataTransfer.files;
         if (files.length > 0) {
             uploadFiles(files[0]);
         }
