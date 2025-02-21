@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         exit();
     } elseif (!empty($_FILES['file'])) {
-        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . "/Cooking/immaginiUser";
+        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . "/gruppo12/immaginiUser";
         $tmp_name = $_FILES['file']['tmp_name'];
         $file_type = mime_content_type($tmp_name);
         $allowed_types = ['image/png', 'image/jpeg'];
