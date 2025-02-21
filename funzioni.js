@@ -13,30 +13,8 @@ function registerOrLogin(event, id) {
   window.location.href = "accesso.php?id=" + id;
 }
 
-function favorites(event, id, toggle) {
-  event.stopPropagation();
-  const star = document.getElementById("addPreferiti" + id);
-
-  const formData = new FormData();
-  formData.append("id", id);
-  formData.append("action", toggle ? "remove" : "add");
-
-  const xhr = new XMLHttpRequest();
-  xhr.open("POST", "home.php", true);
-
-  xhr.onload = function () {
-    if (xhr.status == 200) {
-      var response = JSON.parse(xhr.responseText);
-      if (response.success == true) {
-        star.src = toggle ? "./img/nonPreferiti.png" : "./img/Preferiti.png";
-      } else {
-        alert("C’è stato un errore durante l’operazione!");
-      }
-    } else {
-      alert("Errore nel caricamento;");
-    }
-  };
-  xhr.send(formData);
+function chiudiFinestra() {
+  window.location.reload();
 }
 
 function toggleFavorite(event, id, isFavorite) {
@@ -62,7 +40,8 @@ function toggleFavorite(event, id, isFavorite) {
           : "./img/nonPreferiti.png";
         star.setAttribute(
           "onclick",
-          `toggleFavorite(event, ${id}, ${newIsFavorite})`);
+          `toggleFavorite(event, ${id}, ${newIsFavorite})`
+        );
       } else {
         alert("C’è stato un errore durante l’operazione!");
       }
@@ -90,8 +69,4 @@ function uploadFiles(file) {
   };
 
   xhr.send(formData);
-}
-
-function chiudiFinestra() {
-  window.location.reload();
 }

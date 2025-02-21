@@ -35,7 +35,8 @@ function getFotoRicetta($id)
     return null;
 }
 
-function getIngredientiRicetta($id) {
+function getIngredientiRicetta($id)
+{
     global $db;
     $sql = "SELECT ingredienti FROM ricette WHERE id=$1";
     $result = pg_query_params($db, $sql, array($id));
@@ -46,7 +47,8 @@ function getIngredientiRicetta($id) {
     return null;
 }
 
-function getPreparazioneRicetta($id) {
+function getPreparazioneRicetta($id)
+{
     global $db;
     $sql = "SELECT preparazione FROM ricette WHERE id=$1";
     $result = pg_query_params($db, $sql, array($id));
@@ -257,13 +259,15 @@ function insert_utente($username, $password, $nome, $cognome)
     return $result !== false;
 }
 
-function generaIdCasuale() {
+function generaIdCasuale()
+{
     $ids = getIdRicette();
-    $randomIndex = array_rand($ids); 
-    return $ids[$randomIndex]; 
+    $randomIndex = array_rand($ids);
+    return $ids[$randomIndex];
 }
 
-function generaNumeriCasualiDiversi() {
+function generaNumeriCasualiDiversi()
+{
     $arrayNumeri = getIdRicette();
     $count = 4;
     shuffle($arrayNumeri);
