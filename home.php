@@ -3,7 +3,7 @@ session_start();
 require './db.php';
 require_once './funzioni.php';
 
-if (!isset($_SESSION['username'])) { 
+if (!isset($_SESSION['username'])) {
     echo "<script>
         window.location.href = 'accesso.php';
     </script>";
@@ -18,20 +18,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'] ?? '';
 
     if (!$id) {
-        echo json_encode(['error' => 'ID non valido']);
+        echo json_encode(['success' => false, 'error' => 'ID non valido']);
         exit;
     }
 
     if ($action === 'add') {
-        $result = addRicettePreferite($username,$id);
+        $result = addRicettePreferite($username, $id);
+        echo json_encode(['success' => true]);
     } elseif ($action === 'remove') {
-        $result = removeRicettePreferite($username,$id);
+        $result = removeRicettePreferite($username, $id);
+        echo json_encode(['success' => true]);
     } else {
-        echo json_encode(['error' => 'Azione non valida']);
+        echo json_encode(['success' => false, 'error' => 'Azione non valida']);
         exit;
     }
 
-    echo json_encode(['success' => $result ? true : false, 'error' => $result ? null : pg_last_error($db)]);
     exit();
 }
 ?>
@@ -54,14 +55,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const searchInput = document.getElementById('searchInput'); 
-            const recipes = document.querySelectorAll('[class^="mainRow"]'); 
+            const searchInput = document.getElementById('searchInput');
+            const recipes = document.querySelectorAll('[class^="mainRow"]');
 
             searchInput.addEventListener('input', function () {
-                const query = searchInput.value.toLowerCase(); 
+                const query = searchInput.value.toLowerCase();
 
                 recipes.forEach(recipe => {
-                    const keywords = recipe.getAttribute('data-keywords')?.toLowerCase(); 
+                    const keywords = recipe.getAttribute('data-keywords')?.toLowerCase();
                     if (!query || (keywords && keywords.includes(query))) {
                         recipe.style.display = 'block';
                     } else {
@@ -71,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             });
         });
     </script>
-    
+
     <header id="headerHome">
         <div class="logo">
             <img src="./img/icon.png" onclick="vaiAIndex(event)">
@@ -137,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <footer>
         <div>
             <a href="mailto:miaomiaodevelopers@email.com">
-            Contact Us
+                Contact Us
             </a>
             ●
             <a href="./index.php">

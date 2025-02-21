@@ -276,8 +276,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     const dropArea = document.getElementById('drop-area');
     const fileInput = document.getElementById('fileElem');
 
-    dropArea.addEventListener('dragover', (e) => {
-        e.preventDefault();
+    dropArea.addEventListener('dragover', (event) => {
+        event.preventDefault();
         dropArea.style.backgroundColor = '#e9e9e9';
     });
 
@@ -285,8 +285,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         dropArea.style.backgroundColor = '#fff';
     });
 
-    dropArea.addEventListener('drop', (e) => {
-        e.preventDefault();
+    dropArea.addEventListener('drop', (event) => {
+        event.preventDefault();
         dropArea.style.backgroundColor = '#fff';
 
         const files = e.dataTransfer.files;

@@ -173,9 +173,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="password" name="repassword" placeholder="Ripeti Password" required class="ripetipassword">
                     </p>
                     <p>
-                        <input type="checkbox" name="terms" required> Accetto termini e condizioni
-                    </p>
-                    <p>
                     <button type="submit" class="bottone">Registrati</button>
                     </p>
                 </form>
