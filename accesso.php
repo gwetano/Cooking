@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <footer>
         <div>
             <a href="mailto:miaomiaodevelopers@email.com">
-            Contact Us
+                Contact Us
             </a>
             ●
             <a href="./index.php">
@@ -127,24 +127,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const formData = new FormData(this);
         const id = document.getElementById('idRicetta').value;
 
-        fetch('?action=login', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'accesso.php?action=login', true);
+
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                var response = JSON.parse(xhr.responseText);
+                if (response.success == true) {
                     if (id > 0) {
                         window.location.href = 'ricetta.php?id=' + id;
-                    }
-                    else {
+                    } else {
                         window.location.href = 'index.php';
                     }
-                } else {
-                    alert(data.message);
                 }
-            })
-            .catch(error => console.error('Errore:', error));
+                else {
+                    alert(response.message);
+                }
+            }
+            else {
+                alert('Errore nel caricamento;');
+            }
+        };
+        xhr.send(formData);
     });
 
     document.getElementById('registratiCliccabile').addEventListener('click', function () {
@@ -180,22 +184,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         document.getElementById('registerForm').addEventListener('submit', function (event) {
             event.preventDefault();
             const formData = new FormData(this);
-            fetch('?action=register', {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'accesso.php?action=register', true);
+
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success == true) {
                         alert('Registrazione completata! Ora puoi accedere.');
                         window.location.reload();
-                    } else {
-                        alert(data.message);
                     }
-                })
-                .catch(error => console.error('Errore:', error));
+                    else {
+                        alert(response.message);
+                    }
+                }
+                else {
+                    alert('Errore nel caricamento;');
+                }
+            };
+            xhr.send(formData);
         });
     });
+
 
     document.getElementById('visualizzaPassword').addEventListener('mouseover', function (event) {
         document.getElementById('password').setAttribute('type', 'text');
