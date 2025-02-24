@@ -11,6 +11,13 @@ if (!isset($_SESSION['username'])) {
 } else {
     $username = $_SESSION['username'];
     $id = $_GET['id']; //salvo l'id della ricetta premuta quando mi trovavo in home o in index
+    //funzione mancante alla consegna!
+    if(!in_array($id,getIdRicette())) {
+        echo "<script>
+        alert('Ricetta non esistente!');
+        window.location.href = 'home.php';
+    </script>";
+    }
 }
 ?>
 <!DOCTYPE html>
