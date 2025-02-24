@@ -3,6 +3,7 @@ session_start();
 require './db.php';
 require_once './funzioni.php';
 
+// blocco qualsiasi accesso da parte di utenti non autenticati, se autenticato salvo l'username
 if (!isset($_SESSION['username'])) {
     echo "<script>
         window.location.href = 'accesso.php';
@@ -12,10 +13,10 @@ if (!isset($_SESSION['username'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    header('Content-Type: application/json');
+    header('Content-Type: application/json'); //comunichiamo che la risposta sarà in JSON affinchè sia gestita correttamente
 
-    $action = $_POST['action'] ?? '';
-    $id = $_POST['id'] ?? '';
+    $action = $_POST['action'] ?? ''; 
+    $id = $_POST['id'] ?? ''; //salvo l'id della ricetta da aggiungere nei preferiti
 
     if (!$id) {
         echo json_encode(['success' => false, 'error' => 'ID non valido']);
@@ -23,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($action === 'add') {
-        $result = addRicettePreferite($username, $id);
+        $result = addRicettePreferite($username, $id); //aggiungo la ricetta al db
         echo json_encode(['success' => true]);
     } elseif ($action === 'remove') {
         $result = removeRicettePreferite($username, $id);
@@ -59,11 +60,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             const recipes = document.querySelectorAll('[class^="mainRow"]');
 
             searchInput.addEventListener('input', function () {
-                const query = searchInput.value.toLowerCase();
+                const query = searchInput.value.toLowerCase(); //converte il valore in minuscolo per diventare case-insensitive
 
-                recipes.forEach(recipe => {
+                recipes.forEach(recipe => { //forEach per confrontare tutti gli elementi di recipe e le loro data-keywords con la parola inserita
                     const keywords = recipe.getAttribute('data-keywords')?.toLowerCase();
-                    if (!query || (keywords && keywords.includes(query))) {
+                    if (!query || (keywords && keywords.includes(query))) { //confronta tutte le data-keywords con la query e mostra solo le ricette che contengono quella query
                         recipe.style.display = 'block';
                     } else {
                         recipe.style.display = 'none';

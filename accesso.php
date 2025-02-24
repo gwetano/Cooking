@@ -12,13 +12,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Type: application/json');
 
     $action = $_GET['action'] ?? '';
+    //azione definita a seconda del form compilato. 
 
     if ($action === 'login') {
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
 
         $hash = get_pwd($username);
-
+        //utilizziamo la notazione json_encode in quanto, grazie alla coppia chiave valore, possiamo gestire
+        //i casi in cui la richiesta ha status 200, quindi è completata correttamente, ma devo differenziare casi differenti
+        //come username e password corretti o utente esistente. In questo modo in base alla chiave success posso ottenere un
+        //alert differente a seconda della situazione. 
         if (!$hash) {
             echo json_encode(['success' => false, 'message' => "L'utente $username non esiste."]);
         } elseif (password_verify($password, $hash)) {
@@ -128,10 +132,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const id = document.getElementById('idRicetta').value;
 
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'accesso.php?action=login', true);
+        xhr.open('POST', 'accesso.php?action=login', true); //true == richiesta asincrona e non bloccate, opzionale in quanto è il comportamento di default.
 
         xhr.onload = function () {
-            if (xhr.status == 200) {
+            if (xhr.status == 200 /* xhr.readyState == 4 */) { 
+                //può essere aggiunto per migliorare la condizione, aspettando che la richiesta 
+                //sia completata e la risposta sia pronta. 
                 var response = JSON.parse(xhr.responseText);
                 if (response.success == true) {
                     if (id > 0) {
@@ -141,6 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
                 }
                 else {
+                    //solo se success == false do un alert
                     alert(response.message);
                 }
             }
