@@ -2,6 +2,7 @@
 session_start();
 require './db.php';
 require_once './funzioni.php';
+// blocco qualsiasi accesso da parte di utenti non autenticati, se autenticato salvo l'username
 if (!isset($_SESSION['username'])) {
     echo "<script>
         window.location.href = 'accesso.php';
@@ -9,7 +10,7 @@ if (!isset($_SESSION['username'])) {
     exit;
 } else {
     $username = $_SESSION['username'];
-    $id = $_GET['id'];
+    $id = $_GET['id']; //salvo l'id della ricetta premuta quando mi trovavo in home o in index
 }
 ?>
 <!DOCTYPE html>

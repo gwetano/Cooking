@@ -3,6 +3,7 @@ session_start();
 require './db.php';
 require_once './funzioni.php';
 
+// blocco qualsiasi accesso da parte di utenti non autenticati, se autenticato salvo l'username
 if (!isset($_SESSION['username'])) {
     echo "<script>
         window.location.href = 'accesso.php';
@@ -10,7 +11,7 @@ if (!isset($_SESSION['username'])) {
     exit;
 } else
     $username = $_SESSION['username'];
-
+//quando la richiesta è di logout distruggo la sessione eliminando tutte le variabili di sessione associate
 if (isset($_GET['logout'])) {
     session_unset();
     session_destroy();
@@ -21,7 +22,7 @@ if (isset($_GET['logout'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_GET['action'] ?? '';
     if ($action === 'cambiaPassword') {
-        header('Content-Type: application/json');
+        header('Content-Type: application/json'); //comunichiamo che la risposta sarà in JSON affinchè sia gestita correttamente
         $password = $_POST['oldPassword'] ?? '';
         $newPassword = $_POST['newPassword'] ?? '';
         $confermaNewPassword = $_POST['confermaNewPassword'] ?? '';
@@ -41,22 +42,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         exit();
     } elseif (!empty($_FILES['file'])) {
-        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . "/gruppo12/immaginiUser";
-        $tmp_name = $_FILES['file']['tmp_name'];
-        $file_type = mime_content_type($tmp_name);
+        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . "/gruppo12/immaginiUser"; //salvo la directory di upload del nuovo file
+        $tmp_name = $_FILES['file']['tmp_name']; //percorso temporaneo del file caricato
+        $file_type = mime_content_type($tmp_name); //resituisce o image/png o image/jpeg (se è tutto corretto)
         $allowed_types = ['image/png', 'image/jpeg'];
         if (!in_array($file_type, $allowed_types)) {
             echo "Errore: formato file non supportato! Carica solo PNG o JPEG.";
             exit;
         }
 
-        $path = $uploads_dir . "/$username.png";
+        $path = $uploads_dir . "/$username.png"; //definisco il path di destinazione 
 
-        move_uploaded_file($tmp_name, $path);
+        move_uploaded_file($tmp_name, $path); //sposto l'immagine nella sua directory di destinazione
 
         $name = "./immaginiUser/$username.png";
         echo "File caricato con successo!";
-        changeImage($username, $name);
+        changeImage($username, $name); //cambio la visualizzazione dell'immagine a schermo
     }
     exit();
 }
@@ -106,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             Annulla
                         </button>
                         <p>Trascina i file qui</p>
-                        <div id="drop-area"></div>
+                        <div id="drop-area"></div> <!-- individuo l'area adibita al drop del file-->
                         <p>Oppure clicca per selezionare un file</p>
                         <input type="file" id="fileElem" name="file" accept="image/png, image/jpeg">
                         <div id="file-list"></div>
@@ -257,7 +258,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         xhr.onload = function () {
             if (xhr.status == 200) {
-                var response = JSON.parse(xhr.responseText);
+                var response = JSON.parse(xhr.responseText); //essendo la risposta in JSON effettuiamo il parse. 
                 if (response.success == true) {
                     alert(response.message);
                     window.location.href = 'account.php';
@@ -276,6 +277,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     const dropArea = document.getElementById('drop-area');
     const fileInput = document.getElementById('fileElem');
 
+    // DRAG-AND-DROP
+
+    //cambio colore alla drop-area se ci sono sopra con un file 
     dropArea.addEventListener('dragover', (event) => {
         event.preventDefault();
         dropArea.style.backgroundColor = '#e9e9e9';
@@ -285,18 +289,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         dropArea.style.backgroundColor = '#fff';
     });
 
+    // determino l'azione da fare successivamente al drop del file nell'area
     dropArea.addEventListener('drop', (event) => {
         event.preventDefault();
         dropArea.style.backgroundColor = '#fff';
 
         const files = event.dataTransfer.files;
+        //ottiene il file trascinato nella drop-area, controlla che "esiste" 
+        //e chiama la funzione adibita al upload
         if (files.length > 0) {
             uploadFiles(files[0]);
         }
     });
 
+    //SCELTA DEL FILE SFOGLIANDOLI
+
+    //gestisco anche l'evento in cui il file è scelto dai file nel pc
     fileInput.addEventListener('change', () => {
-        const files = fileInput.files;
+        const files = fileInput.files; //fileInput è la variabile associata al fileElem (vedi sopra)
         if (files.length > 0) {
             uploadFiles(files[0]);
         }

@@ -1,5 +1,5 @@
 function vaiAllaRicetta(event, id) {
-  event.stopPropagation();
+  event.stopPropagation(); //evito il bubbling
   window.location.href = "ricetta.php?id=" + id;
 }
 
@@ -21,16 +21,17 @@ function toggleFavorite(event, id, isFavorite) {
   event.stopPropagation();
   const star = document.getElementById("addPreferiti" + id);
 
-  const action = isFavorite ? "remove" : "add";
+  const action = isFavorite ? "remove" : "add"; //decido l'action in base al valore di isFavorite
   const newIsFavorite = !isFavorite;
 
   const formData = new FormData();
   formData.append("id", id);
-  formData.append("action", action);
+  formData.append("action", action); 
+  //invece di passare l'azione nella xhr.open la passo nel form in quanto
+  //non avrei  potuto far variare action a seconda della situazione !(vedi sotto)
 
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", "home.php", true);
-
+  xhr.open("POST", "home.php"/*home.php?action=add/remove*/, true);  
   xhr.onload = function () {
     if (xhr.status == 200) {
       var response = JSON.parse(xhr.responseText);
@@ -40,7 +41,8 @@ function toggleFavorite(event, id, isFavorite) {
           : "./img/nonPreferiti.png";
         star.setAttribute(
           "onclick",
-          `toggleFavorite(event, ${id}, ${newIsFavorite})`
+          `toggleFavorite(event, ${id}, ${newIsFavorite})` 
+          //aggiorno l'attributo onClick invertendo la variabile isFavorite per i prossimi click
         );
       } else {
         alert("C’è stato un errore durante l’operazione!");
