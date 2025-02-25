@@ -1,4 +1,4 @@
-![Logo](img/icon.png)
+![Logo](img/cooking.gif)
 
 # Cooking - Sito Web di Ricette
 
