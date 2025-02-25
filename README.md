@@ -1,3 +1,5 @@
+![Logo](img/icon.png)
+
 # Cooking - Sito Web di Ricette
 
 ## Descrizione
