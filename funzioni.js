@@ -1,6 +1,6 @@
 function vaiAllaRicetta(event, id) {
   event.stopPropagation(); //evito il bubbling
-  window.location.href = "ricetta.php?id=" + id;
+  window.location.href = "ricetta.php?id=" + id; //query string usata per passare l'id della ricetta
 }
 
 function vaiAIndex(event) {
@@ -42,7 +42,9 @@ function toggleFavorite(event, id, isFavorite) {
         star.setAttribute(
           "onclick",
           `toggleFavorite(event, ${id}, ${newIsFavorite})` 
-          //aggiorno l'attributo onClick invertendo la variabile isFavorite per i prossimi click
+          //aggiorno l'attributo onClick aggiornando la variabile isFavorite per i prossimi click
+          //Se non aggiornassi l’attributo onclick, il valore passato alla funzione toggleFavorite(event, id, isFavorite) 
+          //rimarrebbe sempre lo stesso valore iniziale, anche dopo aver modificato lo stato dell’elemento.
         );
       } else {
         alert("C’è stato un errore durante l’operazione!");
