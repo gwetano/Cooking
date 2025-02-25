@@ -158,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         xhr.send(formData);
     });
 
-    document.getElementById('registratiCliccabile').addEventListener('click', function () {
+    document.getElementById('registratiCliccabile').addEventListener('click', function () { //volendo che sia reversibile usiamo innerHTML altrimenti outerHTML
         document.getElementById('mainAccesso').innerHTML = `
                  <form id="registerForm">
         

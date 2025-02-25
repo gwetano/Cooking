@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (!empty($_FILES['file'])) {
         $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . "/gruppo12/immaginiUser"; //salvo la directory di upload del nuovo file
         $tmp_name = $_FILES['file']['tmp_name']; //percorso temporaneo del file caricato
-        $file_type = mime_content_type($tmp_name); //resituisce o image/png o image/jpeg (se è tutto corretto)
-        $allowed_types = ['image/png', 'image/jpeg'];
+        $file_type = mime_content_type($tmp_name); //resituisce o image/png o image/jpeg (se è tutto corretto) o il tipo del file inserito
+        $allowed_types = ['image/png', 'image/jpeg']; //tipi supportati
         if (!in_array($file_type, $allowed_types)) {
             echo "Errore: formato file non supportato! Carica solo PNG o JPEG.";
             exit;
