@@ -312,3 +312,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     });
 </script>
+
+<!-- 
+ soluzione migliore e pulita, sostituire onclick =  vaiAllaRicetta(event,id) con :
+ document.querySelectorAll('[class^="mainRow"]').addEventListner('click',function(event) {
+ ...
+ });
+-->
